@@ -1,0 +1,342 @@
+---
+title: "generated exmple data for our package"
+author: "Yunwei Zhang"
+date: “`r paste0('Initiated on 20210607, compiled on ', format(Sys.time(), '%Y %b %d'))`”
+output:
+  
+  html_document:
+    code_folding: hide
+    fig_height: 8
+    fig_width: 12
+    highlight: tango
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE,message = FALSE)
+```
+
+```{r}
+library(KidneyAllocation)
+library(dplyr)
+library(gridExtra)
+library(reshape2)
+library(ggplot2)
+library(ggpubr)
+library(ggthemes)
+library(survival)
+library(pec)
+library(ggridges)
+library(plyr)
+library(foreach)
+library(doParallel)
+library(doSNOW)
+data("rawdata")
+
+```
+
+# reorder variabels, except date: "tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate"
+```{r}
+set.seed(202106001)
+order_index1=sample(nrow(rawdata))
+set.seed(202106002)
+order_index2=sample(nrow(rawdata))
+set.seed(202106003)
+order_index3=sample(nrow(rawdata))
+set.seed(202106004)
+order_index4=sample(nrow(rawdata))
+set.seed(202106005)
+order_index5=sample(nrow(rawdata))
+set.seed(202106006)
+order_index6=sample(nrow(rawdata))
+
+selected_var=colnames(rawdata)[!colnames(rawdata)%in% c("tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate","recip_id", "tx_id" , "donor_id")]
+
+# * need to group recip age and gender and weight and height
+# * need to group donor age and gender and weight and height
+fakedata_part1=rawdata[order_index1,selected_var[c(23,24,37,43,44,47,48,50)]]
+fakedata_part2=rawdata[order_index1,selected_var[1:22]]
+fakedata_part3=rawdata[order_index1,selected_var[25:36]]
+fakedata_part4=rawdata[order_index1,selected_var[c(38:42,45,46)]]
+fakedata_part5=rawdata[order_index1,selected_var[c(49,51:60)]]
+fakedata_part6=rawdata[order_index1,selected_var[61:71]]
+fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)
+
+
+# fakedata_part1=rawdata[order_index1,selected_var[1:10]]
+# fakedata_part2=rawdata[order_index1,selected_var[11:20]]
+# fakedata_part3=rawdata[order_index1,selected_var[21:30]]
+# fakedata_part4=rawdata[order_index1,selected_var[31:40]]
+# fakedata_part5=rawdata[order_index1,selected_var[41:55]]
+# fakedata_part6=rawdata[order_index1,selected_var[56:71]]
+# fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)
+```
+
+# assign new "recip_id", "tx_id" , "donor_id" 
+```{r}
+idmaker <- function(x){
+    max.val = x*100
+    count <- nchar(as.character(max.val))                       # find out how many 'numbers' each ID will have after the letter
+    size <- paste("%0",count,"d",sep="")                        # set the variable to be fed into 'sprintf' to ensure we have leading 0's
+    lets <- toupper(sample(letters,x, replace=T))               # randomising the letters 
+    nums <- sprintf(size,sample(1:max.val)[1:x])                # randominsing the numbers, and ensuing they all have the same number of characters
+    ids <- paste(lets,nums,sep="")                              # joining them together
+  return(ids)}
+
+idmaker2 <- function(x){
+    max.val = x*100
+    count <- nchar(as.character(max.val))                       # find out how many 'numbers' each ID will have after the letter
+    size <- paste("%0",count,"d",sep="")                        # set the variable to be fed into 'sprintf' to ensure we have leading 0's
+    lets <- toupper(sample(letters,x, replace=T))  
+    lets2 <- toupper(sample(letters,x, replace=T))# randomising the letters 
+    nums <- sprintf(size,sample(1:max.val)[1:x])                # randominsing the numbers, and ensuing they all have the same number of characters
+    ids <- paste(lets,paste(lets2,nums,sep=""),sep="")                              # joining them together
+  return(ids)}
+
+idmaker3 <- function(x){
+    max.val = x*100
+    count <- nchar(as.character(max.val))                       # find out how many 'numbers' each ID will have after the letter
+    size <- paste("%0",count,"d",sep="")                        # set the variable to be fed into 'sprintf' to ensure we have leading 0's
+    lets <- toupper(sample(letters,x, replace=T))    
+    lets2 <- toupper(sample(letters,x, replace=T)) 
+    lets3 <- toupper(sample(letters,x, replace=T)) # randomising the letters 
+    nums <- sprintf(size,sample(1:max.val)[1:x])                # randominsing the numbers, and ensuing they all have the same number of characters
+    ids <- paste(lets,paste(lets2,paste(lets3,nums,sep=""),sep=""),sep="")                             # joining them together
+  return(ids)}
+set.seed(202106001)
+fakedata_1$recip_id=idmaker(dim(rawdata)[1])
+fakedata_1$donor_id=idmaker2(dim(rawdata)[1])
+fakedata_1$tx_id=idmaker3(dim(rawdata)[1])
+
+```
+
+
+# sliding windows for those date variables (move before or after two weeks)
+
+```{r}
+set.seed(202106001)
+fakedata_1[,"tx_date"]=rawdata[,"tx_date"]+sample(-14:14,1)
+fakedata_1[,"recip_rrtstartdate"]=rawdata[,"recip_rrtstartdate"]+sample(-14:14,1)
+rawdata[,"recip_deathdate"]=as.Date(rawdata[,"recip_deathdate"],"%Y-%m-%d")
+fakedata_1[,"recip_deathdate"]=rawdata[,"recip_deathdate"]+sample(-14:14,1)
+fakedata_1[,"recip_liststartdate"]=rawdata[,"recip_liststartdate"]+sample(-14:14,1)
+rawdata[,"tx_faildate"]=as.Date(rawdata[,"tx_faildate"],"%Y-%m-%d")
+fakedata_1[,"tx_faildate"]=rawdata[,"tx_faildate"]+sample(-14:14,1)
+fakedata_1[,"recip_comorb_date"]=rawdata[,"recip_comorb_date"]+sample(-14:14,1)
+
+```
+
+
+
+# check the package
+
+```{r}
+#get raw_recip_matrix from rawdata
+raw_recip_matrix <- fakedata_1[, grep("recip_", colnames(fakedata_1))]
+raw_donor_matrix <- fakedata_1[, grep("donor_", colnames(fakedata_1))]
+risk <- readRDS("/Users/yzha0247/Dropbox (Sydney Uni)/YunweiZhang/WeeklyProgress/R code/GitHub-old-mine/KidneyAllocation/analysis/queuing/predrisk_yw2.rds")
+colnames(risk) <- c("recip_id", "riskscore")
+raw_recip_matrix <- merge(raw_recip_matrix, risk, by= "recip_id", all.x=TRUE)
+raw_donor_matrix$tx_date <- fakedata_1$tx_date
+raw_recip_matrix$recip_algorithm <- fakedata_1$algorithm 
+raw_recip_matrix$recip_id_original <- raw_recip_matrix$recip_id
+raw_recip_matrix$recip_id <- paste(raw_recip_matrix$recip_id,
+                                   raw_recip_matrix$recip_graftno,
+                                   sep = "_")
+raw_donor_matrix$donor_id <- as.character(raw_donor_matrix$donor_id)
+raw_donor_matrix$donor_blgroup <- as.character(raw_donor_matrix$donor_blgroup)
+raw_recip_matrix$recip_blgroup <- as.character(raw_recip_matrix$recip_blgroup)
+raw_recip_matrix$recip_id <- as.character(raw_recip_matrix$recip_id)
+raw_donor_matrix <- raw_donor_matrix %>% group_by(donor_id) %>% dplyr::mutate(num_kidney = n()) %>%distinct(donor_id, .keep_all = TRUE) 
+raw_recip_matrix <- data.frame(raw_recip_matrix)
+raw_donor_matrix <- data.frame(raw_donor_matrix)
+raw_recip_matrix$recip_original_listdate <- raw_recip_matrix$recip_liststartdate
+raw_recip_matrix$recip_original_rrtstartdate<- raw_recip_matrix$recip_rrtstartdate
+raw_donor_matrix <- raw_donor_matrix[raw_donor_matrix$tx_date > "2008-09-18",]
+dim(raw_recip_matrix)
+dim(raw_donor_matrix)
+raw_recip_matrix$recip_tx_date <- fakedata_1$tx_date
+raw_recip_matrix$recip_birthdate <- raw_recip_matrix$recip_tx_date - lubridate::years(raw_recip_matrix$recip_age)
+summary(raw_recip_matrix$recip_birthdate)
+raw_recip_matrix <- raw_recip_matrix %>% tidyr::drop_na(recip_epts, recip_state, recip_birthdate, recip_age, recip_pra)
+raw_donor_matrix <- raw_donor_matrix %>% tidyr::drop_na(donor_kdri, donor_state, donor_age)
+keep <- raw_recip_matrix$recip_rrtstartdate < raw_recip_matrix$recip_liststartdate
+raw_recip_matrix <- raw_recip_matrix[keep, ]
+dim(raw_recip_matrix)
+########added 20210504 by Yunwei
+keep2 <- raw_recip_matrix$recip_tx_date>raw_recip_matrix$recip_liststartdate
+raw_recip_matrix <- raw_recip_matrix[keep2, ]
+dim(raw_recip_matrix)
+######## changed from 5821 to 5776
+dim(raw_donor_matrix)
+
+
+hla_data <- fakedata_1 %>% dplyr::select(recip_id, tx_misa, tx_misb, tx_misdr, donor_state)
+raw_recip_matrix<-merge(raw_recip_matrix, hla_data, by.x = "recip_id_original", by.y = "recip_id", all.x=TRUE) %>% dplyr::rename("recip_tx_misa" ="tx_misa",
+                                                                                            "recip_tx_misb" = "tx_misb",
+                                                                                            "recip_tx_misdr" = "tx_misdr",
+                                                                                            "origin_donor_state" = "donor_state")
+
+raw_recip_matrix<- raw_recip_matrix[!duplicated(raw_recip_matrix$recip_id_original),]
+dim(raw_recip_matrix)
+
+```
+
+
+
+```{r}
+pra_group <- cut(fakedata_1$recip_pra,
+                 c(0, 20, 40, 60, 80, 100),
+                 include.lowest = TRUE,
+                 right = FALSE)
+pra_group_prob <- c(0.84, 0.05, 0.03, 0.02, 0.05) #changed this 20210423
+names(pra_group_prob) <- levels(pra_group)
+blood_group_prob <- c(0.3, 0.02, 0.17, 0.51)
+names(blood_group_prob) <- c("A", "AB", "B", "O")
+state_prob <- round(c(531, 340, 106, 56, 42)/1075, 2)
+names(state_prob) <- c("NSW", "VIC", "QLD", "SA", "WA")
+grid_prob <- expand.grid(pra_group_prob, blood_group_prob, state_prob)
+grid_prob <- grid_prob[, 1] * grid_prob[, 2] * grid_prob[, 3]
+grid_prob <- cbind(expand.grid(names(pra_group_prob), 
+                               names(blood_group_prob),
+                               names(state_prob)),
+                   prob = grid_prob)
+
+##############added by yunwei, not sure why this doesnt exist
+raw_recip_matrix$pra_group <- cut(raw_recip_matrix$recip_pra,
+                 c(0, 20, 40, 60, 80, 100),
+                 include.lowest = TRUE,
+                 right = FALSE)
+
+multiple_sampling_recip_matrix_fun=function(seed){
+num_recip_size = 1500
+set.seed(seed)
+grid_prob$num <- round(grid_prob$prob * num_recip_size)
+grid_prob$Var3 <- as.character(grid_prob$Var3)
+raw_recip_matrix_subset <- c()
+for (i in 1:nrow(grid_prob)) {
+  tmp <- raw_recip_matrix %>% filter(recip_blgroup == grid_prob[i, 2],pra_group == grid_prob[i, 1],recip_state == grid_prob[i, 3])
+  num_tmp <- min(grid_prob[i, 5], nrow(tmp))
+  tmp <- tmp[sample(1:nrow(tmp), size = num_tmp), ]
+  raw_recip_matrix_subset <- rbind(raw_recip_matrix_subset, tmp)
+}
+
+round(table(raw_recip_matrix_subset$recip_state)/length(raw_recip_matrix_subset$recip_state), 2)
+
+round(table(raw_recip_matrix_subset$recip_blgroup)/length(raw_recip_matrix_subset$recip_blgroup), 2)
+raw_recip_matrix_subset$pra_group <- cut(raw_recip_matrix_subset$recip_pra,
+                                         c(0, 20, 40, 60, 80, 100),
+                                         include.lowest = TRUE,
+                                         right = FALSE)
+round(table(raw_recip_matrix_subset$pra_group)/length(raw_recip_matrix_subset$pra_group), 2)
+round(table(raw_recip_matrix_subset$recip_age_group)/nrow(raw_recip_matrix_subset), 2)
+round(table(raw_recip_matrix_subset$recip_state)/nrow(raw_recip_matrix_subset), 2)
+return(raw_recip_matrix_subset)
+}
+
+
+raw_recip_matrix_subset=multiple_sampling_recip_matrix_fun(1)
+
+which(!colnames(raw_donor_matrix) %in% c("donor_source","donor_state","donor_blgroup",
+                                            "donor_a1", "donor_a2","donor_b1","donor_b2"
+                                            ,"donor_dr1" ,"donor_dr2"
+                                             ,"donor_dq1" ,"donor_dq2","donor_height"
+                                             ,"donor_weight","donor_eth_code" ,"donor_eth_country"
+                                             ,"donor_eth"  ,"donor_diabetes", "donor_hypertension"
+                                             ,"donor_smoker", "donor_id","donor_death"
+                                             ,"donor_dcd"  ,"donor_creatinine" ,"donor_age"
+                                             ,"donor_sex"  ,"donor_kdri", "tx_date"
+                                             ,"num_kidney" ))
+
+
+raw_recip_matrix_subset=raw_recip_matrix_subset[,-which(!colnames(raw_recip_matrix_subset) %in% c("recip_id" , "recip_graftno", "recip_pra"
+                                           ,"recip_blgroup" ,"recip_a1","recip_a2"
+                                           ,"recip_b1" , "recip_b2","recip_dr1"
+                                           ,"recip_dr2", "recip_dq1","recip_dq2"
+                                           ,"recip_state_initial","recip_state_current", "recip_age_rrtstart"
+                                           , "recip_sex","recip_eth_detailed" ,"recip_eth"
+                                           , "recip_primrenal", "recip_biopsy" , "recip_creatinine"
+                                           ,"recip_height","recip_weight" ,"recip_smoker"
+                                           ,"recip_rrtstartdate", "recip_deathdate", "recip_state"
+                                           , "recip_age", "recip_waittime","recip_lung"
+                                           ,"recip_coronary", "recip_pvd","recip_cvd"
+                                           ,"recip_diabetes", "recip_comorb_date"  ,"recip_cancer"
+                                           ,"recip_liststartdate", "recip_waitstatus", "recip_listtime"
+                                           ,"recip_epts", "riskscore", "recip_algorithm"
+                                           ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
+                                           ,"recip_tx_date", "recip_birthdate" ,"pra_group"
+                                           ,"recip_age_group"))]
+
+
+#raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)
+
+#10 times 
+# recip_sample_list=list()
+# for(i in 1:10){
+#   recip_sample_list[[i]]=multiple_sampling_recip_matrix_fun(i)
+# }
+#saveRDS(recip_sample_list,"recip_sample_list.rds)
+```
+
+
+```{r}
+
+result=KidneyAllocation::runSimulation5.4(raw_recip_matrix_subset, 
+                                 raw_donor_matrix,
+                                 algorithm_FUN = KidneyAllocation::allocation_national,
+                                 eligible_FUN = KidneyAllocation::selectionpool1.2,
+                                 matching_FUN = KidneyAllocation::dmNational_formula,
+                                 waitlist_FUN = KidneyAllocation::dynamic_waitlist,
+                                 state_algorithm = TRUE,
+                                 national_algorithm_threshold = 54000000,
+                                 state_algorithm_FUN = KidneyAllocation::Australia_state_algorithm,
+                                 state_eligible_FUN = KidneyAllocation::Australia_state_selectionpool,
+                                 state_matching_FUN = KidneyAllocation::dmState_formula,
+                                 eligible_arg = list(AB_priority = TRUE),
+                                 waitlist_arg = list(waitlist_Risk = FALSE),
+                                 resampleN = 1,
+                                 verbose = FALSE,
+                                 num_donor = 800,num_recip = 300,
+                                 state_balance = TRUE,
+                                 dynamic_waitlist = TRUE, 
+                                 National_II = TRUE,
+                                 is_parallel=FALSE,
+                                 ncores = 10)
+
+length(result)
+dim(result[[1]])
+dim(result[[2]])
+dim(result[[3]])
+dim(result[[4]])
+head(result[[1]])
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

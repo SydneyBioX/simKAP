@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>SimKAP–simulation of the kidney allocation process</title>
+
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+a.anchor-section::before {content: '#';}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+</style>
+<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
+document.addEventListener('DOMContentLoaded', function() {
+  // Do nothing if AnchorJS is used
+  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
+    return;
+  }
+
+  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+  // Do nothing if sections are already anchored
+  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
+    return null;
+  }
+
+  // Use section id when pandoc runs with --section-divs
+  const section_id = function(x) {
+    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
+            ? x.id : '');
+  };
+
+  // Add anchors
+  h.forEach(function(x) {
+    const id = x.id || section_id(x.parentElement);
+    if (id === '') {
+      return null;
+    }
+    let anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.classList = ['anchor-section'];
+    x.classList.add('hasAnchor');
+    x.appendChild(anchor);
+  });
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">SimKAP–simulation of the kidney allocation process</h1>
+<h4 class="author">Yunwei Zhang 20210524</h4>
+<address class="author_afil">
+School of Mathematics and Statistics, The University of Sydney, Australia<br>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><code>simKAP</code> is an R package to simulate the kidney alocation process to get realistic recipient-donor pairs take into consideration of <strong>human intervention</strong> and <strong>dynamic waiting list modeling</strong>.<br />
+This vignette will walk through the implementation of this process using <strong>Australia recipient waiting list</strong>, <strong>Australia transplantation data</strong> and under <strong>Australia kidney allocation algorithm</strong>. With this demonstration using working exmaple, you will be able to customise your allocation process with modified functions such as a new National allocation (see section <strong>Customisable allocation process</strong>)</p>
+</div>
+<div id="loading-packages-and-data" class="section level1">
+<h1>Loading Packages and Data</h1>
+<p>First, load <code>simKAP</code> via install <code>KidneyAllocation</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;KidneyAllocation&quot;</span>)</a></code></pre></div>
+<p>Then, we load the example data sampled from Australia kidney allocation database.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(KidneyAllocation)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;rawdata&quot;</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;newdata&quot;</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">recip_sample_list=<span class="kw">readRDS</span>(<span class="st">&quot;recip_sample_list.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">raw_donor_matrix<span class="op">$</span>donor_rank =<span class="st"> </span><span class="kw">rank</span>(raw_donor_matrix[,<span class="st">'donor_kdri'</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(raw_donor_matrix)</a></code></pre></div>
+<p>Lastly, we load other packages for this vignette.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">library</span>(ggthemes)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">library</span>(pec)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">library</span>(ggridges)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">library</span>(plyr)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">library</span>(foreach)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">library</span>(doParallel)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">library</span>(doSNOW)</a></code></pre></div>
+</div>
+<div id="allocation-process-under-australia-kidney-allocation-algorithm" class="section level1">
+<h1>Allocation process under <strong>Australia kidney allocation algorithm</strong></h1>
+<p>The process is implemented through one huge function named <code>runSimulation5.4</code> which calls dependent functions inside itself. This below example shows how to use this function and details about each argument are illustrated.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># example allocation process</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">result=KidneyAllocation<span class="op">::</span><span class="kw">runSimulation5.4</span>(recip_sample_list[[<span class="dv">1</span>]], </a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                                 raw_donor_matrix,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">                                 <span class="dt">algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>allocation_national,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                                 <span class="dt">eligible_FUN =</span> KidneyAllocation<span class="op">::</span>selectionpool1<span class="fl">.2</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                                 <span class="dt">matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmNational_formula,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">                                 <span class="dt">waitlist_FUN =</span> KidneyAllocation<span class="op">::</span>dynamic_waitlist,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">                                 <span class="dt">state_algorithm =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">                                 <span class="dt">national_algorithm_threshold =</span> <span class="dv">54000000</span>,</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">                                 <span class="dt">state_algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_algorithm,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">                                 <span class="dt">state_eligible_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_selectionpool,</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">                                 <span class="dt">state_matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmState_formula,</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">                                 <span class="dt">eligible_arg =</span> <span class="kw">list</span>(<span class="dt">AB_priority =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">                                 <span class="dt">waitlist_arg =</span> <span class="kw">list</span>(<span class="dt">waitlist_Risk =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">                                 <span class="dt">resampleN =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">                                 <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">                                 <span class="dt">num_donor =</span> <span class="dv">800</span>,<span class="dt">num_recip =</span> <span class="dv">300</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">                                 <span class="dt">state_balance =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">                                 <span class="dt">dynamic_waitlist =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">                                 <span class="dt">National_II =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">                                 <span class="dt">is_parallel=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">                                 <span class="dt">ncores =</span> <span class="dv">10</span>)</a></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><code>recip_sample_list</code> is a list of length 10 with 10 different samples contains recipient features, we take one sample from it to be used as our recipient matrix.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">length</span>(recip_sample_list)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; [1] 10</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">head</span>(recip_sample_list[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;       recip_id recip_graftno recip_pra recip_blgroup recip_a1 recip_a2 recip_b1</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 324 P8014005_1             1         3             A        1       11       57</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 167 P7573096_1             1         0             A       24       34       56</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 129 P7213197_1             1         0             A        2        3       27</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 418 P9755043_2             2        15             A        1        2        8</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 471 P9855810_1             1         1             A        2       25        7</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 299 P7987499_1             1         5             A       24       33       58</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;     recip_b2 recip_dr1 recip_dr2 recip_dq1 recip_dq2 recip_state_initial</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 324       60         4        13        NA        NA                 NSW</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 167       57         7        14         7         9                 ACT</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 129       51         1         4         3         5                 NSW</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 418       44         3         4        NA        NA                 NSW</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 471       44         1        15        NA        NA                 NSW</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; 299       61         8        17         2         6                 NSW</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;     recip_state_current recip_age_rrtstart recip_sex</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 324                 NSW                 61         M</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 167                 ACT                 38         F</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 129                 NSW                 49         M</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 418                 NSW                 32         M</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; 471                 NSW                 46         M</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 299                 NSW                 27         M</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt;                   recip_eth_detailed recip_eth</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; 324                        Caucasoid      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 167 Oceanian - Australian Aboriginal      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; 129                        Caucasoid      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; 418                        Caucasoid      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt; 471                        Caucasoid      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt; 299      South-East Asian - Filipino      &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt;                          recip_primrenal recip_biopsy recip_creatinine</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; 324       Mesangial Proliferative (Iga+)            Y              903</span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; 167 Focal and Segmental Proliferative GN            Y              361</span></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; 129   GN With Systemic Disease (Specify)            Y              552</span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; 418              Presumed GN (No Biopsy)            N             1061</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; 471 Advanced GN (Unclassified=End Stage)            Y             1447</span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; 299                  Uncertain Diagnosis            Y              585</span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt;     recip_height recip_weight recip_smoker recip_rrtstartdate recip_deathdate</span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; 324          164         57.0        Never         2009-07-16            &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; 167          164        103.9       Former         2012-05-31            &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; 129          183        124.3        Never         2015-09-01            &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; 418          174         75.0        Never         2004-10-28       22may2013</span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt; 471          178         82.0       Former         2000-09-08       22jul2011</span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; 299          159         63.9        Never         2010-09-13            &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt;     recip_state recip_age recip_waittime recip_lung recip_coronary recip_pvd</span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; 324         NSW        65           1372          N              N         N</span></a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; 167         NSW        42           1747          N              N         N</span></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; 129         NSW        50            428          N              N         N</span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; 418         NSW        37           2097          Y              N         N</span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt; 471         NSW        54           2912          N              N         S</span></a>
+<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt; 299         NSW        32           1804          N              N         N</span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt;     recip_cvd recip_diabetes recip_comorb_date recip_cancer recip_liststartdate</span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt; 324         N              N        2012-12-31          Yes          2009-08-04</span></a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; 167         N              N        2016-12-31           No          2017-02-23</span></a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; 129         N              N        2015-12-31           No          2015-11-17</span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; 418         N              N        2009-12-31           No          2009-08-13</span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt; 471         N              N        2007-12-31           No          2006-06-28</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; 299         N              N        2014-12-31           No          2011-02-25</span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt;     recip_waitstatus recip_listtime recip_epts riskscore recip_algorithm</span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; 324           Active           1353  2.1342351  463.2878        National</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; 167           Active             18  1.1148020  473.4376           State</span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; 129           Active            351  1.1823003  515.9313        National</span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; 418           Active            347  1.5630984  314.4896        National</span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt; 471           Active            793  1.8171660  477.3008           State</span></a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt; 299           Active           1639  0.6531897  413.5275           State</span></a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt;     recip_id_original recip_original_listdate recip_original_rrtstartdate</span></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt; 324          P8014005              2009-08-04                  2009-07-16</span></a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; 167          P7573096              2017-02-23                  2012-05-31</span></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt; 129          P7213197              2015-11-17                  2015-09-01</span></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; 418          P9755043              2009-08-13                  2004-10-28</span></a>
+<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt; 471          P9855810              2006-06-28                  2000-09-08</span></a>
+<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt; 299          P7987499              2011-02-25                  2010-09-13</span></a>
+<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt;     recip_tx_date recip_birthdate pra_group</span></a>
+<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt; 324    2013-04-18      1948-04-18    [0,20)</span></a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="co">#&gt; 167    2017-03-13      1975-03-13    [0,20)</span></a>
+<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co">#&gt; 129    2016-11-02      1966-11-02    [0,20)</span></a>
+<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co">#&gt; 418    2010-07-26      1973-07-26    [0,20)</span></a>
+<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="co">#&gt; 471    2008-08-29      1954-08-29    [0,20)</span></a>
+<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="co">#&gt; 299    2015-08-22      1983-08-22    [0,20)</span></a>
+<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="kw">dim</span>(recip_sample_list[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb5-82" data-line-number="82"><span class="co">#&gt; [1] 1483   48</span></a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><code>raw_donor_matrix</code> is a donor matrix contains donor features</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">head</span>(raw_donor_matrix)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt;   donor_source donor_state donor_blgroup donor_a1 donor_a2 donor_b1 donor_b2</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; 1     Deceased         QLD             O        1       25        8       27</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; 2     Deceased         NSW             A       23       68       44       44</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 3     Deceased         QLD             O        2       68       57       60</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 4     Deceased         QLD             B       11       34        8       18</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 5     Deceased         QLD             A        1        3        7        8</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 6     Deceased         QLD             O        1       68        8       35</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;   donor_dr1 donor_dr2 donor_dq1 donor_dq2 donor_height donor_weight</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 1        15        17         2         6          175           75</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 2         4        15         6         8          173           80</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 3         4         9         7         9          170           70</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 4         7        13         2         6          169           87</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 5        15        17         2         6          168           50</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 6         3         7        NA         2          167           70</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt;          donor_eth_code donor_eth_country donor_eth donor_diabetes</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt; 1 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt; 2 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt; 3 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt; 4 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt; 5 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; 6 Oceanian - Australian              &lt;NA&gt; Caucasian    No Diabetes</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;   donor_hypertension donor_smoker donor_id                  donor_death</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt; 1                 No      Current  D988290       Traumatic Brain Injury</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; 2                 No       Former  D988863 Cerebral Hypoxia / Ischaemia</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; 3                 No        Never  D991428       Traumatic Brain Injury</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt; 4                 No      Current  D843391 Cerebral Hypoxia / Ischaemia</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; 5                 No        Never  D990169 Cerebral Hypoxia / Ischaemia</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt; 6                 No      Current D1006042     Intracranial Haemorrhage</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt;   donor_dcd donor_creatinine donor_age donor_sex donor_kdri    tx_date</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt; 1         N               53        39         M  1.0291885 2017-03-02</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt; 2         Y              259        44         M  1.1770381 2016-12-26</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt; 3         Y              199        17         M  0.8896358 2016-09-30</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt; 4         Y               72        45         M  1.0281746 2017-11-17</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt; 5         Y               76        17         F  0.8375934 2016-11-28</span></a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt; 6         Y               31        51         F  1.1623594 2016-01-14</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;   num_kidney donor_rank</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt; 1          2 0.26067019</span></a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt; 2          1 0.39894180</span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt; 3          2 0.14038801</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt; 4          2 0.25820106</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt; 5          2 0.09664903</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt; 6          2 0.38765432</span></a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="kw">dim</span>(raw_donor_matrix)</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt; [1] 2835   29</span></a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p><code>algorithm_FUN</code> and <code>state_algorithm_FUN</code> implement the Australia national and state allocation algorithms, notice here if you have your own algorithm, you can change this to your function name.</p></li>
+<li><p><code>eligible_FUN</code> gives options to customise the eligible recipient pool, which means if you want to have a different pool with further restriction on eligible recipients, you can change it here.</p></li>
+</ol>
+<p>This gives us a <code>list</code> of length 4 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference.</p>
+<p>The first one is the matched recipients and donors dataset with all <strong>recipient features</strong>, <strong>donor features</strong> and <strong>transplant matchability features</strong>. The second one is all those disgarded donor kidneys with the associated donor kidney features. The third one is The last one is the dynamic waiting list results (corresponding to each recipient in the first full dataset)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">simKAP_eval=<span class="kw">readRDS</span>(<span class="st">&quot;simKAP_eval.rds&quot;</span>)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">length</span>(simKAP_eval)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [1] 4</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">dim</span>(simKAP_eval[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; [1] 1263   88</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">dim</span>(simKAP_eval[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; [1] 67 29</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw">dim</span>(simKAP_eval[[<span class="dv">3</span>]])</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; [1] 56 32</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="kw">dim</span>(simKAP_eval[[<span class="dv">4</span>]])</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; [1] 799   7</span></a></code></pre></div>
+</div>
+<div id="customisable-allocation-process" class="section level1">
+<h1>Customisable allocation process</h1>
+<p>This example simulation process shows the paried result under the <code>CORisk allocation algorithm</code> with a threshold number 0.2 introduced in our paper. Detailed main changes for this new algorithm compared with the above one are: <code>eligible_FUN</code>, <code>matching_FUN</code>, <code>state_matching_FUN</code>, <code>waitlist_FUN</code>. With no specification of <code>matching_FUN</code>, <code>state_matching_FUN</code>, <code>waitlist_FUN</code>, the dynamic waiting list and share decision making procedures are not implemented in this new algorithm. The threshold number is specified through the <code>eligible_arg</code> argument using <code>threshold_number=0.2</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">result_new=<span class="kw">runSimulation5.4</span>(recip_sample_list[[<span class="dv">1</span>]], </a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">                                   raw_donor_matrix,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">                                   <span class="dt">algorithm_FUN =</span> allocation_national,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">                                   <span class="dt">eligible_FUN =</span> selectionpool2<span class="fl">.2</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">                                   <span class="dt">matching_FUN =</span> select_max,</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">                                   <span class="dt">state_algorithm =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">                                   <span class="dt">national_algorithm_threshold =</span> <span class="dv">54000000</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">                                   <span class="dt">state_algorithm_FUN =</span> Australia_state_algorithm,</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">                                   <span class="dt">state_eligible_FUN =</span> Australia_state_selectionpool,</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">                                   <span class="dt">state_matching_FUN =</span> select_max,</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">                                   <span class="dt">eligible_arg =</span> <span class="kw">list</span>(<span class="dt">AB_priority =</span> <span class="ot">TRUE</span>,<span class="dt">threshold_number=</span><span class="fl">0.2</span>),</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">                    </a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">                                   <span class="dt">resampleN =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">                                   <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">                                   <span class="dt">num_donor =</span> <span class="dv">800</span>,<span class="dt">num_recip =</span> <span class="dv">300</span>,</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">                                   <span class="dt">state_balance =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">                                   <span class="dt">dynamic_waitlist =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">                                   <span class="dt">National_II =</span> <span class="ot">TRUE</span> )<span class="er">)</span></a></code></pre></div>
+<p>This gives us a <code>list</code> of length 3 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference.</p>
+<p>The first one is the matched recipients and donors dataset with all <strong>recipient features</strong>, <strong>donor features</strong> and <strong>transplant matchability features</strong>. The second one is all those disgarded donor kidneys with the associated donor kidney features. The third one is</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">us0<span class="fl">.2</span>=<span class="kw">readRDS</span>(<span class="st">&quot;us0.2full.rds&quot;</span>)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">length</span>(us0<span class="fl">.2</span>)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">dim</span>(us0<span class="fl">.2</span>[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; [1] 1136   83</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">dim</span>(us0<span class="fl">.2</span>[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt; [1] 94 29</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="kw">dim</span>(us0<span class="fl">.2</span>[[<span class="dv">3</span>]])</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; [1] 73 32</span></a></code></pre></div>
+</div>
+<div id="session-info" class="section level1">
+<h1>Session Info</h1>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">sessionInfo</span>(<span class="st">&quot;KidneyAllocation&quot;</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; R version 4.0.2 (2020-06-22)</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; Running under: macOS Mojave 10.14.5</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; [1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt; attached base packages:</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt; other attached packages:</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt; [1] KidneyAllocation_0.1.0</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#&gt;  [1] Rcpp_1.0.5          lattice_0.20-41     tidyr_1.1.2        </span></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="co">#&gt;  [4] snow_0.4-3          digest_0.6.27       foreach_1.5.1      </span></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22"><span class="co">#&gt;  [7] R6_2.5.0            cellranger_1.1.0    plyr_1.8.6         </span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23"><span class="co">#&gt; [10] ggridges_0.5.2      backports_1.2.0     evaluate_0.14      </span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co">#&gt; [13] ggplot2_3.3.2       pillar_1.4.7        utils_4.0.2        </span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"><span class="co">#&gt; [16] rlang_0.4.9         curl_4.3            readxl_1.3.1       </span></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="co">#&gt; [19] data.table_1.13.2   car_3.0-10          Matrix_1.2-18      </span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27"><span class="co">#&gt; [22] rmarkdown_2.5       splines_4.0.2       stringr_1.4.0      </span></a>
+<a class="sourceLine" id="cb10-28" data-line-number="28"><span class="co">#&gt; [25] foreign_0.8-80      munsell_0.5.0       broom_0.7.2        </span></a>
+<a class="sourceLine" id="cb10-29" data-line-number="29"><span class="co">#&gt; [28] compiler_4.0.2      numDeriv_2016.8-1.1 xfun_0.19          </span></a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="co">#&gt; [31] pkgconfig_2.0.3     stats_4.0.2         doSNOW_1.0.19      </span></a>
+<a class="sourceLine" id="cb10-31" data-line-number="31"><span class="co">#&gt; [34] htmltools_0.5.0     tidyselect_1.1.0    tibble_3.0.4       </span></a>
+<a class="sourceLine" id="cb10-32" data-line-number="32"><span class="co">#&gt; [37] gridExtra_2.3       prodlim_2019.11.13  rio_0.5.16         </span></a>
+<a class="sourceLine" id="cb10-33" data-line-number="33"><span class="co">#&gt; [40] codetools_0.2-18    grDevices_4.0.2     crayon_1.3.4       </span></a>
+<a class="sourceLine" id="cb10-34" data-line-number="34"><span class="co">#&gt; [43] dplyr_1.0.2         withr_2.3.0         ggpubr_0.4.0       </span></a>
+<a class="sourceLine" id="cb10-35" data-line-number="35"><span class="co">#&gt; [46] timereg_1.9.8       grid_4.0.2          gtable_0.3.0       </span></a>
+<a class="sourceLine" id="cb10-36" data-line-number="36"><span class="co">#&gt; [49] lifecycle_0.2.0     magrittr_2.0.1      datasets_4.0.2     </span></a>
+<a class="sourceLine" id="cb10-37" data-line-number="37"><span class="co">#&gt; [52] scales_1.1.1        zip_2.1.1           stringi_1.5.3      </span></a>
+<a class="sourceLine" id="cb10-38" data-line-number="38"><span class="co">#&gt; [55] carData_3.0-4       ggsignif_0.6.0      reshape2_1.4.4     </span></a>
+<a class="sourceLine" id="cb10-39" data-line-number="39"><span class="co">#&gt; [58] ggthemes_4.2.0      doParallel_1.0.16   ellipsis_0.3.1     </span></a>
+<a class="sourceLine" id="cb10-40" data-line-number="40"><span class="co">#&gt; [61] graphics_4.0.2      generics_0.1.0      vctrs_0.3.5        </span></a>
+<a class="sourceLine" id="cb10-41" data-line-number="41"><span class="co">#&gt; [64] openxlsx_4.2.3      base_4.0.2          lava_1.6.8.1       </span></a>
+<a class="sourceLine" id="cb10-42" data-line-number="42"><span class="co">#&gt; [67] iterators_1.0.13    tools_4.0.2         forcats_0.5.0      </span></a>
+<a class="sourceLine" id="cb10-43" data-line-number="43"><span class="co">#&gt; [70] glue_1.4.2          purrr_0.3.4         hms_0.5.3          </span></a>
+<a class="sourceLine" id="cb10-44" data-line-number="44"><span class="co">#&gt; [73] pec_2020.11.17      abind_1.4-5         parallel_4.0.2     </span></a>
+<a class="sourceLine" id="cb10-45" data-line-number="45"><span class="co">#&gt; [76] survival_3.2-7      yaml_2.2.1          colorspace_2.0-0   </span></a>
+<a class="sourceLine" id="cb10-46" data-line-number="46"><span class="co">#&gt; [79] rstatix_0.6.0       knitr_1.30          haven_2.3.1        </span></a>
+<a class="sourceLine" id="cb10-47" data-line-number="47"><span class="co">#&gt; [82] methods_4.0.2</span></a></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+---
+title: "SimKAP--simulation of the kidney allocation process"
+author:
+- name: Yunwei Zhang 20210524
+  affiliation: 
+  - School of Mathematics and Statistics, The University of Sydney, Australia
+  - Charles Perkins Centre, The University of Sydney, Australia
+output: rmarkdown::html_vignette
+code_folding: "hide"
+vignette: >
+  %\VignetteIndexEntry{KidneyAllocation}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+  
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    warning = FALSE,
+    message = FALSE,
+    comment = "#>"
+)
+```
+
+
+# Introduction
+
+`simKAP` is an R package to simulate the kidney alocation process to get realistic recipient-donor pairs take into consideration of **human intervention** and **dynamic waiting list modeling**.   
+This vignette will walk through the implementation of this process using **Australia recipient waiting list**, **Australia transplantation data** and under **Australia kidney allocation algorithm**. With this demonstration using working exmaple, you will be able to customise your allocation process with modified functions such as a new National allocation (see section **Customisable allocation process**)
+
+# Loading Packages and Data
+
+First, load `simKAP` via install `KidneyAllocation`.
+
+```{r eval = FALSE}
+install.packages("KidneyAllocation")
+```
+
+Then, we load the example data sampled from Australia kidney allocation database.
+```{r}
+library(KidneyAllocation)
+data("rawdata")
+data("newdata")
+recip_sample_list=readRDS("recip_sample_list.rds")
+raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)
+```
+
+Lastly, we load other packages for this vignette.
+```{r}
+library(dplyr)
+library(gridExtra)
+library(reshape2)
+library(ggplot2)
+library(ggpubr)
+library(ggthemes)
+library(survival)
+library(pec)
+library(ggridges)
+library(plyr)
+library(foreach)
+library(doParallel)
+library(doSNOW)
+```
+
+# Allocation process under **Australia kidney allocation algorithm**
+
+The process is implemented through one huge function named `runSimulation5.4` which calls dependent functions inside itself. This below example shows how to use this function and details about each argument are illustrated.
+
+```{r eval=FALSE}
+# example allocation process
+result=KidneyAllocation::runSimulation5.4(recip_sample_list[[1]], 
+                                 raw_donor_matrix,
+                                 algorithm_FUN = KidneyAllocation::allocation_national,
+                                 eligible_FUN = KidneyAllocation::selectionpool1.2,
+                                 matching_FUN = KidneyAllocation::dmNational_formula,
+                                 waitlist_FUN = KidneyAllocation::dynamic_waitlist,
+                                 state_algorithm = TRUE,
+                                 national_algorithm_threshold = 54000000,
+                                 state_algorithm_FUN = KidneyAllocation::Australia_state_algorithm,
+                                 state_eligible_FUN = KidneyAllocation::Australia_state_selectionpool,
+                                 state_matching_FUN = KidneyAllocation::dmState_formula,
+                                 eligible_arg = list(AB_priority = TRUE),
+                                 waitlist_arg = list(waitlist_Risk = FALSE),
+                                 resampleN = 1,
+                                 verbose = FALSE,
+                                 num_donor = 800,num_recip = 300,
+                                 state_balance = TRUE,
+                                 dynamic_waitlist = TRUE, 
+                                 National_II = TRUE,
+                                 is_parallel=FALSE,
+                                 ncores = 10)
+
+```
+
+1. `recip_sample_list` is a list of length 10 with 10 different samples contains recipient features, we take one sample from it to be used as our recipient matrix. 
+```{r}
+length(recip_sample_list)
+head(recip_sample_list[[1]])
+dim(recip_sample_list[[1]])
+```
+
+2. `raw_donor_matrix` is a donor matrix contains donor features
+```{r}
+head(raw_donor_matrix)
+dim(raw_donor_matrix)
+```
+
+3. `algorithm_FUN` and `state_algorithm_FUN` implement the Australia national and state allocation algorithms, notice here if you have your own algorithm, you can change this to your function name. 
+
+4. `eligible_FUN` gives options to customise the eligible recipient pool, which means if you want to have a different pool with further restriction on eligible recipients, you can change it here.
+
+This gives us a `list` of length 4 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference. 
+  
+  The first one is the matched recipients and donors dataset with all **recipient features**, **donor features** and **transplant matchability features**.
+  The second one is all those disgarded donor kidneys with the associated donor kidney features.
+  The third one is 
+  The last one is the dynamic waiting list results (corresponding to each recipient in the first full dataset)
+```{r}
+simKAP_eval=readRDS("simKAP_eval.rds")[[1]]
+length(simKAP_eval)
+dim(simKAP_eval[[1]])
+dim(simKAP_eval[[2]])
+dim(simKAP_eval[[3]])
+dim(simKAP_eval[[4]])
+```
+
+
+
+# Customisable allocation process
+
+This example simulation process shows the paried result under the `CORisk allocation algorithm` with a threshold number 0.2 introduced in our paper. 
+Detailed main changes for this new algorithm compared with the above one are: `eligible_FUN`, `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`. With no specification of `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`, the dynamic waiting list and share decision making procedures are not implemented in this new algorithm. The threshold number is specified through the `eligible_arg` argument using `threshold_number=0.2`.
+
+```{r eval=FALSE}
+result_new=runSimulation5.4(recip_sample_list[[1]], 
+                                   raw_donor_matrix,
+                                   algorithm_FUN = allocation_national,
+                                   eligible_FUN = selectionpool2.2,
+                                   matching_FUN = select_max,
+                                   state_algorithm = TRUE,
+                                   national_algorithm_threshold = 54000000,
+                                   state_algorithm_FUN = Australia_state_algorithm,
+                                   state_eligible_FUN = Australia_state_selectionpool,
+                                   state_matching_FUN = select_max,
+                                   eligible_arg = list(AB_priority = TRUE,threshold_number=0.2),
+                    
+                                   resampleN = 1,
+                                   verbose = FALSE,
+                                   num_donor = 800,num_recip = 300,
+                                   state_balance = TRUE,
+                                   dynamic_waitlist = FALSE, 
+                                   National_II = TRUE ))
+```
+
+This gives us a `list` of length 3 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference. 
+  
+  The first one is the matched recipients and donors dataset with all **recipient features**, **donor features** and **transplant matchability features**.
+  The second one is all those disgarded donor kidneys with the associated donor kidney features.
+  The third one is 
+
+```{r}
+us0.2=readRDS("us0.2full.rds")[[1]]
+length(us0.2)
+dim(us0.2[[1]])
+dim(us0.2[[2]])
+dim(us0.2[[3]])
+```
+
+
+# Session Info
+
+```{r}
+sessionInfo("KidneyAllocation")
+```
+
