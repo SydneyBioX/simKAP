@@ -69,17 +69,17 @@ The process is implemented through one huge function named `runSimulation5.4` wh
 
 ```{r eval=FALSE}
 # example allocation process
-result=KidneyAllocation::runSimulation5.4(recip_sample_list[[1]], 
+result=KidneyAllocation::run_simulation(recip_sample_list[[1]], 
                                  raw_donor_matrix,
                                  algorithm_FUN = KidneyAllocation::allocation_national,
                                  eligible_FUN = KidneyAllocation::selectionpool1.2,
-                                 matching_FUN = KidneyAllocation::dmNational_formula,
+                                 matching_FUN = KidneyAllocation::dm_national_formula,
                                  waitlist_FUN = KidneyAllocation::dynamic_waitlist,
                                  state_algorithm = TRUE,
                                  national_algorithm_threshold = 54000000,
-                                 state_algorithm_FUN = KidneyAllocation::Australia_state_algorithm,
-                                 state_eligible_FUN = KidneyAllocation::Australia_state_selectionpool,
-                                 state_matching_FUN = KidneyAllocation::dmState_formula,
+                                 state_algorithm_FUN = KidneyAllocation::australia_state_algorithm,
+                                 state_eligible_FUN = KidneyAllocation::australia_state_selectionpool,
+                                 state_matching_FUN = KidneyAllocation::dm_state_formula,
                                  eligible_arg = list(AB_priority = TRUE),
                                  waitlist_arg = list(waitlist_Risk = FALSE),
                                  resampleN = 1,
@@ -114,7 +114,7 @@ This gives us a `list` of length 4 as the output (notice that you can take our s
   
   The first one is the matched recipients and donors dataset with all **recipient features**, **donor features** and **transplant matchability features**.
   The second one is all those disgarded donor kidneys with the associated donor kidney features.
-  The third one is 
+  The third one contains all those different donor-recipient state kidneys, i.e. those kidneys to achieve state balance.
   The last one is the dynamic waiting list results (corresponding to each recipient in the first full dataset)
 ```{r}
 simKAP_eval=readRDS("simKAP_eval.rds")[[1]]
@@ -136,12 +136,12 @@ Detailed main changes for this new algorithm compared with the above one are: `e
 result_new=runSimulation5.4(recip_sample_list[[1]], 
                                    raw_donor_matrix,
                                    algorithm_FUN = allocation_national,
-                                   eligible_FUN = selectionpool2.2,
+                                   eligible_FUN = selection_corisk,
                                    matching_FUN = select_max,
                                    state_algorithm = TRUE,
                                    national_algorithm_threshold = 54000000,
-                                   state_algorithm_FUN = Australia_state_algorithm,
-                                   state_eligible_FUN = Australia_state_selectionpool,
+                                   state_algorithm_FUN = australia_state_algorithm,
+                                   state_eligible_FUN = australia_state_selectionpool,
                                    state_matching_FUN = select_max,
                                    eligible_arg = list(AB_priority = TRUE,threshold_number=0.2),
                     
