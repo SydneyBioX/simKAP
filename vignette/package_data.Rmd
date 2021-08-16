@@ -41,12 +41,78 @@ library(plyr)
 library(foreach)
 library(doParallel)
 library(doSNOW)
-data("rawdata")
+library(DT)
+library(kableExtra)
+
 
 ```
 
-# reorder variabels, except date: "tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate"
+# summary 
+  
+## Step1:   
+  
+  * for variables listed below, we randomly shuffle the values using seed 202106001
+    
+```
+  "donor_height"    "recip_sex"    "recip_height"    "recip_weight" "donor_age"     "donor_sex"  "recip_age" "donor_weight" 
+```
+  * for variables listed below, we randomly shuffle the values using seed 202106002  
+  
+```
+[1] "recip_graftno"       "donor_source"        "donor_state"         "recip_pra"           "donor_blgroup"      
+[6] "donor_a1"            "donor_a2"            "donor_b1"            "donor_b2"            "donor_dr1"          
+[11] "donor_dr2"           "donor_dq1"           "donor_dq2"           "recip_blgroup"       "recip_a1"           
+[16] "recip_a2"            "recip_b1"            "recip_b2"            "recip_dr1"           "recip_dr2"          
+[21] "recip_dq1"           "recip_dq2"   
+```
+  
+  * for variables listed below, we randomly shuffle the values using seed 202106003
+    
+```
+"donor_eth_code"     "donor_eth_country"   "donor_eth"           "donor_diabetes"      "donor_hypertension"  "donor_smoker"   "donor_death"         "donor_dcd"           "donor_creatinine"    "recip_state_initial" "recip_state_current""recip_age_rrtstart"  
+```
+  
+  * for variables listed below, we randomly shuffle the values using seed 202106004
+    
+```
+"recip_eth_detailed"  "recip_eth"           "recip_primrenal"    "recip_biopsy"        "recip_creatinine"         "recip_smoker"       "recip_state"   
+```
+  
+  * for variables listed below, we randomly shuffle the values using seed 202106005
+
+```
+"tx_ischemia"   "tx_status"           "tx_period"           "tx_lstatus"          "tx_lperiod"          "tx_misa"            
+"tx_misb"             "tx_misdr"            "tx_gfailcat"         "recip_waittime"      "recip_lung" 
+```
+  
+  * for variables listed below, we randomly shuffle the values using seed 202106006
+
+```
+[61] "recip_coronary"      "recip_pvd"           "recip_cvd"           "recip_diabetes"      "recip_cancer"       
+[66] "tx_organ"            "recip_waitstatus"    "recip_listtime"      "recip_epts"          "donor_kdri"         
+[71] "algorithm"  
+```
+## Step2: 
+  
+* Assign new "recip_id", "tx_id" , "donor_id", where recip_id is one random letter with 6 random numbers, donor_id is two random letters with 6 random numbers, tx_id is three random letters with 6 random numbers
+* For example, recip_id="P243279", donor_id="WH325126",tx_id="AYZ155939"
+
+## Step3: 
+  
+  * sample new dates, for dates variables listed below
+  
+```
+"tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate"
+```
+ We sample another date value within two weeks before or after the real date using seed 202106001
+
+# Step1: 
+
+random sample all variabels (in rows), except date: "tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate"
+
+* notice here, the recipient age,weight,height are grouped and then sampled together, also, the donor age,weight,height
 ```{r}
+rawdata=load("/Users/yzha0247/Documents/pkg/data/rawdata.rda")
 set.seed(202106001)
 order_index1=sample(nrow(rawdata))
 set.seed(202106002)
@@ -82,7 +148,9 @@ fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedat
 # fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)
 ```
 
-# assign new "recip_id", "tx_id" , "donor_id" 
+# Step2: 
+
+assign new "recip_id", "tx_id" , "donor_id", where recip_id is one random letter with 6 random numbers, donor_id is two random letters with 6 random numbers, tx_id is three random letters with 6 random numbers
 ```{r}
 idmaker <- function(x){
     max.val = x*100
@@ -117,11 +185,15 @@ set.seed(202106001)
 fakedata_1$recip_id=idmaker(dim(rawdata)[1])
 fakedata_1$donor_id=idmaker2(dim(rawdata)[1])
 fakedata_1$tx_id=idmaker3(dim(rawdata)[1])
-
+fakedata_1$recip_id[1]
+fakedata_1$donor_id[1]
+fakedata_1$tx_id[1]
 ```
 
 
-# sliding windows for those date variables (move before or after two weeks)
+# Step3: 
+
+sample new dates ("tx_date","recip_rrtstartdate" , "recip_deathdate","tx_faildate", "recip_comorb_date", "recip_liststartdate") using sliding windows,i.e.move before or after two weeks
 
 ```{r}
 set.seed(202106001)
@@ -136,15 +208,33 @@ fakedata_1[,"recip_comorb_date"]=rawdata[,"recip_comorb_date"]+sample(-14:14,1)
 
 ```
 
+# data summary
+```{r}
+summary(fakedata_1)
+kbl((summary(fakedata_1))) %>%
+  kable_paper() %>%
+  scroll_box(width = "1000px")
+# datatable(fakedata_1,selection = "single", extensions = 'Buttons', options = list(
+#       pageLength = 10,
+#       lengthMenu = list(c(10, 50, -1), c('10', '50', 'All')),
+#       dom = 'lfrBtip',
+#       buttons = 
+#         list(
+#           buttons = c('csv', 'excel', 'pdf'),
+#           text = 'Download'
+#         )), caption = ("Example data"))
+```
 
 
 # check the package
 
-```{r}
+```{r eval=FALSE}
+rawdata=fakedata_1
+save(rawdata,file="rawdata.rda")
 #get raw_recip_matrix from rawdata
 raw_recip_matrix <- fakedata_1[, grep("recip_", colnames(fakedata_1))]
 raw_donor_matrix <- fakedata_1[, grep("donor_", colnames(fakedata_1))]
-risk <- readRDS("/Users/yzha0247/Dropbox (Sydney Uni)/YunweiZhang/WeeklyProgress/R code/GitHub-old-mine/KidneyAllocation/analysis/queuing/predrisk_yw2.rds")
+risk <- readRDS("predrisk_yw2.rds")
 colnames(risk) <- c("recip_id", "riskscore")
 raw_recip_matrix <- merge(raw_recip_matrix, risk, by= "recip_id", all.x=TRUE)
 raw_donor_matrix$tx_date <- fakedata_1$tx_date
@@ -194,7 +284,7 @@ dim(raw_recip_matrix)
 
 
 
-```{r}
+```{r eval=FALSE}
 pra_group <- cut(fakedata_1$recip_pra,
                  c(0, 20, 40, 60, 80, 100),
                  include.lowest = TRUE,
@@ -278,18 +368,17 @@ raw_recip_matrix_subset=raw_recip_matrix_subset[,-which(!colnames(raw_recip_matr
                                            ,"recip_age_group"))]
 
 
-#raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)
-
 #10 times 
-# recip_sample_list=list()
-# for(i in 1:10){
-#   recip_sample_list[[i]]=multiple_sampling_recip_matrix_fun(i)
-# }
-#saveRDS(recip_sample_list,"recip_sample_list.rds)
+recip_sample_list=list()
+for(i in 1:10){
+  recip_sample_list[[i]]=multiple_sampling_recip_matrix_fun(i)
+}
+saveRDS(recip_sample_list,"recip_sample_list.rds")
+save(raw_recip_matrix_subset,raw_donor_matrix,raw_recip_matrix,file="newdata.rda")
 ```
 
 
-```{r}
+```{r eval=FALSE}
 
 result=KidneyAllocation::runSimulation5.4(raw_recip_matrix_subset, 
                                  raw_donor_matrix,

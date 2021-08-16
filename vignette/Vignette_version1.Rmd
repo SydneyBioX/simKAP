@@ -46,6 +46,43 @@ recip_sample_list=readRDS("recip_sample_list.rds")
 raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)
 ```
 
+Notice here, the features required from the historical transplant data are listed below:
+```
+donor_feature=c("donor_source","donor_state","donor_blgroup",
+                                            "donor_a1", "donor_a2","donor_b1","donor_b2"
+                                            ,"donor_dr1" ,"donor_dr2"
+                                             ,"donor_dq1" ,"donor_dq2","donor_height"
+                                             ,"donor_weight","donor_eth_code" ,"donor_eth_country"
+                                             ,"donor_eth"  ,"donor_diabetes", "donor_hypertension"
+                                             ,"donor_smoker", "donor_id","donor_death"
+                                             ,"donor_dcd"  ,"donor_creatinine" ,"donor_age"
+                                             ,"donor_sex"  ,"donor_kdri", "tx_date"
+                                             ,"num_kidney" )
+recipient_feature=c("recip_id" , "recip_graftno", "recip_pra"
+                                           ,"recip_blgroup" ,"recip_a1","recip_a2"
+                                           ,"recip_b1" , "recip_b2","recip_dr1"
+                                           ,"recip_dr2", "recip_dq1","recip_dq2"
+                                           ,"recip_state_initial","recip_state_current", "recip_age_rrtstart"
+                                           , "recip_sex","recip_eth_detailed" ,"recip_eth"
+                                           , "recip_primrenal", "recip_biopsy" , "recip_creatinine"
+                                           ,"recip_height","recip_weight" ,"recip_smoker"
+                                           ,"recip_rrtstartdate", "recip_deathdate", "recip_state"
+                                           , "recip_age", "recip_waittime","recip_lung"
+                                           ,"recip_coronary", "recip_pvd","recip_cvd"
+                                           ,"recip_diabetes", "recip_comorb_date"  ,"recip_cancer"
+                                           ,"recip_liststartdate", "recip_waitstatus", "recip_listtime"
+                                           ,"recip_epts", "riskscore", "recip_algorithm"
+                                           ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
+                                           ,"recip_tx_date", "recip_birthdate" ,"pra_group"
+                                           ,"recip_age_group")
+
+tablee=cbind.data.frame(donor_feature,recipient_feature)
+kbl(tablee) %>%
+  kable_paper() %>%
+  scroll_box(width = "100px")
+```
+
+
 Lastly, we load other packages for this vignette.
 ```{r}
 library(dplyr)
@@ -72,13 +109,13 @@ The process is implemented through one huge function named `runSimulation5.4` wh
 result=KidneyAllocation::run_simulation(recip_sample_list[[1]], 
                                  raw_donor_matrix,
                                  algorithm_FUN = KidneyAllocation::allocation_national,
-                                 eligible_FUN = KidneyAllocation::selectionpool1.2,
+                                 eligible_FUN = KidneyAllocation::selection_default,
                                  matching_FUN = KidneyAllocation::dm_national_formula,
                                  waitlist_FUN = KidneyAllocation::dynamic_waitlist,
                                  state_algorithm = TRUE,
                                  national_algorithm_threshold = 54000000,
                                  state_algorithm_FUN = KidneyAllocation::australia_state_algorithm,
-                                 state_eligible_FUN = KidneyAllocation::australia_state_selectionpool,
+                                 state_eligible_FUN = KidneyAllocation::australia_state_selection,
                                  state_matching_FUN = KidneyAllocation::dm_state_formula,
                                  eligible_arg = list(AB_priority = TRUE),
                                  waitlist_arg = list(waitlist_Risk = FALSE),
@@ -90,7 +127,7 @@ result=KidneyAllocation::run_simulation(recip_sample_list[[1]],
                                  National_II = TRUE,
                                  is_parallel=FALSE,
                                  ncores = 10)
-
+saveRDS(result,"simKAP_eval.rds")
 ```
 
 1. `recip_sample_list` is a list of length 10 with 10 different samples contains recipient features, we take one sample from it to be used as our recipient matrix. 
@@ -117,7 +154,7 @@ This gives us a `list` of length 4 as the output (notice that you can take our s
   The third one contains all those different donor-recipient state kidneys, i.e. those kidneys to achieve state balance.
   The last one is the dynamic waiting list results (corresponding to each recipient in the first full dataset)
 ```{r}
-simKAP_eval=readRDS("simKAP_eval.rds")[[1]]
+simKAP_eval=readRDS("simKAP_eval.rds")
 length(simKAP_eval)
 dim(simKAP_eval[[1]])
 dim(simKAP_eval[[2]])
@@ -133,7 +170,7 @@ This example simulation process shows the paried result under the `CORisk alloca
 Detailed main changes for this new algorithm compared with the above one are: `eligible_FUN`, `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`. With no specification of `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`, the dynamic waiting list and share decision making procedures are not implemented in this new algorithm. The threshold number is specified through the `eligible_arg` argument using `threshold_number=0.2`.
 
 ```{r eval=FALSE}
-result_new=runSimulation5.4(recip_sample_list[[1]], 
+result_new=KidneyAllocation::run_simulation(recip_sample_list[[1]], 
                                    raw_donor_matrix,
                                    algorithm_FUN = allocation_national,
                                    eligible_FUN = selection_corisk,
@@ -141,16 +178,16 @@ result_new=runSimulation5.4(recip_sample_list[[1]],
                                    state_algorithm = TRUE,
                                    national_algorithm_threshold = 54000000,
                                    state_algorithm_FUN = australia_state_algorithm,
-                                   state_eligible_FUN = australia_state_selectionpool,
+                                   state_eligible_FUN = australia_state_selection,
                                    state_matching_FUN = select_max,
                                    eligible_arg = list(AB_priority = TRUE,threshold_number=0.2),
-                    
                                    resampleN = 1,
                                    verbose = FALSE,
                                    num_donor = 800,num_recip = 300,
                                    state_balance = TRUE,
                                    dynamic_waitlist = FALSE, 
-                                   National_II = TRUE ))
+                                   National_II = TRUE )
+saveRDS(result_new,"us0.2full.rds")
 ```
 
 This gives us a `list` of length 3 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference. 
@@ -160,7 +197,7 @@ This gives us a `list` of length 3 as the output (notice that you can take our s
   The third one is 
 
 ```{r}
-us0.2=readRDS("us0.2full.rds")[[1]]
+us0.2=readRDS("us0.2full.rds")
 length(us0.2)
 dim(us0.2[[1]])
 dim(us0.2[[2]])

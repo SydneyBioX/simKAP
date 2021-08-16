@@ -1380,6 +1380,230 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1713,7 +1937,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">generated exmple data for our package</h1>
 <h4 class="author">Yunwei Zhang</h4>
-<h4 class="date">“Initiated on 20210607, compiled on 2021 Jun 07”</h4>
+<h4 class="date">“Initiated on 20210607, compiled on 2021 Jul 25”</h4>
 
 </div>
 
@@ -1732,398 +1956,2470 @@ div.tocify {
 <a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">library</span>(foreach)</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">library</span>(doParallel)</a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">library</span>(doSNOW)</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">data</span>(<span class="st">&quot;rawdata&quot;</span>)</a></code></pre></div>
-<div id="reorder-variabels-except-date-tx_daterecip_rrtstartdate-recip_deathdatetx_faildate-recip_comorb_date-recip_liststartdate" class="section level1">
-<h1><span class="header-section-number">1</span> reorder variabels, except date: “tx_date”,“recip_rrtstartdate” , “recip_deathdate”,“tx_faildate”, “recip_comorb_date”, “recip_liststartdate”</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">order_index1=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">202106002</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">order_index2=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">202106003</span>)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">order_index3=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">set.seed</span>(<span class="dv">202106004</span>)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">order_index4=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">set.seed</span>(<span class="dv">202106005</span>)</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">order_index5=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">set.seed</span>(<span class="dv">202106006</span>)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">order_index6=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">selected_var=<span class="kw">colnames</span>(rawdata)[<span class="op">!</span><span class="kw">colnames</span>(rawdata)<span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tx_date&quot;</span>,<span class="st">&quot;recip_rrtstartdate&quot;</span> , <span class="st">&quot;recip_deathdate&quot;</span>,<span class="st">&quot;tx_faildate&quot;</span>, <span class="st">&quot;recip_comorb_date&quot;</span>, <span class="st">&quot;recip_liststartdate&quot;</span>,<span class="st">&quot;recip_id&quot;</span>, <span class="st">&quot;tx_id&quot;</span> , <span class="st">&quot;donor_id&quot;</span>)]</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># * need to group recip age and gender and weight and height</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co"># * need to group donor age and gender and weight and height</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">fakedata_part1=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">37</span>,<span class="dv">43</span>,<span class="dv">44</span>,<span class="dv">47</span>,<span class="dv">48</span>,<span class="dv">50</span>)]]</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">fakedata_part2=rawdata[order_index1,selected_var[<span class="dv">1</span><span class="op">:</span><span class="dv">22</span>]]</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">fakedata_part3=rawdata[order_index1,selected_var[<span class="dv">25</span><span class="op">:</span><span class="dv">36</span>]]</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">fakedata_part4=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">38</span><span class="op">:</span><span class="dv">42</span>,<span class="dv">45</span>,<span class="dv">46</span>)]]</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">fakedata_part5=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">49</span>,<span class="dv">51</span><span class="op">:</span><span class="dv">60</span>)]]</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">fakedata_part6=rawdata[order_index1,selected_var[<span class="dv">61</span><span class="op">:</span><span class="dv">71</span>]]</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">fakedata_<span class="dv">1</span>=<span class="kw">cbind.data.frame</span>(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)</a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co"># fakedata_part1=rawdata[order_index1,selected_var[1:10]]</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co"># fakedata_part2=rawdata[order_index1,selected_var[11:20]]</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co"># fakedata_part3=rawdata[order_index1,selected_var[21:30]]</span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co"># fakedata_part4=rawdata[order_index1,selected_var[31:40]]</span></a>
-<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co"># fakedata_part5=rawdata[order_index1,selected_var[41:55]]</span></a>
-<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co"># fakedata_part6=rawdata[order_index1,selected_var[56:71]]</span></a>
-<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co"># fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">library</span>(DT)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">library</span>(kableExtra)</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">data</span>(<span class="st">&quot;rawdata&quot;</span>)</a></code></pre></div>
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> summary</h1>
+<div id="step1" class="section level2">
+<h2><span class="header-section-number">1.1</span> Step1:</h2>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106001</li>
+</ul>
+<pre><code>  &quot;donor_height&quot;    &quot;recip_sex&quot;    &quot;recip_height&quot;    &quot;recip_weight&quot; &quot;donor_age&quot;     &quot;donor_sex&quot;  &quot;recip_age&quot; &quot;donor_weight&quot; </code></pre>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106002</li>
+</ul>
+<pre><code>[1] &quot;recip_graftno&quot;       &quot;donor_source&quot;        &quot;donor_state&quot;         &quot;recip_pra&quot;           &quot;donor_blgroup&quot;      
+[6] &quot;donor_a1&quot;            &quot;donor_a2&quot;            &quot;donor_b1&quot;            &quot;donor_b2&quot;            &quot;donor_dr1&quot;          
+[11] &quot;donor_dr2&quot;           &quot;donor_dq1&quot;           &quot;donor_dq2&quot;           &quot;recip_blgroup&quot;       &quot;recip_a1&quot;           
+[16] &quot;recip_a2&quot;            &quot;recip_b1&quot;            &quot;recip_b2&quot;            &quot;recip_dr1&quot;           &quot;recip_dr2&quot;          
+[21] &quot;recip_dq1&quot;           &quot;recip_dq2&quot;   </code></pre>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106003</li>
+</ul>
+<pre><code>&quot;donor_eth_code&quot;     &quot;donor_eth_country&quot;   &quot;donor_eth&quot;           &quot;donor_diabetes&quot;      &quot;donor_hypertension&quot;  &quot;donor_smoker&quot;   &quot;donor_death&quot;         &quot;donor_dcd&quot;           &quot;donor_creatinine&quot;    &quot;recip_state_initial&quot; &quot;recip_state_current&quot;&quot;recip_age_rrtstart&quot;  </code></pre>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106004</li>
+</ul>
+<pre><code>&quot;recip_eth_detailed&quot;  &quot;recip_eth&quot;           &quot;recip_primrenal&quot;    &quot;recip_biopsy&quot;        &quot;recip_creatinine&quot;         &quot;recip_smoker&quot;       &quot;recip_state&quot;   </code></pre>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106005</li>
+</ul>
+<pre><code>&quot;tx_ischemia&quot;   &quot;tx_status&quot;           &quot;tx_period&quot;           &quot;tx_lstatus&quot;          &quot;tx_lperiod&quot;          &quot;tx_misa&quot;            
+&quot;tx_misb&quot;             &quot;tx_misdr&quot;            &quot;tx_gfailcat&quot;         &quot;recip_waittime&quot;      &quot;recip_lung&quot; </code></pre>
+<ul>
+<li>for variables listed below, we randomly shuffle the values using seed 202106006</li>
+</ul>
+<pre><code>[61] &quot;recip_coronary&quot;      &quot;recip_pvd&quot;           &quot;recip_cvd&quot;           &quot;recip_diabetes&quot;      &quot;recip_cancer&quot;       
+[66] &quot;tx_organ&quot;            &quot;recip_waitstatus&quot;    &quot;recip_listtime&quot;      &quot;recip_epts&quot;          &quot;donor_kdri&quot;         
+[71] &quot;algorithm&quot;  </code></pre>
 </div>
-<div id="assign-new-recip_id-tx_id-donor_id" class="section level1">
-<h1><span class="header-section-number">2</span> assign new “recip_id”, “tx_id” , “donor_id”</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">idmaker &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))               <span class="co"># randomising the letters </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                              <span class="co"># joining them together</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="kw">return</span>(ids)}</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">idmaker2 &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))  </a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">    lets2 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))<span class="co"># randomising the letters </span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,<span class="kw">paste</span>(lets2,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                              <span class="co"># joining them together</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="kw">return</span>(ids)}</a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">idmaker3 &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))    </a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">    lets2 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T)) </a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">    lets3 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T)) <span class="co"># randomising the letters </span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,<span class="kw">paste</span>(lets2,<span class="kw">paste</span>(lets3,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                             <span class="co"># joining them together</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29">  <span class="kw">return</span>(ids)}</a>
-<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
-<a class="sourceLine" id="cb3-31" data-line-number="31">fakedata_<span class="dv">1</span><span class="op">$</span>recip_id=<span class="kw">idmaker</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb3-32" data-line-number="32">fakedata_<span class="dv">1</span><span class="op">$</span>donor_id=<span class="kw">idmaker2</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb3-33" data-line-number="33">fakedata_<span class="dv">1</span><span class="op">$</span>tx_id=<span class="kw">idmaker3</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a></code></pre></div>
+<div id="step2" class="section level2">
+<h2><span class="header-section-number">1.2</span> Step2:</h2>
+<ul>
+<li>Assign new “recip_id”, “tx_id” , “donor_id”, where recip_id is one random letter with 6 random numbers, donor_id is two random letters with 6 random numbers, tx_id is three random letters with 6 random numbers</li>
+<li>For example, recip_id=“P243279”, donor_id=“WH325126”,tx_id=“AYZ155939”</li>
+</ul>
 </div>
-<div id="sliding-windows-for-those-date-variables-move-before-or-after-two-weeks" class="section level1">
-<h1><span class="header-section-number">3</span> sliding windows for those date variables (move before or after two weeks)</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">fakedata_<span class="dv">1</span>[,<span class="st">&quot;tx_date&quot;</span>]=rawdata[,<span class="st">&quot;tx_date&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_rrtstartdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_rrtstartdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>]=<span class="kw">as.Date</span>(rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>],<span class="st">&quot;%Y-%m-%d&quot;</span>)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_deathdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_liststartdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_liststartdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">rawdata[,<span class="st">&quot;tx_faildate&quot;</span>]=<span class="kw">as.Date</span>(rawdata[,<span class="st">&quot;tx_faildate&quot;</span>],<span class="st">&quot;%Y-%m-%d&quot;</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">fakedata_<span class="dv">1</span>[,<span class="st">&quot;tx_faildate&quot;</span>]=rawdata[,<span class="st">&quot;tx_faildate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_comorb_date&quot;</span>]=rawdata[,<span class="st">&quot;recip_comorb_date&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a></code></pre></div>
+<div id="step3" class="section level2">
+<h2><span class="header-section-number">1.3</span> Step3:</h2>
+<ul>
+<li>sample new dates, for dates variables listed below</li>
+</ul>
+<pre><code>&quot;tx_date&quot;,&quot;recip_rrtstartdate&quot; , &quot;recip_deathdate&quot;,&quot;tx_faildate&quot;, &quot;recip_comorb_date&quot;, &quot;recip_liststartdate&quot;</code></pre>
+<p>We sample another date value within two weeks before or after the real date using seed 202106001</p>
+</div>
+</div>
+<div id="step1-1" class="section level1">
+<h1><span class="header-section-number">2</span> Step1:</h1>
+<p>random sample all variabels (in rows), except date: “tx_date”,“recip_rrtstartdate” , “recip_deathdate”,“tx_faildate”, “recip_comorb_date”, “recip_liststartdate”</p>
+<ul>
+<li>notice here, the recipient age,weight,height are grouped and then sampled together, also, the donor age,weight,height</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">order_index1=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">202106002</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">order_index2=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">202106003</span>)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">order_index3=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">set.seed</span>(<span class="dv">202106004</span>)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">order_index4=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">set.seed</span>(<span class="dv">202106005</span>)</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">order_index5=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="kw">set.seed</span>(<span class="dv">202106006</span>)</a>
+<a class="sourceLine" id="cb9-12" data-line-number="12">order_index6=<span class="kw">sample</span>(<span class="kw">nrow</span>(rawdata))</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">selected_var=<span class="kw">colnames</span>(rawdata)[<span class="op">!</span><span class="kw">colnames</span>(rawdata)<span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;tx_date&quot;</span>,<span class="st">&quot;recip_rrtstartdate&quot;</span> , <span class="st">&quot;recip_deathdate&quot;</span>,<span class="st">&quot;tx_faildate&quot;</span>, <span class="st">&quot;recip_comorb_date&quot;</span>, <span class="st">&quot;recip_liststartdate&quot;</span>,<span class="st">&quot;recip_id&quot;</span>, <span class="st">&quot;tx_id&quot;</span> , <span class="st">&quot;donor_id&quot;</span>)]</a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co"># * need to group recip age and gender and weight and height</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co"># * need to group donor age and gender and weight and height</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18">fakedata_part1=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">37</span>,<span class="dv">43</span>,<span class="dv">44</span>,<span class="dv">47</span>,<span class="dv">48</span>,<span class="dv">50</span>)]]</a>
+<a class="sourceLine" id="cb9-19" data-line-number="19">fakedata_part2=rawdata[order_index1,selected_var[<span class="dv">1</span><span class="op">:</span><span class="dv">22</span>]]</a>
+<a class="sourceLine" id="cb9-20" data-line-number="20">fakedata_part3=rawdata[order_index1,selected_var[<span class="dv">25</span><span class="op">:</span><span class="dv">36</span>]]</a>
+<a class="sourceLine" id="cb9-21" data-line-number="21">fakedata_part4=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">38</span><span class="op">:</span><span class="dv">42</span>,<span class="dv">45</span>,<span class="dv">46</span>)]]</a>
+<a class="sourceLine" id="cb9-22" data-line-number="22">fakedata_part5=rawdata[order_index1,selected_var[<span class="kw">c</span>(<span class="dv">49</span>,<span class="dv">51</span><span class="op">:</span><span class="dv">60</span>)]]</a>
+<a class="sourceLine" id="cb9-23" data-line-number="23">fakedata_part6=rawdata[order_index1,selected_var[<span class="dv">61</span><span class="op">:</span><span class="dv">71</span>]]</a>
+<a class="sourceLine" id="cb9-24" data-line-number="24">fakedata_<span class="dv">1</span>=<span class="kw">cbind.data.frame</span>(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)</a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb9-27" data-line-number="27"><span class="co"># fakedata_part1=rawdata[order_index1,selected_var[1:10]]</span></a>
+<a class="sourceLine" id="cb9-28" data-line-number="28"><span class="co"># fakedata_part2=rawdata[order_index1,selected_var[11:20]]</span></a>
+<a class="sourceLine" id="cb9-29" data-line-number="29"><span class="co"># fakedata_part3=rawdata[order_index1,selected_var[21:30]]</span></a>
+<a class="sourceLine" id="cb9-30" data-line-number="30"><span class="co"># fakedata_part4=rawdata[order_index1,selected_var[31:40]]</span></a>
+<a class="sourceLine" id="cb9-31" data-line-number="31"><span class="co"># fakedata_part5=rawdata[order_index1,selected_var[41:55]]</span></a>
+<a class="sourceLine" id="cb9-32" data-line-number="32"><span class="co"># fakedata_part6=rawdata[order_index1,selected_var[56:71]]</span></a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"><span class="co"># fakedata_1=cbind.data.frame(fakedata_part1,fakedata_part2,fakedata_part3,fakedata_part4,fakedata_part5,fakedata_part6)</span></a></code></pre></div>
+</div>
+<div id="step2-1" class="section level1">
+<h1><span class="header-section-number">3</span> Step2:</h1>
+<p>assign new “recip_id”, “tx_id” , “donor_id”, where recip_id is one random letter with 6 random numbers, donor_id is two random letters with 6 random numbers, tx_id is three random letters with 6 random numbers</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">idmaker &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))               <span class="co"># randomising the letters </span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                              <span class="co"># joining them together</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">  <span class="kw">return</span>(ids)}</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">idmaker2 &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))  </a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">    lets2 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))<span class="co"># randomising the letters </span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,<span class="kw">paste</span>(lets2,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                              <span class="co"># joining them together</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">  <span class="kw">return</span>(ids)}</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">idmaker3 &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">    max.val =<span class="st"> </span>x<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">    count &lt;-<span class="st"> </span><span class="kw">nchar</span>(<span class="kw">as.character</span>(max.val))                       <span class="co"># find out how many 'numbers' each ID will have after the letter</span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">    size &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;%0&quot;</span>,count,<span class="st">&quot;d&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                        <span class="co"># set the variable to be fed into 'sprintf' to ensure we have leading 0's</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">    lets &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T))    </a>
+<a class="sourceLine" id="cb10-25" data-line-number="25">    lets2 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T)) </a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">    lets3 &lt;-<span class="st"> </span><span class="kw">toupper</span>(<span class="kw">sample</span>(letters,x, <span class="dt">replace=</span>T)) <span class="co"># randomising the letters </span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">    nums &lt;-<span class="st"> </span><span class="kw">sprintf</span>(size,<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>max.val)[<span class="dv">1</span><span class="op">:</span>x])                <span class="co"># randominsing the numbers, and ensuing they all have the same number of characters</span></a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">    ids &lt;-<span class="st"> </span><span class="kw">paste</span>(lets,<span class="kw">paste</span>(lets2,<span class="kw">paste</span>(lets3,nums,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)                             <span class="co"># joining them together</span></a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">  <span class="kw">return</span>(ids)}</a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
+<a class="sourceLine" id="cb10-31" data-line-number="31">fakedata_<span class="dv">1</span><span class="op">$</span>recip_id=<span class="kw">idmaker</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb10-32" data-line-number="32">fakedata_<span class="dv">1</span><span class="op">$</span>donor_id=<span class="kw">idmaker2</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb10-33" data-line-number="33">fakedata_<span class="dv">1</span><span class="op">$</span>tx_id=<span class="kw">idmaker3</span>(<span class="kw">dim</span>(rawdata)[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb10-34" data-line-number="34">fakedata_<span class="dv">1</span><span class="op">$</span>recip_id[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;P243279&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">fakedata_<span class="dv">1</span><span class="op">$</span>donor_id[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;WH325126&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">fakedata_<span class="dv">1</span><span class="op">$</span>tx_id[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;AYZ155939&quot;</code></pre>
+</div>
+<div id="step3-1" class="section level1">
+<h1><span class="header-section-number">4</span> Step3:</h1>
+<p>sample new dates (“tx_date”,“recip_rrtstartdate” , “recip_deathdate”,“tx_faildate”, “recip_comorb_date”, “recip_liststartdate”) using sliding windows,i.e.move before or after two weeks</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">202106001</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">fakedata_<span class="dv">1</span>[,<span class="st">&quot;tx_date&quot;</span>]=rawdata[,<span class="st">&quot;tx_date&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_rrtstartdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_rrtstartdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>]=<span class="kw">as.Date</span>(rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>],<span class="st">&quot;%Y-%m-%d&quot;</span>)</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_deathdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_deathdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_liststartdate&quot;</span>]=rawdata[,<span class="st">&quot;recip_liststartdate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">rawdata[,<span class="st">&quot;tx_faildate&quot;</span>]=<span class="kw">as.Date</span>(rawdata[,<span class="st">&quot;tx_faildate&quot;</span>],<span class="st">&quot;%Y-%m-%d&quot;</span>)</a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">fakedata_<span class="dv">1</span>[,<span class="st">&quot;tx_faildate&quot;</span>]=rawdata[,<span class="st">&quot;tx_faildate&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">fakedata_<span class="dv">1</span>[,<span class="st">&quot;recip_comorb_date&quot;</span>]=rawdata[,<span class="st">&quot;recip_comorb_date&quot;</span>]<span class="op">+</span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">14</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span>)</a></code></pre></div>
+</div>
+<div id="data-summary" class="section level1">
+<h1><span class="header-section-number">5</span> data summary</h1>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">summary</span>(fakedata_<span class="dv">1</span>)</a></code></pre></div>
+<pre><code>##   donor_height    donor_weight     recip_sex          recip_height
+##  Min.   : 60.0   Min.   :  7.00   Length:5945        Min.   : 52  
+##  1st Qu.:164.0   1st Qu.: 66.00   Class :character   1st Qu.:162  
+##  Median :171.0   Median : 80.00   Mode  :character   Median :170  
+##  Mean   :170.2   Mean   : 78.83                      Mean   :168  
+##  3rd Qu.:179.0   3rd Qu.: 90.00                      3rd Qu.:177  
+##  Max.   :203.0   Max.   :200.00                      Max.   :210  
+##  NA's   :6                                           NA's   :36   
+##   recip_weight      donor_age   donor_sex           recip_age    
+##  Min.   :  3.50   Min.   : 0   Length:5945        Min.   : 1.00  
+##  1st Qu.: 63.55   1st Qu.:33   Class :character   1st Qu.:42.00  
+##  Median : 76.00   Median :49   Mode  :character   Median :52.00  
+##  Mean   : 76.73   Mean   :46                      Mean   :50.05  
+##  3rd Qu.: 89.30   3rd Qu.:60                      3rd Qu.:61.00  
+##  Max.   :178.00   Max.   :87                      Max.   :80.00  
+##  NA's   :22                                                      
+##  recip_graftno   donor_source       donor_state          recip_pra    
+##  Min.   :1.000   Length:5945        Length:5945        Min.   : 0.00  
+##  1st Qu.:1.000   Class :character   Class :character   1st Qu.: 0.00  
+##  Median :1.000   Mode  :character   Mode  :character   Median : 0.00  
+##  Mean   :1.075                                         Mean   :11.58  
+##  3rd Qu.:1.000                                         3rd Qu.: 7.00  
+##  Max.   :3.000                                         Max.   :99.00  
+##                                                        NA's   :115    
+##  donor_blgroup         donor_a1         donor_a2        donor_b1    
+##  Length:5945        Min.   : 1.000   Min.   : 1.00   Min.   : 4.00  
+##  Class :character   1st Qu.: 1.000   1st Qu.: 3.00   1st Qu.: 8.00  
+##  Mode  :character   Median : 2.000   Median :24.00   Median :14.00  
+##                     Mean   : 5.015   Mean   :19.79   Mean   :23.48  
+##                     3rd Qu.: 3.000   3rd Qu.:30.00   3rd Qu.:40.00  
+##                     Max.   :68.000   Max.   :80.00   Max.   :73.00  
+##                                                                     
+##     donor_b2         donor_dr1         donor_dr2        donor_dq1    
+##  Min.   :   6.00   Min.   :  1.000   Min.   :  1.00   Min.   :1.000  
+##  1st Qu.:  39.00   1st Qu.:  3.000   1st Qu.:  8.00   1st Qu.:2.000  
+##  Median :  50.00   Median :  4.000   Median : 13.00   Median :2.000  
+##  Mean   :  49.13   Mean   :  6.359   Mean   : 14.35   Mean   :3.187  
+##  3rd Qu.:  60.00   3rd Qu.:  9.000   3rd Qu.: 15.00   3rd Qu.:5.000  
+##  Max.   :8201.00   Max.   :103.000   Max.   :103.00   Max.   :9.000  
+##                                                       NA's   :2315   
+##    donor_dq2     recip_blgroup         recip_a1         recip_a2    
+##  Min.   :1.000   Length:5945        Min.   : 1.000   Min.   : 1.00  
+##  1st Qu.:3.000   Class :character   1st Qu.: 1.000   1st Qu.: 3.00  
+##  Median :6.000   Mode  :character   Median : 2.000   Median :24.00  
+##  Mean   :5.202                      Mean   : 6.508   Mean   :21.17  
+##  3rd Qu.:7.000                      3rd Qu.: 3.000   3rd Qu.:31.00  
+##  Max.   :9.000                      Max.   :69.000   Max.   :80.00  
+##  NA's   :1160                                                       
+##     recip_b1        recip_b2       recip_dr1         recip_dr2     
+##  Min.   : 5.00   Min.   : 7.00   Min.   :  1.000   Min.   :  1.00  
+##  1st Qu.: 8.00   1st Qu.:44.00   1st Qu.:  3.000   1st Qu.:  8.00  
+##  Median :27.00   Median :52.00   Median :  4.000   Median : 13.00  
+##  Mean   :27.25   Mean   :49.13   Mean   :  6.249   Mean   : 12.77  
+##  3rd Qu.:44.00   3rd Qu.:61.00   3rd Qu.: 10.000   3rd Qu.: 15.00  
+##  Max.   :75.00   Max.   :82.00   Max.   :103.000   Max.   :103.00  
+##                                                                    
+##    recip_dq1       recip_dq2     donor_eth_code     donor_eth_country 
+##  Min.   :1.000   Min.   :1.000   Length:5945        Length:5945       
+##  1st Qu.:2.000   1st Qu.:3.000   Class :character   Class :character  
+##  Median :2.000   Median :5.000   Mode  :character   Mode  :character  
+##  Mean   :3.099   Mean   :4.821                                        
+##  3rd Qu.:5.000   3rd Qu.:7.000                                        
+##  Max.   :8.000   Max.   :9.000                                        
+##  NA's   :4377    NA's   :3794                                         
+##   donor_eth         donor_diabetes     donor_hypertension donor_smoker      
+##  Length:5945        Length:5945        Length:5945        Length:5945       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  donor_death         donor_dcd         donor_creatinine recip_state_initial
+##  Length:5945        Length:5945        Min.   :  3.0    Length:5945        
+##  Class :character   Class :character   1st Qu.: 56.0    Class :character   
+##  Mode  :character   Mode  :character   Median : 72.0    Mode  :character   
+##                                        Mean   : 93.5                       
+##                                        3rd Qu.: 97.0                       
+##                                        Max.   :998.0                       
+##                                                                            
+##  recip_state_current recip_age_rrtstart recip_eth_detailed  recip_eth        
+##  Length:5945         Min.   : 0.00      Length:5945        Length:5945       
+##  Class :character    1st Qu.:37.00      Class :character   Class :character  
+##  Mode  :character    Median :48.00      Mode  :character   Mode  :character  
+##                      Mean   :46.02                                           
+##                      3rd Qu.:57.00                                           
+##                      Max.   :77.00                                           
+##                                                                              
+##  recip_primrenal    recip_biopsy       recip_creatinine recip_smoker      
+##  Length:5945        Length:5945        Min.   :  10.0   Length:5945       
+##  Class :character   Class :character   1st Qu.: 545.0   Class :character  
+##  Mode  :character   Mode  :character   Median : 700.0   Mode  :character  
+##                                        Mean   : 775.7                     
+##                                        3rd Qu.: 918.0                     
+##                                        Max.   :3311.0                     
+##                                        NA's   :87                         
+##  recip_state         tx_ischemia      tx_status      tx_period   
+##  Length:5945        Min.   : 1.00   Min.   :0.00   Min.   :   0  
+##  Class :character   1st Qu.: 8.00   1st Qu.:0.00   1st Qu.: 552  
+##  Mode  :character   Median :11.00   Median :0.00   Median :1346  
+##                     Mean   :11.59   Mean   :0.18   Mean   :1531  
+##                     3rd Qu.:14.00   3rd Qu.:0.00   3rd Qu.:2362  
+##                     Max.   :44.00   Max.   :1.00   Max.   :4200  
+##                     NA's   :306                                  
+##    tx_lstatus       tx_lperiod      tx_misa         tx_misb     
+##  Min.   :0.0000   Min.   :   0   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:0.0000   1st Qu.: 645   1st Qu.:1.000   1st Qu.:1.000  
+##  Median :0.0000   Median :1487   Median :1.000   Median :1.000  
+##  Mean   :0.1063   Mean   :1643   Mean   :1.204   Mean   :1.362  
+##  3rd Qu.:0.0000   3rd Qu.:2504   3rd Qu.:2.000   3rd Qu.:2.000  
+##  Max.   :1.0000   Max.   :4200   Max.   :2.000   Max.   :2.000  
+##                                                                 
+##     tx_misdr     tx_gfailcat        recip_waittime  recip_lung       
+##  Min.   :0.000   Length:5945        Min.   :  11   Length:5945       
+##  1st Qu.:0.000   Class :character   1st Qu.: 615   Class :character  
+##  Median :1.000   Mode  :character   Median :1149   Mode  :character  
+##  Mean   :1.095                      Mean   :1472                     
+##  3rd Qu.:2.000                      3rd Qu.:1999                     
+##  Max.   :2.000                      Max.   :7244                     
+##                                                                      
+##  recip_coronary      recip_pvd          recip_cvd         recip_diabetes    
+##  Length:5945        Length:5945        Length:5945        Length:5945       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  recip_cancer         tx_organ         recip_waitstatus   recip_listtime  
+##  Length:5945        Length:5945        Length:5945        Min.   :   1.0  
+##  Class :character   Class :character   Class :character   1st Qu.:  98.0  
+##  Mode  :character   Mode  :character   Mode  :character   Median : 352.0  
+##                                                           Mean   : 612.3  
+##                                                           3rd Qu.: 914.0  
+##                                                           Max.   :4130.0  
+##                                                                           
+##    recip_epts         donor_kdri      algorithm           recip_id        
+##  Min.   :-0.09765   Min.   :0.6207   Length:5945        Length:5945       
+##  1st Qu.: 1.16405   1st Qu.:1.0145   Class :character   Class :character  
+##  Median : 1.71131   Median :1.2932   Mode  :character   Mode  :character  
+##  Mean   : 1.63322   Mean   :1.3866                                        
+##  3rd Qu.: 2.17185   3rd Qu.:1.6859                                        
+##  Max.   : 3.52462   Max.   :3.4778                                        
+##  NA's   :8          NA's   :396                                           
+##    donor_id            tx_id              tx_date          
+##  Length:5945        Length:5945        Min.   :2006-07-03  
+##  Class :character   Class :character   1st Qu.:2010-07-14  
+##  Mode  :character   Mode  :character   Median :2013-05-12  
+##                                        Mean   :2013-02-07  
+##                                        3rd Qu.:2015-12-17  
+##                                        Max.   :2018-01-01  
+##                                                            
+##  recip_rrtstartdate   recip_deathdate recip_liststartdate   tx_faildate  
+##  Min.   :1997-01-03   Min.   :NA      Min.   :2006-07-04   Min.   :NA    
+##  1st Qu.:2005-12-12   1st Qu.:NA      1st Qu.:2008-04-07   1st Qu.:NA    
+##  Median :2009-06-24   Median :NA      Median :2011-09-07   Median :NA    
+##  Mean   :2009-01-26   Mean   :NA      Mean   :2011-07-18   Mean   :NA    
+##  3rd Qu.:2012-09-27   3rd Qu.:NA      3rd Qu.:2014-07-07   3rd Qu.:NA    
+##  Max.   :2017-10-19   Max.   :NA      Max.   :2017-12-18   Max.   :NA    
+##                       NA's   :5945                         NA's   :5945  
+##  recip_comorb_date   
+##  Min.   :2006-01-13  
+##  1st Qu.:2010-01-13  
+##  Median :2013-01-13  
+##  Mean   :2012-08-21  
+##  3rd Qu.:2015-01-13  
+##  Max.   :2018-01-13  
+## </code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">kbl</span>((<span class="kw">summary</span>(fakedata_<span class="dv">1</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">kable_paper</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;1000px&quot;</span>)</a></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:1000px; ">
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+donor_height
+</th>
+<th style="text-align:left;">
+donor_weight
+</th>
+<th style="text-align:left;">
+recip_sex
+</th>
+<th style="text-align:left;">
+recip_height
+</th>
+<th style="text-align:left;">
+recip_weight
+</th>
+<th style="text-align:left;">
+donor_age
+</th>
+<th style="text-align:left;">
+donor_sex
+</th>
+<th style="text-align:left;">
+recip_age
+</th>
+<th style="text-align:left;">
+recip_graftno
+</th>
+<th style="text-align:left;">
+donor_source
+</th>
+<th style="text-align:left;">
+donor_state
+</th>
+<th style="text-align:left;">
+recip_pra
+</th>
+<th style="text-align:left;">
+donor_blgroup
+</th>
+<th style="text-align:left;">
+donor_a1
+</th>
+<th style="text-align:left;">
+donor_a2
+</th>
+<th style="text-align:left;">
+donor_b1
+</th>
+<th style="text-align:left;">
+donor_b2
+</th>
+<th style="text-align:left;">
+donor_dr1
+</th>
+<th style="text-align:left;">
+donor_dr2
+</th>
+<th style="text-align:left;">
+donor_dq1
+</th>
+<th style="text-align:left;">
+donor_dq2
+</th>
+<th style="text-align:left;">
+recip_blgroup
+</th>
+<th style="text-align:left;">
+recip_a1
+</th>
+<th style="text-align:left;">
+recip_a2
+</th>
+<th style="text-align:left;">
+recip_b1
+</th>
+<th style="text-align:left;">
+recip_b2
+</th>
+<th style="text-align:left;">
+recip_dr1
+</th>
+<th style="text-align:left;">
+recip_dr2
+</th>
+<th style="text-align:left;">
+recip_dq1
+</th>
+<th style="text-align:left;">
+recip_dq2
+</th>
+<th style="text-align:left;">
+donor_eth_code
+</th>
+<th style="text-align:left;">
+donor_eth_country
+</th>
+<th style="text-align:left;">
+donor_eth
+</th>
+<th style="text-align:left;">
+donor_diabetes
+</th>
+<th style="text-align:left;">
+donor_hypertension
+</th>
+<th style="text-align:left;">
+donor_smoker
+</th>
+<th style="text-align:left;">
+donor_death
+</th>
+<th style="text-align:left;">
+donor_dcd
+</th>
+<th style="text-align:left;">
+donor_creatinine
+</th>
+<th style="text-align:left;">
+recip_state_initial
+</th>
+<th style="text-align:left;">
+recip_state_current
+</th>
+<th style="text-align:left;">
+recip_age_rrtstart
+</th>
+<th style="text-align:left;">
+recip_eth_detailed
+</th>
+<th style="text-align:left;">
+recip_eth
+</th>
+<th style="text-align:left;">
+recip_primrenal
+</th>
+<th style="text-align:left;">
+recip_biopsy
+</th>
+<th style="text-align:left;">
+recip_creatinine
+</th>
+<th style="text-align:left;">
+recip_smoker
+</th>
+<th style="text-align:left;">
+recip_state
+</th>
+<th style="text-align:left;">
+tx_ischemia
+</th>
+<th style="text-align:left;">
+tx_status
+</th>
+<th style="text-align:left;">
+tx_period
+</th>
+<th style="text-align:left;">
+tx_lstatus
+</th>
+<th style="text-align:left;">
+tx_lperiod
+</th>
+<th style="text-align:left;">
+tx_misa
+</th>
+<th style="text-align:left;">
+tx_misb
+</th>
+<th style="text-align:left;">
+tx_misdr
+</th>
+<th style="text-align:left;">
+tx_gfailcat
+</th>
+<th style="text-align:left;">
+recip_waittime
+</th>
+<th style="text-align:left;">
+recip_lung
+</th>
+<th style="text-align:left;">
+recip_coronary
+</th>
+<th style="text-align:left;">
+recip_pvd
+</th>
+<th style="text-align:left;">
+recip_cvd
+</th>
+<th style="text-align:left;">
+recip_diabetes
+</th>
+<th style="text-align:left;">
+recip_cancer
+</th>
+<th style="text-align:left;">
+tx_organ
+</th>
+<th style="text-align:left;">
+recip_waitstatus
+</th>
+<th style="text-align:left;">
+recip_listtime
+</th>
+<th style="text-align:left;">
+recip_epts
+</th>
+<th style="text-align:left;">
+donor_kdri
+</th>
+<th style="text-align:left;">
+algorithm
+</th>
+<th style="text-align:left;">
+recip_id
+</th>
+<th style="text-align:left;">
+donor_id
+</th>
+<th style="text-align:left;">
+tx_id
+</th>
+<th style="text-align:left;">
+tx_date
+</th>
+<th style="text-align:left;">
+recip_rrtstartdate
+</th>
+<th style="text-align:left;">
+recip_deathdate
+</th>
+<th style="text-align:left;">
+recip_liststartdate
+</th>
+<th style="text-align:left;">
+tx_faildate
+</th>
+<th style="text-align:left;">
+recip_comorb_date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Min. : 60.0
+</td>
+<td style="text-align:left;">
+Min. : 7.00
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 52
+</td>
+<td style="text-align:left;">
+Min. : 3.50
+</td>
+<td style="text-align:left;">
+Min. : 0
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. :1.000
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 0.00
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 1.000
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. : 4.00
+</td>
+<td style="text-align:left;">
+Min. : 6.00
+</td>
+<td style="text-align:left;">
+Min. : 1.000
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. :1.000
+</td>
+<td style="text-align:left;">
+Min. :1.000
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 1.000
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. : 5.00
+</td>
+<td style="text-align:left;">
+Min. : 7.00
+</td>
+<td style="text-align:left;">
+Min. : 1.000
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. :1.000
+</td>
+<td style="text-align:left;">
+Min. :1.000
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 3.0
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 0.00
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 10.0
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 1.00
+</td>
+<td style="text-align:left;">
+Min. :0.00
+</td>
+<td style="text-align:left;">
+Min. : 0
+</td>
+<td style="text-align:left;">
+Min. :0.0000
+</td>
+<td style="text-align:left;">
+Min. : 0
+</td>
+<td style="text-align:left;">
+Min. :0.000
+</td>
+<td style="text-align:left;">
+Min. :0.000
+</td>
+<td style="text-align:left;">
+Min. :0.000
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 11
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. : 1.0
+</td>
+<td style="text-align:left;">
+Min. :-0.09765
+</td>
+<td style="text-align:left;">
+Min. :0.6207
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Length:5945
+</td>
+<td style="text-align:left;">
+Min. :2006-07-03
+</td>
+<td style="text-align:left;">
+Min. :1997-01-03
+</td>
+<td style="text-align:left;">
+Min. :NA
+</td>
+<td style="text-align:left;">
+Min. :2006-07-04
+</td>
+<td style="text-align:left;">
+Min. :NA
+</td>
+<td style="text-align:left;">
+Min. :2006-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1st Qu.:164.0
+</td>
+<td style="text-align:left;">
+1st Qu.: 66.00
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.:162
+</td>
+<td style="text-align:left;">
+1st Qu.: 63.55
+</td>
+<td style="text-align:left;">
+1st Qu.:33
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.:42.00
+</td>
+<td style="text-align:left;">
+1st Qu.:1.000
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 0.00
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 1.000
+</td>
+<td style="text-align:left;">
+1st Qu.: 3.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 8.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 39.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 3.000
+</td>
+<td style="text-align:left;">
+1st Qu.: 8.00
+</td>
+<td style="text-align:left;">
+1st Qu.:2.000
+</td>
+<td style="text-align:left;">
+1st Qu.:3.000
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 1.000
+</td>
+<td style="text-align:left;">
+1st Qu.: 3.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 8.00
+</td>
+<td style="text-align:left;">
+1st Qu.:44.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 3.000
+</td>
+<td style="text-align:left;">
+1st Qu.: 8.00
+</td>
+<td style="text-align:left;">
+1st Qu.:2.000
+</td>
+<td style="text-align:left;">
+1st Qu.:3.000
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 56.0
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.:37.00
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 545.0
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 8.00
+</td>
+<td style="text-align:left;">
+1st Qu.:0.00
+</td>
+<td style="text-align:left;">
+1st Qu.: 552
+</td>
+<td style="text-align:left;">
+1st Qu.:0.0000
+</td>
+<td style="text-align:left;">
+1st Qu.: 645
+</td>
+<td style="text-align:left;">
+1st Qu.:1.000
+</td>
+<td style="text-align:left;">
+1st Qu.:1.000
+</td>
+<td style="text-align:left;">
+1st Qu.:0.000
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 615
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 98.0
+</td>
+<td style="text-align:left;">
+1st Qu.: 1.16405
+</td>
+<td style="text-align:left;">
+1st Qu.:1.0145
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.:2010-07-14
+</td>
+<td style="text-align:left;">
+1st Qu.:2005-12-12
+</td>
+<td style="text-align:left;">
+1st Qu.:NA
+</td>
+<td style="text-align:left;">
+1st Qu.:2008-04-07
+</td>
+<td style="text-align:left;">
+1st Qu.:NA
+</td>
+<td style="text-align:left;">
+1st Qu.:2010-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Median :171.0
+</td>
+<td style="text-align:left;">
+Median : 80.00
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :170
+</td>
+<td style="text-align:left;">
+Median : 76.00
+</td>
+<td style="text-align:left;">
+Median :49
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :52.00
+</td>
+<td style="text-align:left;">
+Median :1.000
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 0.00
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 2.000
+</td>
+<td style="text-align:left;">
+Median :24.00
+</td>
+<td style="text-align:left;">
+Median :14.00
+</td>
+<td style="text-align:left;">
+Median : 50.00
+</td>
+<td style="text-align:left;">
+Median : 4.000
+</td>
+<td style="text-align:left;">
+Median : 13.00
+</td>
+<td style="text-align:left;">
+Median :2.000
+</td>
+<td style="text-align:left;">
+Median :6.000
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 2.000
+</td>
+<td style="text-align:left;">
+Median :24.00
+</td>
+<td style="text-align:left;">
+Median :27.00
+</td>
+<td style="text-align:left;">
+Median :52.00
+</td>
+<td style="text-align:left;">
+Median : 4.000
+</td>
+<td style="text-align:left;">
+Median : 13.00
+</td>
+<td style="text-align:left;">
+Median :2.000
+</td>
+<td style="text-align:left;">
+Median :5.000
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 72.0
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :48.00
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 700.0
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :11.00
+</td>
+<td style="text-align:left;">
+Median :0.00
+</td>
+<td style="text-align:left;">
+Median :1346
+</td>
+<td style="text-align:left;">
+Median :0.0000
+</td>
+<td style="text-align:left;">
+Median :1487
+</td>
+<td style="text-align:left;">
+Median :1.000
+</td>
+<td style="text-align:left;">
+Median :1.000
+</td>
+<td style="text-align:left;">
+Median :1.000
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :1149
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 352.0
+</td>
+<td style="text-align:left;">
+Median : 1.71131
+</td>
+<td style="text-align:left;">
+Median :1.2932
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median :2013-05-12
+</td>
+<td style="text-align:left;">
+Median :2009-06-24
+</td>
+<td style="text-align:left;">
+Median :NA
+</td>
+<td style="text-align:left;">
+Median :2011-09-07
+</td>
+<td style="text-align:left;">
+Median :NA
+</td>
+<td style="text-align:left;">
+Median :2013-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Mean :170.2
+</td>
+<td style="text-align:left;">
+Mean : 78.83
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :168
+</td>
+<td style="text-align:left;">
+Mean : 76.73
+</td>
+<td style="text-align:left;">
+Mean :46
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :50.05
+</td>
+<td style="text-align:left;">
+Mean :1.075
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :11.58
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 5.015
+</td>
+<td style="text-align:left;">
+Mean :19.79
+</td>
+<td style="text-align:left;">
+Mean :23.48
+</td>
+<td style="text-align:left;">
+Mean : 49.13
+</td>
+<td style="text-align:left;">
+Mean : 6.359
+</td>
+<td style="text-align:left;">
+Mean : 14.35
+</td>
+<td style="text-align:left;">
+Mean :3.187
+</td>
+<td style="text-align:left;">
+Mean :5.202
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 6.508
+</td>
+<td style="text-align:left;">
+Mean :21.17
+</td>
+<td style="text-align:left;">
+Mean :27.25
+</td>
+<td style="text-align:left;">
+Mean :49.13
+</td>
+<td style="text-align:left;">
+Mean : 6.249
+</td>
+<td style="text-align:left;">
+Mean : 12.77
+</td>
+<td style="text-align:left;">
+Mean :3.099
+</td>
+<td style="text-align:left;">
+Mean :4.821
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 93.5
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :46.02
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 775.7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :11.59
+</td>
+<td style="text-align:left;">
+Mean :0.18
+</td>
+<td style="text-align:left;">
+Mean :1531
+</td>
+<td style="text-align:left;">
+Mean :0.1063
+</td>
+<td style="text-align:left;">
+Mean :1643
+</td>
+<td style="text-align:left;">
+Mean :1.204
+</td>
+<td style="text-align:left;">
+Mean :1.362
+</td>
+<td style="text-align:left;">
+Mean :1.095
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :1472
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 612.3
+</td>
+<td style="text-align:left;">
+Mean : 1.63322
+</td>
+<td style="text-align:left;">
+Mean :1.3866
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean :2013-02-07
+</td>
+<td style="text-align:left;">
+Mean :2009-01-26
+</td>
+<td style="text-align:left;">
+Mean :NA
+</td>
+<td style="text-align:left;">
+Mean :2011-07-18
+</td>
+<td style="text-align:left;">
+Mean :NA
+</td>
+<td style="text-align:left;">
+Mean :2012-08-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+3rd Qu.:179.0
+</td>
+<td style="text-align:left;">
+3rd Qu.: 90.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:177
+</td>
+<td style="text-align:left;">
+3rd Qu.: 89.30
+</td>
+<td style="text-align:left;">
+3rd Qu.:60
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:61.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:1.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 7.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 3.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:30.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:40.00
+</td>
+<td style="text-align:left;">
+3rd Qu.: 60.00
+</td>
+<td style="text-align:left;">
+3rd Qu.: 9.000
+</td>
+<td style="text-align:left;">
+3rd Qu.: 15.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:5.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:7.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 3.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:31.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:44.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:61.00
+</td>
+<td style="text-align:left;">
+3rd Qu.: 10.000
+</td>
+<td style="text-align:left;">
+3rd Qu.: 15.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:5.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:7.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 97.0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:57.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 918.0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:14.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:0.00
+</td>
+<td style="text-align:left;">
+3rd Qu.:2362
+</td>
+<td style="text-align:left;">
+3rd Qu.:0.0000
+</td>
+<td style="text-align:left;">
+3rd Qu.:2504
+</td>
+<td style="text-align:left;">
+3rd Qu.:2.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:2.000
+</td>
+<td style="text-align:left;">
+3rd Qu.:2.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:1999
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 914.0
+</td>
+<td style="text-align:left;">
+3rd Qu.: 2.17185
+</td>
+<td style="text-align:left;">
+3rd Qu.:1.6859
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:2015-12-17
+</td>
+<td style="text-align:left;">
+3rd Qu.:2012-09-27
+</td>
+<td style="text-align:left;">
+3rd Qu.:NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:2014-07-07
+</td>
+<td style="text-align:left;">
+3rd Qu.:NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:2015-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Max. :203.0
+</td>
+<td style="text-align:left;">
+Max. :200.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :210
+</td>
+<td style="text-align:left;">
+Max. :178.00
+</td>
+<td style="text-align:left;">
+Max. :87
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :80.00
+</td>
+<td style="text-align:left;">
+Max. :3.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :99.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :68.000
+</td>
+<td style="text-align:left;">
+Max. :80.00
+</td>
+<td style="text-align:left;">
+Max. :73.00
+</td>
+<td style="text-align:left;">
+Max. :8201.00
+</td>
+<td style="text-align:left;">
+Max. :103.000
+</td>
+<td style="text-align:left;">
+Max. :103.00
+</td>
+<td style="text-align:left;">
+Max. :9.000
+</td>
+<td style="text-align:left;">
+Max. :9.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :69.000
+</td>
+<td style="text-align:left;">
+Max. :80.00
+</td>
+<td style="text-align:left;">
+Max. :75.00
+</td>
+<td style="text-align:left;">
+Max. :82.00
+</td>
+<td style="text-align:left;">
+Max. :103.000
+</td>
+<td style="text-align:left;">
+Max. :103.00
+</td>
+<td style="text-align:left;">
+Max. :8.000
+</td>
+<td style="text-align:left;">
+Max. :9.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :998.0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :77.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :3311.0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :44.00
+</td>
+<td style="text-align:left;">
+Max. :1.00
+</td>
+<td style="text-align:left;">
+Max. :4200
+</td>
+<td style="text-align:left;">
+Max. :1.0000
+</td>
+<td style="text-align:left;">
+Max. :4200
+</td>
+<td style="text-align:left;">
+Max. :2.000
+</td>
+<td style="text-align:left;">
+Max. :2.000
+</td>
+<td style="text-align:left;">
+Max. :2.000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :7244
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :4130.0
+</td>
+<td style="text-align:left;">
+Max. : 3.52462
+</td>
+<td style="text-align:left;">
+Max. :3.4778
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :2018-01-01
+</td>
+<td style="text-align:left;">
+Max. :2017-10-19
+</td>
+<td style="text-align:left;">
+Max. :NA
+</td>
+<td style="text-align:left;">
+Max. :2017-12-18
+</td>
+<td style="text-align:left;">
+Max. :NA
+</td>
+<td style="text-align:left;">
+Max. :2018-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA’s :6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :36
+</td>
+<td style="text-align:left;">
+NA’s :22
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :115
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :2315
+</td>
+<td style="text-align:left;">
+NA’s :1160
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :4377
+</td>
+<td style="text-align:left;">
+NA’s :3794
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :87
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :306
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :8
+</td>
+<td style="text-align:left;">
+NA’s :396
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :5945
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :5945
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># datatable(fakedata_1,selection = &quot;single&quot;, extensions = 'Buttons', options = list(</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="co">#       pageLength = 10,</span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co">#       lengthMenu = list(c(10, 50, -1), c('10', '50', 'All')),</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">#       dom = 'lfrBtip',</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">#       buttons = </span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">#         list(</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co">#           buttons = c('csv', 'excel', 'pdf'),</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">#           text = 'Download'</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">#         )), caption = (&quot;Example data&quot;))</span></a></code></pre></div>
 </div>
 <div id="check-the-package" class="section level1">
-<h1><span class="header-section-number">4</span> check the package</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#get raw_recip_matrix from rawdata</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">raw_recip_matrix &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span>[, <span class="kw">grep</span>(<span class="st">&quot;recip_&quot;</span>, <span class="kw">colnames</span>(fakedata_<span class="dv">1</span>))]</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">raw_donor_matrix &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span>[, <span class="kw">grep</span>(<span class="st">&quot;donor_&quot;</span>, <span class="kw">colnames</span>(fakedata_<span class="dv">1</span>))]</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">risk &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;/Users/yzha0247/Dropbox (Sydney Uni)/YunweiZhang/WeeklyProgress/R code/GitHub-old-mine/KidneyAllocation/analysis/queuing/predrisk_yw2.rds&quot;</span>)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">colnames</span>(risk) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;recip_id&quot;</span>, <span class="st">&quot;riskscore&quot;</span>)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">raw_recip_matrix &lt;-<span class="st"> </span><span class="kw">merge</span>(raw_recip_matrix, risk, <span class="dt">by=</span> <span class="st">&quot;recip_id&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">raw_donor_matrix<span class="op">$</span>tx_date &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>tx_date</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">raw_recip_matrix<span class="op">$</span>recip_algorithm &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>algorithm </a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">raw_recip_matrix<span class="op">$</span>recip_id_original &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_id</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">raw_recip_matrix<span class="op">$</span>recip_id &lt;-<span class="st"> </span><span class="kw">paste</span>(raw_recip_matrix<span class="op">$</span>recip_id,</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">                                   raw_recip_matrix<span class="op">$</span>recip_graftno,</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">                                   <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">raw_donor_matrix<span class="op">$</span>donor_id &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_donor_matrix<span class="op">$</span>donor_id)</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">raw_donor_matrix<span class="op">$</span>donor_blgroup &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_donor_matrix<span class="op">$</span>donor_blgroup)</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">raw_recip_matrix<span class="op">$</span>recip_blgroup &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_recip_matrix<span class="op">$</span>recip_blgroup)</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">raw_recip_matrix<span class="op">$</span>recip_id &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_recip_matrix<span class="op">$</span>recip_id)</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(donor_id) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">num_kidney =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="kw">distinct</span>(donor_id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">raw_recip_matrix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(raw_recip_matrix)</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">raw_donor_matrix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(raw_donor_matrix)</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">raw_recip_matrix<span class="op">$</span>recip_original_listdate &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">raw_recip_matrix<span class="op">$</span>recip_original_rrtstartdate&lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_rrtstartdate</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix[raw_donor_matrix<span class="op">$</span>tx_date <span class="op">&gt;</span><span class="st"> &quot;2008-09-18&quot;</span>,]</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="kw">dim</span>(raw_recip_matrix)</a></code></pre></div>
-<pre><code>## [1] 5945   45</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">dim</span>(raw_donor_matrix)</a></code></pre></div>
-<pre><code>## [1] 5200   28</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">raw_recip_matrix<span class="op">$</span>recip_tx_date &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>tx_date</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">raw_recip_matrix<span class="op">$</span>recip_birthdate &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_tx_date <span class="op">-</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">years</span>(raw_recip_matrix<span class="op">$</span>recip_age)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">summary</span>(raw_recip_matrix<span class="op">$</span>recip_birthdate)</a></code></pre></div>
-<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-## &quot;1929-04-12&quot; &quot;1952-02-26&quot; &quot;1960-11-30&quot; &quot;1963-01-17&quot; &quot;1971-08-21&quot; &quot;2016-07-20&quot; 
-##         NA's 
-##          &quot;5&quot;</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(recip_epts, recip_state, recip_birthdate, recip_age, recip_pra)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(donor_kdri, donor_state, donor_age)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">keep &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_rrtstartdate <span class="op">&lt;</span><span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix[keep, ]</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">dim</span>(raw_recip_matrix)</a></code></pre></div>
-<pre><code>## [1] 5818   47</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">########added 20210504 by Yunwei</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">keep2 &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_tx_date<span class="op">&gt;</span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix[keep2, ]</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">dim</span>(raw_recip_matrix)</a></code></pre></div>
-<pre><code>## [1] 3640   47</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co">######## changed from 5821 to 5776</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">dim</span>(raw_donor_matrix)</a></code></pre></div>
-<pre><code>## [1] 4865   28</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">hla_data &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(recip_id, tx_misa, tx_misb, tx_misdr, donor_state)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">raw_recip_matrix&lt;-<span class="kw">merge</span>(raw_recip_matrix, hla_data, <span class="dt">by.x =</span> <span class="st">&quot;recip_id_original&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;recip_id&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="st">&quot;recip_tx_misa&quot;</span> =<span class="st">&quot;tx_misa&quot;</span>,</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">                                                                                            <span class="st">&quot;recip_tx_misb&quot;</span> =<span class="st"> &quot;tx_misb&quot;</span>,</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">                                                                                            <span class="st">&quot;recip_tx_misdr&quot;</span> =<span class="st"> &quot;tx_misdr&quot;</span>,</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">                                                                                            <span class="st">&quot;origin_donor_state&quot;</span> =<span class="st"> &quot;donor_state&quot;</span>)</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7">raw_recip_matrix&lt;-<span class="st"> </span>raw_recip_matrix[<span class="op">!</span><span class="kw">duplicated</span>(raw_recip_matrix<span class="op">$</span>recip_id_original),]</a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">dim</span>(raw_recip_matrix)</a></code></pre></div>
-<pre><code>## [1] 3640   51</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(fakedata_<span class="dv">1</span><span class="op">$</span>recip_pra,</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">                 <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">                 <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">                 <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">pra_group_prob &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.84</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.05</span>) <span class="co">#changed this 20210423</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="kw">names</span>(pra_group_prob) &lt;-<span class="st"> </span><span class="kw">levels</span>(pra_group)</a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">blood_group_prob &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.02</span>, <span class="fl">0.17</span>, <span class="fl">0.51</span>)</a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw">names</span>(blood_group_prob) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;O&quot;</span>)</a>
-<a class="sourceLine" id="cb19-9" data-line-number="9">state_prob &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(<span class="dv">531</span>, <span class="dv">340</span>, <span class="dv">106</span>, <span class="dv">56</span>, <span class="dv">42</span>)<span class="op">/</span><span class="dv">1075</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="kw">names</span>(state_prob) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NSW&quot;</span>, <span class="st">&quot;VIC&quot;</span>, <span class="st">&quot;QLD&quot;</span>, <span class="st">&quot;SA&quot;</span>, <span class="st">&quot;WA&quot;</span>)</a>
-<a class="sourceLine" id="cb19-11" data-line-number="11">grid_prob &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(pra_group_prob, blood_group_prob, state_prob)</a>
-<a class="sourceLine" id="cb19-12" data-line-number="12">grid_prob &lt;-<span class="st"> </span>grid_prob[, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>grid_prob[, <span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>grid_prob[, <span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb19-13" data-line-number="13">grid_prob &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">expand.grid</span>(<span class="kw">names</span>(pra_group_prob), </a>
-<a class="sourceLine" id="cb19-14" data-line-number="14">                               <span class="kw">names</span>(blood_group_prob),</a>
-<a class="sourceLine" id="cb19-15" data-line-number="15">                               <span class="kw">names</span>(state_prob)),</a>
-<a class="sourceLine" id="cb19-16" data-line-number="16">                   <span class="dt">prob =</span> grid_prob)</a>
-<a class="sourceLine" id="cb19-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb19-18" data-line-number="18"><span class="co">##############added by yunwei, not sure why this doesnt exist</span></a>
-<a class="sourceLine" id="cb19-19" data-line-number="19">raw_recip_matrix<span class="op">$</span>pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(raw_recip_matrix<span class="op">$</span>recip_pra,</a>
-<a class="sourceLine" id="cb19-20" data-line-number="20">                 <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb19-21" data-line-number="21">                 <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb19-22" data-line-number="22">                 <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb19-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb19-24" data-line-number="24">multiple_sampling_recip_matrix_fun=<span class="cf">function</span>(seed){</a>
-<a class="sourceLine" id="cb19-25" data-line-number="25">num_recip_size =<span class="st"> </span><span class="dv">1500</span></a>
-<a class="sourceLine" id="cb19-26" data-line-number="26"><span class="kw">set.seed</span>(seed)</a>
-<a class="sourceLine" id="cb19-27" data-line-number="27">grid_prob<span class="op">$</span>num &lt;-<span class="st"> </span><span class="kw">round</span>(grid_prob<span class="op">$</span>prob <span class="op">*</span><span class="st"> </span>num_recip_size)</a>
-<a class="sourceLine" id="cb19-28" data-line-number="28">grid_prob<span class="op">$</span>Var3 &lt;-<span class="st"> </span><span class="kw">as.character</span>(grid_prob<span class="op">$</span>Var3)</a>
-<a class="sourceLine" id="cb19-29" data-line-number="29">raw_recip_matrix_subset &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb19-30" data-line-number="30"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(grid_prob)) {</a>
-<a class="sourceLine" id="cb19-31" data-line-number="31">  tmp &lt;-<span class="st"> </span>raw_recip_matrix <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(recip_blgroup <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">2</span>],pra_group <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">1</span>],recip_state <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb19-32" data-line-number="32">  num_tmp &lt;-<span class="st"> </span><span class="kw">min</span>(grid_prob[i, <span class="dv">5</span>], <span class="kw">nrow</span>(tmp))</a>
-<a class="sourceLine" id="cb19-33" data-line-number="33">  tmp &lt;-<span class="st"> </span>tmp[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp), <span class="dt">size =</span> num_tmp), ]</a>
-<a class="sourceLine" id="cb19-34" data-line-number="34">  raw_recip_matrix_subset &lt;-<span class="st"> </span><span class="kw">rbind</span>(raw_recip_matrix_subset, tmp)</a>
-<a class="sourceLine" id="cb19-35" data-line-number="35">}</a>
-<a class="sourceLine" id="cb19-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb19-37" data-line-number="37"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-38" data-line-number="38"></a>
-<a class="sourceLine" id="cb19-39" data-line-number="39"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_blgroup)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>recip_blgroup), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-40" data-line-number="40">raw_recip_matrix_subset<span class="op">$</span>pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(raw_recip_matrix_subset<span class="op">$</span>recip_pra,</a>
-<a class="sourceLine" id="cb19-41" data-line-number="41">                                         <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb19-42" data-line-number="42">                                         <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb19-43" data-line-number="43">                                         <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb19-44" data-line-number="44"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>pra_group)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>pra_group), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-45" data-line-number="45"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_age_group)<span class="op">/</span><span class="kw">nrow</span>(raw_recip_matrix_subset), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-46" data-line-number="46"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state)<span class="op">/</span><span class="kw">nrow</span>(raw_recip_matrix_subset), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-47" data-line-number="47"><span class="kw">return</span>(raw_recip_matrix_subset)</a>
-<a class="sourceLine" id="cb19-48" data-line-number="48">}</a>
-<a class="sourceLine" id="cb19-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb19-50" data-line-number="50"></a>
-<a class="sourceLine" id="cb19-51" data-line-number="51">raw_recip_matrix_subset=<span class="kw">multiple_sampling_recip_matrix_fun</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb19-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb19-53" data-line-number="53"><span class="kw">which</span>(<span class="op">!</span><span class="kw">colnames</span>(raw_donor_matrix) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;donor_source&quot;</span>,<span class="st">&quot;donor_state&quot;</span>,<span class="st">&quot;donor_blgroup&quot;</span>,</a>
-<a class="sourceLine" id="cb19-54" data-line-number="54">                                            <span class="st">&quot;donor_a1&quot;</span>, <span class="st">&quot;donor_a2&quot;</span>,<span class="st">&quot;donor_b1&quot;</span>,<span class="st">&quot;donor_b2&quot;</span></a>
-<a class="sourceLine" id="cb19-55" data-line-number="55">                                            ,<span class="st">&quot;donor_dr1&quot;</span> ,<span class="st">&quot;donor_dr2&quot;</span></a>
-<a class="sourceLine" id="cb19-56" data-line-number="56">                                             ,<span class="st">&quot;donor_dq1&quot;</span> ,<span class="st">&quot;donor_dq2&quot;</span>,<span class="st">&quot;donor_height&quot;</span></a>
-<a class="sourceLine" id="cb19-57" data-line-number="57">                                             ,<span class="st">&quot;donor_weight&quot;</span>,<span class="st">&quot;donor_eth_code&quot;</span> ,<span class="st">&quot;donor_eth_country&quot;</span></a>
-<a class="sourceLine" id="cb19-58" data-line-number="58">                                             ,<span class="st">&quot;donor_eth&quot;</span>  ,<span class="st">&quot;donor_diabetes&quot;</span>, <span class="st">&quot;donor_hypertension&quot;</span></a>
-<a class="sourceLine" id="cb19-59" data-line-number="59">                                             ,<span class="st">&quot;donor_smoker&quot;</span>, <span class="st">&quot;donor_id&quot;</span>,<span class="st">&quot;donor_death&quot;</span></a>
-<a class="sourceLine" id="cb19-60" data-line-number="60">                                             ,<span class="st">&quot;donor_dcd&quot;</span>  ,<span class="st">&quot;donor_creatinine&quot;</span> ,<span class="st">&quot;donor_age&quot;</span></a>
-<a class="sourceLine" id="cb19-61" data-line-number="61">                                             ,<span class="st">&quot;donor_sex&quot;</span>  ,<span class="st">&quot;donor_kdri&quot;</span>, <span class="st">&quot;tx_date&quot;</span></a>
-<a class="sourceLine" id="cb19-62" data-line-number="62">                                             ,<span class="st">&quot;num_kidney&quot;</span> ))</a></code></pre></div>
-<pre><code>## integer(0)</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">raw_recip_matrix_subset=raw_recip_matrix_subset[,<span class="op">-</span><span class="kw">which</span>(<span class="op">!</span><span class="kw">colnames</span>(raw_recip_matrix_subset) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;recip_id&quot;</span> , <span class="st">&quot;recip_graftno&quot;</span>, <span class="st">&quot;recip_pra&quot;</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">                                           ,<span class="st">&quot;recip_blgroup&quot;</span> ,<span class="st">&quot;recip_a1&quot;</span>,<span class="st">&quot;recip_a2&quot;</span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">                                           ,<span class="st">&quot;recip_b1&quot;</span> , <span class="st">&quot;recip_b2&quot;</span>,<span class="st">&quot;recip_dr1&quot;</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">                                           ,<span class="st">&quot;recip_dr2&quot;</span>, <span class="st">&quot;recip_dq1&quot;</span>,<span class="st">&quot;recip_dq2&quot;</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">                                           ,<span class="st">&quot;recip_state_initial&quot;</span>,<span class="st">&quot;recip_state_current&quot;</span>, <span class="st">&quot;recip_age_rrtstart&quot;</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">                                           , <span class="st">&quot;recip_sex&quot;</span>,<span class="st">&quot;recip_eth_detailed&quot;</span> ,<span class="st">&quot;recip_eth&quot;</span></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">                                           , <span class="st">&quot;recip_primrenal&quot;</span>, <span class="st">&quot;recip_biopsy&quot;</span> , <span class="st">&quot;recip_creatinine&quot;</span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8">                                           ,<span class="st">&quot;recip_height&quot;</span>,<span class="st">&quot;recip_weight&quot;</span> ,<span class="st">&quot;recip_smoker&quot;</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9">                                           ,<span class="st">&quot;recip_rrtstartdate&quot;</span>, <span class="st">&quot;recip_deathdate&quot;</span>, <span class="st">&quot;recip_state&quot;</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">                                           , <span class="st">&quot;recip_age&quot;</span>, <span class="st">&quot;recip_waittime&quot;</span>,<span class="st">&quot;recip_lung&quot;</span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">                                           ,<span class="st">&quot;recip_coronary&quot;</span>, <span class="st">&quot;recip_pvd&quot;</span>,<span class="st">&quot;recip_cvd&quot;</span></a>
-<a class="sourceLine" id="cb21-12" data-line-number="12">                                           ,<span class="st">&quot;recip_diabetes&quot;</span>, <span class="st">&quot;recip_comorb_date&quot;</span>  ,<span class="st">&quot;recip_cancer&quot;</span></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13">                                           ,<span class="st">&quot;recip_liststartdate&quot;</span>, <span class="st">&quot;recip_waitstatus&quot;</span>, <span class="st">&quot;recip_listtime&quot;</span></a>
-<a class="sourceLine" id="cb21-14" data-line-number="14">                                           ,<span class="st">&quot;recip_epts&quot;</span>, <span class="st">&quot;riskscore&quot;</span>, <span class="st">&quot;recip_algorithm&quot;</span></a>
-<a class="sourceLine" id="cb21-15" data-line-number="15">                                           ,<span class="st">&quot;recip_id_original&quot;</span>, <span class="st">&quot;recip_original_listdate&quot;</span> ,<span class="st">&quot;recip_original_rrtstartdate&quot;</span></a>
-<a class="sourceLine" id="cb21-16" data-line-number="16">                                           ,<span class="st">&quot;recip_tx_date&quot;</span>, <span class="st">&quot;recip_birthdate&quot;</span> ,<span class="st">&quot;pra_group&quot;</span></a>
-<a class="sourceLine" id="cb21-17" data-line-number="17">                                           ,<span class="st">&quot;recip_age_group&quot;</span>))]</a>
-<a class="sourceLine" id="cb21-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb21-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb21-20" data-line-number="20"><span class="co">#raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)</span></a>
-<a class="sourceLine" id="cb21-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb21-22" data-line-number="22"><span class="co">#10 times </span></a>
-<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="co"># recip_sample_list=list()</span></a>
-<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="co"># for(i in 1:10){</span></a>
-<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="co">#   recip_sample_list[[i]]=multiple_sampling_recip_matrix_fun(i)</span></a>
-<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="co"># }</span></a>
-<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co">#saveRDS(recip_sample_list,&quot;recip_sample_list.rds)</span></a></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">result=KidneyAllocation<span class="op">::</span><span class="kw">runSimulation5.4</span>(raw_recip_matrix_subset, </a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">                                 raw_donor_matrix,</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">                                 <span class="dt">algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>allocation_national,</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">                                 <span class="dt">eligible_FUN =</span> KidneyAllocation<span class="op">::</span>selectionpool1<span class="fl">.2</span>,</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">                                 <span class="dt">matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmNational_formula,</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">                                 <span class="dt">waitlist_FUN =</span> KidneyAllocation<span class="op">::</span>dynamic_waitlist,</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">                                 <span class="dt">state_algorithm =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb22-8" data-line-number="8">                                 <span class="dt">national_algorithm_threshold =</span> <span class="dv">54000000</span>,</a>
-<a class="sourceLine" id="cb22-9" data-line-number="9">                                 <span class="dt">state_algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_algorithm,</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">                                 <span class="dt">state_eligible_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_selectionpool,</a>
-<a class="sourceLine" id="cb22-11" data-line-number="11">                                 <span class="dt">state_matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmState_formula,</a>
-<a class="sourceLine" id="cb22-12" data-line-number="12">                                 <span class="dt">eligible_arg =</span> <span class="kw">list</span>(<span class="dt">AB_priority =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb22-13" data-line-number="13">                                 <span class="dt">waitlist_arg =</span> <span class="kw">list</span>(<span class="dt">waitlist_Risk =</span> <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb22-14" data-line-number="14">                                 <span class="dt">resampleN =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb22-15" data-line-number="15">                                 <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb22-16" data-line-number="16">                                 <span class="dt">num_donor =</span> <span class="dv">800</span>,<span class="dt">num_recip =</span> <span class="dv">300</span>,</a>
-<a class="sourceLine" id="cb22-17" data-line-number="17">                                 <span class="dt">state_balance =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb22-18" data-line-number="18">                                 <span class="dt">dynamic_waitlist =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb22-19" data-line-number="19">                                 <span class="dt">National_II =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb22-20" data-line-number="20">                                 <span class="dt">is_parallel=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb22-21" data-line-number="21">                                 <span class="dt">ncores =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb22-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb22-23" data-line-number="23"><span class="kw">length</span>(result)</a></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">dim</span>(result[[<span class="dv">1</span>]])</a></code></pre></div>
-<pre><code>## [1] 797  83</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">dim</span>(result[[<span class="dv">2</span>]])</a></code></pre></div>
-<pre><code>## [1]  7 28</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">dim</span>(result[[<span class="dv">3</span>]])</a></code></pre></div>
-<pre><code>## [1] 82 31</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">dim</span>(result[[<span class="dv">4</span>]])</a></code></pre></div>
-<pre><code>## [1] 799   7</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">head</span>(result[[<span class="dv">1</span>]])</a></code></pre></div>
-<pre><code>##      recip_id_original  recip_id recip_sex recip_height recip_weight recip_age
-## 2062           L130648 L130648_1         F          160         60.0        56
-## 34             C112959 C112959_1         F          158         91.2        64
-## 1621           L103781 L103781_1         M          106         16.8         8
-## 1052           H416708 H416708_1         M          195        116.0        45
-## 1922           M395822 M395822_2         M          176         56.5        35
-## 2410           B343757 B343757_1         M          182        105.0        59
-##      recip_graftno recip_pra recip_blgroup recip_a1 recip_a2 recip_b1 recip_b2
-## 2062             1         1             O        2       29       44       44
-## 34               1         0             A        1       24        7       35
-## 1621             1         9             O       24       26       39       51
-## 1052             1        12             A        1       68        7       27
-## 1922             2        14             A       29       33       44       58
-## 2410             1         3             O        2        2        7       44
-##      recip_dr1 recip_dr2 recip_dq1 recip_dq2 recip_state_initial
-## 2062         4        13        NA        NA                 VIC
-## 34          11        13        NA        NA                 NSW
-## 1621        11        12        NA        NA                 NSW
-## 1052         1         1        NA        NA                 VIC
-## 1922         7        13        NA        NA                 VIC
-## 2410         7        15        NA        NA                 NSW
-##      recip_state_current recip_age_rrtstart           recip_eth_detailed
-## 2062                 VIC                 51                    Caucasoid
-## 34                   NSW                 62                    Caucasoid
-## 1621                 NSW                  7 North - East Asian (Specify)
-## 1052                 VIC                 43                    Caucasoid
-## 1922                 VIC                 25                    Caucasoid
-## 2410                 NSW                 58                    Caucasoid
-##      recip_eth                            recip_primrenal recip_biopsy
-## 2062      &lt;NA&gt;       Diabetes Type II (Insulin Requiring)            N
-## 34        &lt;NA&gt;       Diabetes Type II (Insulin Requiring)            Y
-## 1621    KOREAN  Congenital Renal Hypoplasia and Dysplasia            N
-## 1052      &lt;NA&gt;                  Polycystic Kidney Disease            N
-## 1922      &lt;NA&gt;            Familial GN (Including Alports)            Y
-## 2410      &lt;NA&gt; Focal Sclerosing GN (Including Hyalinosis)            Y
-##      recip_creatinine recip_smoker recip_state recip_waittime recip_lung
-## 2062              463       Former         VIC           1958          N
-## 34                458       Former         NSW            763          N
-## 1621              761        Never         NSW            451          N
-## 1052              622       Former         VIC            859          N
-## 1922              940        Never         VIC           3739          N
-## 2410              860        Never         NSW            437          N
-##      recip_coronary recip_pvd recip_cvd recip_diabetes recip_cancer
-## 2062              Y         Y         N              Q           No
-## 34                S         S         N              Q           No
-## 1621              N         N         N              N           No
-## 1052              N         N         N              N           No
-## 1922              N         N         N              P           No
-## 2410              Y         N         N              N           No
-##      recip_waitstatus recip_listtime recip_epts recip_rrtstartdate
-## 2062           Active            806 2.41663030         1997-05-04
-## 34             Active             52 2.51661365         1998-12-17
-## 1621           Active            349 0.01630367         2005-03-25
-## 1052           Active            687 1.08399302         1997-05-08
-## 1922           Active            421 2.26554639         1997-11-17
-## 2410           Active            316 1.60885404         1998-06-06
-##      recip_deathdate recip_liststartdate recip_comorb_date riskscore
-## 2062            &lt;NA&gt;          2007-02-14        2007-01-13        NA
-## 34              &lt;NA&gt;          2006-07-04        2006-01-13        NA
-## 1621            &lt;NA&gt;          2006-07-04        2008-01-13        NA
-## 1052            &lt;NA&gt;          2006-07-04        2006-01-13        NA
-## 1922            &lt;NA&gt;          2006-07-04        2015-01-13        NA
-## 2410            &lt;NA&gt;          2006-07-04        2008-01-13        NA
-##      recip_algorithm recip_original_listdate recip_original_rrtstartdate
-## 2062           State              2007-02-14                  1997-05-04
-## 34             State              2006-07-04                  1998-12-17
-## 1621           State              2006-07-04                  2005-03-25
-## 1052           State              2006-07-04                  1997-05-08
-## 1922           State              2006-07-04                  1997-11-17
-## 2410           State              2006-07-04                  1998-06-06
-##      recip_tx_date recip_birthdate pra_group recip_sim_listdate donor_height
-## 2062    2016-07-18      1960-07-18    [0,20)         2007-02-14          157
-## 34      2011-10-16      1947-10-16    [0,20)         2006-07-04          159
-## 1621    2016-06-06      2008-06-06    [0,20)         2006-07-04          172
-## 1052    2017-01-07      1972-01-07    [0,20)         2006-07-04          160
-## 1922    2015-05-08      1980-05-08    [0,20)         2006-07-04          169
-## 2410    2008-03-07      1949-03-07    [0,20)         2006-07-04          197
-##      donor_weight donor_age donor_sex donor_source donor_state donor_blgroup
-## 2062           50        37         F     Deceased         VIC             O
-## 34             60        45         F     Deceased         NSW             A
-## 1621           85        48         F     Deceased         NSW             O
-## 1052           83        62         F     Deceased         VIC             A
-## 1922           90        65         F     Deceased         VIC             A
-## 2410           80        18         M     Deceased          SA             O
-##      donor_a1 donor_a2 donor_b1 donor_b2 donor_dr1 donor_dr2 donor_dq1
-## 2062       24       29        7       14         1        15        NA
-## 34          2       11       46       46         9        12         7
-## 1621        2        3        7       51         7       103         1
-## 1052        3       32        7       64         7        15         2
-## 1922       29       31        8       44         3         8         2
-## 2410       23       31        7       44         7        15        NA
-##      donor_dq2                donor_eth_code donor_eth_country donor_eth
-## 2062        NA                     Caucasoid              &lt;NA&gt; Caucasian
-## 34           9 South-East Asian - Vietnamese              &lt;NA&gt;     Asian
-## 1621         2         Oceanian - Australian              &lt;NA&gt; Caucasian
-## 1052         6                     Caucasoid              &lt;NA&gt; Caucasian
-## 1922         4                     Caucasoid              &lt;NA&gt; Caucasian
-## 2410        NA                     Caucasoid              &lt;NA&gt; Caucasian
-##                                  donor_diabetes donor_hypertension donor_smoker
-## 2062                                No Diabetes                 No       Former
-## 34   Type II (Non Insulin Or Insulin Requiring)                 No        Never
-## 1621                                No Diabetes                 No        Never
-## 1052 Type II (Non Insulin Or Insulin Requiring)                Yes       Former
-## 1922                                No Diabetes                Yes       Former
-## 2410                                No Diabetes                 No      Current
-##                       donor_death donor_dcd donor_creatinine donor_kdri
-## 2062 Cerebral Hypoxia / Ischaemia         N              143  1.4705112
-## 34       Intracranial Haemorrhage         Y               24  1.2871816
-## 1621     Intracranial Haemorrhage         Y              142  1.3396196
-## 1052 Cerebral Hypoxia / Ischaemia         N               54  2.1377604
-## 1922     Intracranial Haemorrhage         Y               34  1.7574014
-## 2410 Cerebral Hypoxia / Ischaemia         Y               71  0.6374859
-##      donor_id    tx_date num_kidney            score tx_misa tx_misb tx_misdr
-## 2062 JU437454 2008-09-20          1 136.668493150685       1       1        2
-## 34   OL308596 2008-09-23          1 40011730.4109589       2       2        2
-## 1621 SA239902 2008-10-05          1 40104241.0958904       2       1        2
-## 1052 TE152321 2008-10-12          1 137.260273972603       2       1        2
-## 1922 JK590376 2008-10-12          1 130.915068493151       1       1        2
-## 2410 GP074533 2008-10-20          1  56000124.569863       1       0        0
-##      algorithm recip_waittime_new
-## 2062     State          4157 days
-## 34       State          3568 days
-## 1621     State          1290 days
-## 1052     State          4175 days
-## 1922     State          3982 days
-## 2410  National          3789 days</code></pre>
+<h1><span class="header-section-number">6</span> check the package</h1>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#get raw_recip_matrix from rawdata</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">raw_recip_matrix &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span>[, <span class="kw">grep</span>(<span class="st">&quot;recip_&quot;</span>, <span class="kw">colnames</span>(fakedata_<span class="dv">1</span>))]</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">raw_donor_matrix &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span>[, <span class="kw">grep</span>(<span class="st">&quot;donor_&quot;</span>, <span class="kw">colnames</span>(fakedata_<span class="dv">1</span>))]</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">risk &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;/Users/yzha0247/Dropbox (Sydney Uni)/YunweiZhang/WeeklyProgress/R code/GitHub-old-mine/KidneyAllocation/analysis/queuing/predrisk_yw2.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw">colnames</span>(risk) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;recip_id&quot;</span>, <span class="st">&quot;riskscore&quot;</span>)</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">raw_recip_matrix &lt;-<span class="st"> </span><span class="kw">merge</span>(raw_recip_matrix, risk, <span class="dt">by=</span> <span class="st">&quot;recip_id&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">raw_donor_matrix<span class="op">$</span>tx_date &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>tx_date</a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">raw_recip_matrix<span class="op">$</span>recip_algorithm &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>algorithm </a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">raw_recip_matrix<span class="op">$</span>recip_id_original &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_id</a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">raw_recip_matrix<span class="op">$</span>recip_id &lt;-<span class="st"> </span><span class="kw">paste</span>(raw_recip_matrix<span class="op">$</span>recip_id,</a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">                                   raw_recip_matrix<span class="op">$</span>recip_graftno,</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">                                   <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">raw_donor_matrix<span class="op">$</span>donor_id &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_donor_matrix<span class="op">$</span>donor_id)</a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">raw_donor_matrix<span class="op">$</span>donor_blgroup &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_donor_matrix<span class="op">$</span>donor_blgroup)</a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">raw_recip_matrix<span class="op">$</span>recip_blgroup &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_recip_matrix<span class="op">$</span>recip_blgroup)</a>
+<a class="sourceLine" id="cb21-16" data-line-number="16">raw_recip_matrix<span class="op">$</span>recip_id &lt;-<span class="st"> </span><span class="kw">as.character</span>(raw_recip_matrix<span class="op">$</span>recip_id)</a>
+<a class="sourceLine" id="cb21-17" data-line-number="17">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(donor_id) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">num_kidney =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="kw">distinct</span>(donor_id, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb21-18" data-line-number="18">raw_recip_matrix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(raw_recip_matrix)</a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">raw_donor_matrix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(raw_donor_matrix)</a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">raw_recip_matrix<span class="op">$</span>recip_original_listdate &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">raw_recip_matrix<span class="op">$</span>recip_original_rrtstartdate&lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_rrtstartdate</a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix[raw_donor_matrix<span class="op">$</span>tx_date <span class="op">&gt;</span><span class="st"> &quot;2008-09-18&quot;</span>,]</a>
+<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="kw">dim</span>(raw_recip_matrix)</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="kw">dim</span>(raw_donor_matrix)</a>
+<a class="sourceLine" id="cb21-25" data-line-number="25">raw_recip_matrix<span class="op">$</span>recip_tx_date &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span><span class="op">$</span>tx_date</a>
+<a class="sourceLine" id="cb21-26" data-line-number="26">raw_recip_matrix<span class="op">$</span>recip_birthdate &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_tx_date <span class="op">-</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">years</span>(raw_recip_matrix<span class="op">$</span>recip_age)</a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="kw">summary</span>(raw_recip_matrix<span class="op">$</span>recip_birthdate)</a>
+<a class="sourceLine" id="cb21-28" data-line-number="28">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(recip_epts, recip_state, recip_birthdate, recip_age, recip_pra)</a>
+<a class="sourceLine" id="cb21-29" data-line-number="29">raw_donor_matrix &lt;-<span class="st"> </span>raw_donor_matrix <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(donor_kdri, donor_state, donor_age)</a>
+<a class="sourceLine" id="cb21-30" data-line-number="30">keep &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_rrtstartdate <span class="op">&lt;</span><span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
+<a class="sourceLine" id="cb21-31" data-line-number="31">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix[keep, ]</a>
+<a class="sourceLine" id="cb21-32" data-line-number="32"><span class="kw">dim</span>(raw_recip_matrix)</a>
+<a class="sourceLine" id="cb21-33" data-line-number="33"><span class="co">########added 20210504 by Yunwei</span></a>
+<a class="sourceLine" id="cb21-34" data-line-number="34">keep2 &lt;-<span class="st"> </span>raw_recip_matrix<span class="op">$</span>recip_tx_date<span class="op">&gt;</span>raw_recip_matrix<span class="op">$</span>recip_liststartdate</a>
+<a class="sourceLine" id="cb21-35" data-line-number="35">raw_recip_matrix &lt;-<span class="st"> </span>raw_recip_matrix[keep2, ]</a>
+<a class="sourceLine" id="cb21-36" data-line-number="36"><span class="kw">dim</span>(raw_recip_matrix)</a>
+<a class="sourceLine" id="cb21-37" data-line-number="37"><span class="co">######## changed from 5821 to 5776</span></a>
+<a class="sourceLine" id="cb21-38" data-line-number="38"><span class="kw">dim</span>(raw_donor_matrix)</a>
+<a class="sourceLine" id="cb21-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb21-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb21-41" data-line-number="41">hla_data &lt;-<span class="st"> </span>fakedata_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(recip_id, tx_misa, tx_misb, tx_misdr, donor_state)</a>
+<a class="sourceLine" id="cb21-42" data-line-number="42">raw_recip_matrix&lt;-<span class="kw">merge</span>(raw_recip_matrix, hla_data, <span class="dt">by.x =</span> <span class="st">&quot;recip_id_original&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;recip_id&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="st">&quot;recip_tx_misa&quot;</span> =<span class="st">&quot;tx_misa&quot;</span>,</a>
+<a class="sourceLine" id="cb21-43" data-line-number="43">                                                                                            <span class="st">&quot;recip_tx_misb&quot;</span> =<span class="st"> &quot;tx_misb&quot;</span>,</a>
+<a class="sourceLine" id="cb21-44" data-line-number="44">                                                                                            <span class="st">&quot;recip_tx_misdr&quot;</span> =<span class="st"> &quot;tx_misdr&quot;</span>,</a>
+<a class="sourceLine" id="cb21-45" data-line-number="45">                                                                                            <span class="st">&quot;origin_donor_state&quot;</span> =<span class="st"> &quot;donor_state&quot;</span>)</a>
+<a class="sourceLine" id="cb21-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb21-47" data-line-number="47">raw_recip_matrix&lt;-<span class="st"> </span>raw_recip_matrix[<span class="op">!</span><span class="kw">duplicated</span>(raw_recip_matrix<span class="op">$</span>recip_id_original),]</a>
+<a class="sourceLine" id="cb21-48" data-line-number="48"><span class="kw">dim</span>(raw_recip_matrix)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(fakedata_<span class="dv">1</span><span class="op">$</span>recip_pra,</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">                 <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">                 <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">                 <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">pra_group_prob &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.84</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.02</span>, <span class="fl">0.05</span>) <span class="co">#changed this 20210423</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw">names</span>(pra_group_prob) &lt;-<span class="st"> </span><span class="kw">levels</span>(pra_group)</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">blood_group_prob &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.02</span>, <span class="fl">0.17</span>, <span class="fl">0.51</span>)</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="kw">names</span>(blood_group_prob) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;O&quot;</span>)</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">state_prob &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(<span class="dv">531</span>, <span class="dv">340</span>, <span class="dv">106</span>, <span class="dv">56</span>, <span class="dv">42</span>)<span class="op">/</span><span class="dv">1075</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="kw">names</span>(state_prob) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NSW&quot;</span>, <span class="st">&quot;VIC&quot;</span>, <span class="st">&quot;QLD&quot;</span>, <span class="st">&quot;SA&quot;</span>, <span class="st">&quot;WA&quot;</span>)</a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">grid_prob &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(pra_group_prob, blood_group_prob, state_prob)</a>
+<a class="sourceLine" id="cb22-12" data-line-number="12">grid_prob &lt;-<span class="st"> </span>grid_prob[, <span class="dv">1</span>] <span class="op">*</span><span class="st"> </span>grid_prob[, <span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>grid_prob[, <span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb22-13" data-line-number="13">grid_prob &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">expand.grid</span>(<span class="kw">names</span>(pra_group_prob), </a>
+<a class="sourceLine" id="cb22-14" data-line-number="14">                               <span class="kw">names</span>(blood_group_prob),</a>
+<a class="sourceLine" id="cb22-15" data-line-number="15">                               <span class="kw">names</span>(state_prob)),</a>
+<a class="sourceLine" id="cb22-16" data-line-number="16">                   <span class="dt">prob =</span> grid_prob)</a>
+<a class="sourceLine" id="cb22-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb22-18" data-line-number="18"><span class="co">##############added by yunwei, not sure why this doesnt exist</span></a>
+<a class="sourceLine" id="cb22-19" data-line-number="19">raw_recip_matrix<span class="op">$</span>pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(raw_recip_matrix<span class="op">$</span>recip_pra,</a>
+<a class="sourceLine" id="cb22-20" data-line-number="20">                 <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb22-21" data-line-number="21">                 <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb22-22" data-line-number="22">                 <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb22-24" data-line-number="24">multiple_sampling_recip_matrix_fun=<span class="cf">function</span>(seed){</a>
+<a class="sourceLine" id="cb22-25" data-line-number="25">num_recip_size =<span class="st"> </span><span class="dv">1500</span></a>
+<a class="sourceLine" id="cb22-26" data-line-number="26"><span class="kw">set.seed</span>(seed)</a>
+<a class="sourceLine" id="cb22-27" data-line-number="27">grid_prob<span class="op">$</span>num &lt;-<span class="st"> </span><span class="kw">round</span>(grid_prob<span class="op">$</span>prob <span class="op">*</span><span class="st"> </span>num_recip_size)</a>
+<a class="sourceLine" id="cb22-28" data-line-number="28">grid_prob<span class="op">$</span>Var3 &lt;-<span class="st"> </span><span class="kw">as.character</span>(grid_prob<span class="op">$</span>Var3)</a>
+<a class="sourceLine" id="cb22-29" data-line-number="29">raw_recip_matrix_subset &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb22-30" data-line-number="30"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(grid_prob)) {</a>
+<a class="sourceLine" id="cb22-31" data-line-number="31">  tmp &lt;-<span class="st"> </span>raw_recip_matrix <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(recip_blgroup <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">2</span>],pra_group <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">1</span>],recip_state <span class="op">==</span><span class="st"> </span>grid_prob[i, <span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb22-32" data-line-number="32">  num_tmp &lt;-<span class="st"> </span><span class="kw">min</span>(grid_prob[i, <span class="dv">5</span>], <span class="kw">nrow</span>(tmp))</a>
+<a class="sourceLine" id="cb22-33" data-line-number="33">  tmp &lt;-<span class="st"> </span>tmp[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(tmp), <span class="dt">size =</span> num_tmp), ]</a>
+<a class="sourceLine" id="cb22-34" data-line-number="34">  raw_recip_matrix_subset &lt;-<span class="st"> </span><span class="kw">rbind</span>(raw_recip_matrix_subset, tmp)</a>
+<a class="sourceLine" id="cb22-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb22-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb22-37" data-line-number="37"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb22-39" data-line-number="39"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_blgroup)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>recip_blgroup), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-40" data-line-number="40">raw_recip_matrix_subset<span class="op">$</span>pra_group &lt;-<span class="st"> </span><span class="kw">cut</span>(raw_recip_matrix_subset<span class="op">$</span>recip_pra,</a>
+<a class="sourceLine" id="cb22-41" data-line-number="41">                                         <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb22-42" data-line-number="42">                                         <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb22-43" data-line-number="43">                                         <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb22-44" data-line-number="44"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>pra_group)<span class="op">/</span><span class="kw">length</span>(raw_recip_matrix_subset<span class="op">$</span>pra_group), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-45" data-line-number="45"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_age_group)<span class="op">/</span><span class="kw">nrow</span>(raw_recip_matrix_subset), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-46" data-line-number="46"><span class="kw">round</span>(<span class="kw">table</span>(raw_recip_matrix_subset<span class="op">$</span>recip_state)<span class="op">/</span><span class="kw">nrow</span>(raw_recip_matrix_subset), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-47" data-line-number="47"><span class="kw">return</span>(raw_recip_matrix_subset)</a>
+<a class="sourceLine" id="cb22-48" data-line-number="48">}</a>
+<a class="sourceLine" id="cb22-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb22-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb22-51" data-line-number="51">raw_recip_matrix_subset=<span class="kw">multiple_sampling_recip_matrix_fun</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb22-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb22-53" data-line-number="53"><span class="kw">which</span>(<span class="op">!</span><span class="kw">colnames</span>(raw_donor_matrix) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;donor_source&quot;</span>,<span class="st">&quot;donor_state&quot;</span>,<span class="st">&quot;donor_blgroup&quot;</span>,</a>
+<a class="sourceLine" id="cb22-54" data-line-number="54">                                            <span class="st">&quot;donor_a1&quot;</span>, <span class="st">&quot;donor_a2&quot;</span>,<span class="st">&quot;donor_b1&quot;</span>,<span class="st">&quot;donor_b2&quot;</span></a>
+<a class="sourceLine" id="cb22-55" data-line-number="55">                                            ,<span class="st">&quot;donor_dr1&quot;</span> ,<span class="st">&quot;donor_dr2&quot;</span></a>
+<a class="sourceLine" id="cb22-56" data-line-number="56">                                             ,<span class="st">&quot;donor_dq1&quot;</span> ,<span class="st">&quot;donor_dq2&quot;</span>,<span class="st">&quot;donor_height&quot;</span></a>
+<a class="sourceLine" id="cb22-57" data-line-number="57">                                             ,<span class="st">&quot;donor_weight&quot;</span>,<span class="st">&quot;donor_eth_code&quot;</span> ,<span class="st">&quot;donor_eth_country&quot;</span></a>
+<a class="sourceLine" id="cb22-58" data-line-number="58">                                             ,<span class="st">&quot;donor_eth&quot;</span>  ,<span class="st">&quot;donor_diabetes&quot;</span>, <span class="st">&quot;donor_hypertension&quot;</span></a>
+<a class="sourceLine" id="cb22-59" data-line-number="59">                                             ,<span class="st">&quot;donor_smoker&quot;</span>, <span class="st">&quot;donor_id&quot;</span>,<span class="st">&quot;donor_death&quot;</span></a>
+<a class="sourceLine" id="cb22-60" data-line-number="60">                                             ,<span class="st">&quot;donor_dcd&quot;</span>  ,<span class="st">&quot;donor_creatinine&quot;</span> ,<span class="st">&quot;donor_age&quot;</span></a>
+<a class="sourceLine" id="cb22-61" data-line-number="61">                                             ,<span class="st">&quot;donor_sex&quot;</span>  ,<span class="st">&quot;donor_kdri&quot;</span>, <span class="st">&quot;tx_date&quot;</span></a>
+<a class="sourceLine" id="cb22-62" data-line-number="62">                                             ,<span class="st">&quot;num_kidney&quot;</span> ))</a>
+<a class="sourceLine" id="cb22-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb22-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb22-65" data-line-number="65">raw_recip_matrix_subset=raw_recip_matrix_subset[,<span class="op">-</span><span class="kw">which</span>(<span class="op">!</span><span class="kw">colnames</span>(raw_recip_matrix_subset) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;recip_id&quot;</span> , <span class="st">&quot;recip_graftno&quot;</span>, <span class="st">&quot;recip_pra&quot;</span></a>
+<a class="sourceLine" id="cb22-66" data-line-number="66">                                           ,<span class="st">&quot;recip_blgroup&quot;</span> ,<span class="st">&quot;recip_a1&quot;</span>,<span class="st">&quot;recip_a2&quot;</span></a>
+<a class="sourceLine" id="cb22-67" data-line-number="67">                                           ,<span class="st">&quot;recip_b1&quot;</span> , <span class="st">&quot;recip_b2&quot;</span>,<span class="st">&quot;recip_dr1&quot;</span></a>
+<a class="sourceLine" id="cb22-68" data-line-number="68">                                           ,<span class="st">&quot;recip_dr2&quot;</span>, <span class="st">&quot;recip_dq1&quot;</span>,<span class="st">&quot;recip_dq2&quot;</span></a>
+<a class="sourceLine" id="cb22-69" data-line-number="69">                                           ,<span class="st">&quot;recip_state_initial&quot;</span>,<span class="st">&quot;recip_state_current&quot;</span>, <span class="st">&quot;recip_age_rrtstart&quot;</span></a>
+<a class="sourceLine" id="cb22-70" data-line-number="70">                                           , <span class="st">&quot;recip_sex&quot;</span>,<span class="st">&quot;recip_eth_detailed&quot;</span> ,<span class="st">&quot;recip_eth&quot;</span></a>
+<a class="sourceLine" id="cb22-71" data-line-number="71">                                           , <span class="st">&quot;recip_primrenal&quot;</span>, <span class="st">&quot;recip_biopsy&quot;</span> , <span class="st">&quot;recip_creatinine&quot;</span></a>
+<a class="sourceLine" id="cb22-72" data-line-number="72">                                           ,<span class="st">&quot;recip_height&quot;</span>,<span class="st">&quot;recip_weight&quot;</span> ,<span class="st">&quot;recip_smoker&quot;</span></a>
+<a class="sourceLine" id="cb22-73" data-line-number="73">                                           ,<span class="st">&quot;recip_rrtstartdate&quot;</span>, <span class="st">&quot;recip_deathdate&quot;</span>, <span class="st">&quot;recip_state&quot;</span></a>
+<a class="sourceLine" id="cb22-74" data-line-number="74">                                           , <span class="st">&quot;recip_age&quot;</span>, <span class="st">&quot;recip_waittime&quot;</span>,<span class="st">&quot;recip_lung&quot;</span></a>
+<a class="sourceLine" id="cb22-75" data-line-number="75">                                           ,<span class="st">&quot;recip_coronary&quot;</span>, <span class="st">&quot;recip_pvd&quot;</span>,<span class="st">&quot;recip_cvd&quot;</span></a>
+<a class="sourceLine" id="cb22-76" data-line-number="76">                                           ,<span class="st">&quot;recip_diabetes&quot;</span>, <span class="st">&quot;recip_comorb_date&quot;</span>  ,<span class="st">&quot;recip_cancer&quot;</span></a>
+<a class="sourceLine" id="cb22-77" data-line-number="77">                                           ,<span class="st">&quot;recip_liststartdate&quot;</span>, <span class="st">&quot;recip_waitstatus&quot;</span>, <span class="st">&quot;recip_listtime&quot;</span></a>
+<a class="sourceLine" id="cb22-78" data-line-number="78">                                           ,<span class="st">&quot;recip_epts&quot;</span>, <span class="st">&quot;riskscore&quot;</span>, <span class="st">&quot;recip_algorithm&quot;</span></a>
+<a class="sourceLine" id="cb22-79" data-line-number="79">                                           ,<span class="st">&quot;recip_id_original&quot;</span>, <span class="st">&quot;recip_original_listdate&quot;</span> ,<span class="st">&quot;recip_original_rrtstartdate&quot;</span></a>
+<a class="sourceLine" id="cb22-80" data-line-number="80">                                           ,<span class="st">&quot;recip_tx_date&quot;</span>, <span class="st">&quot;recip_birthdate&quot;</span> ,<span class="st">&quot;pra_group&quot;</span></a>
+<a class="sourceLine" id="cb22-81" data-line-number="81">                                           ,<span class="st">&quot;recip_age_group&quot;</span>))]</a>
+<a class="sourceLine" id="cb22-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb22-83" data-line-number="83"></a>
+<a class="sourceLine" id="cb22-84" data-line-number="84"><span class="co">#raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)</span></a>
+<a class="sourceLine" id="cb22-85" data-line-number="85"></a>
+<a class="sourceLine" id="cb22-86" data-line-number="86"><span class="co">#10 times </span></a>
+<a class="sourceLine" id="cb22-87" data-line-number="87"><span class="co"># recip_sample_list=list()</span></a>
+<a class="sourceLine" id="cb22-88" data-line-number="88"><span class="co"># for(i in 1:10){</span></a>
+<a class="sourceLine" id="cb22-89" data-line-number="89"><span class="co">#   recip_sample_list[[i]]=multiple_sampling_recip_matrix_fun(i)</span></a>
+<a class="sourceLine" id="cb22-90" data-line-number="90"><span class="co"># }</span></a>
+<a class="sourceLine" id="cb22-91" data-line-number="91"><span class="co">#saveRDS(recip_sample_list,&quot;recip_sample_list.rds)</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">result=KidneyAllocation<span class="op">::</span><span class="kw">runSimulation5.4</span>(raw_recip_matrix_subset, </a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">                                 raw_donor_matrix,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                                 <span class="dt">algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>allocation_national,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">                                 <span class="dt">eligible_FUN =</span> KidneyAllocation<span class="op">::</span>selectionpool1<span class="fl">.2</span>,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">                                 <span class="dt">matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmNational_formula,</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">                                 <span class="dt">waitlist_FUN =</span> KidneyAllocation<span class="op">::</span>dynamic_waitlist,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">                                 <span class="dt">state_algorithm =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">                                 <span class="dt">national_algorithm_threshold =</span> <span class="dv">54000000</span>,</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">                                 <span class="dt">state_algorithm_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_algorithm,</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">                                 <span class="dt">state_eligible_FUN =</span> KidneyAllocation<span class="op">::</span>Australia_state_selectionpool,</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">                                 <span class="dt">state_matching_FUN =</span> KidneyAllocation<span class="op">::</span>dmState_formula,</a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">                                 <span class="dt">eligible_arg =</span> <span class="kw">list</span>(<span class="dt">AB_priority =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb23-13" data-line-number="13">                                 <span class="dt">waitlist_arg =</span> <span class="kw">list</span>(<span class="dt">waitlist_Risk =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb23-14" data-line-number="14">                                 <span class="dt">resampleN =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb23-15" data-line-number="15">                                 <span class="dt">verbose =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb23-16" data-line-number="16">                                 <span class="dt">num_donor =</span> <span class="dv">800</span>,<span class="dt">num_recip =</span> <span class="dv">300</span>,</a>
+<a class="sourceLine" id="cb23-17" data-line-number="17">                                 <span class="dt">state_balance =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb23-18" data-line-number="18">                                 <span class="dt">dynamic_waitlist =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb23-19" data-line-number="19">                                 <span class="dt">National_II =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb23-20" data-line-number="20">                                 <span class="dt">is_parallel=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb23-21" data-line-number="21">                                 <span class="dt">ncores =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb23-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb23-23" data-line-number="23"><span class="kw">length</span>(result)</a>
+<a class="sourceLine" id="cb23-24" data-line-number="24"><span class="kw">dim</span>(result[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb23-25" data-line-number="25"><span class="kw">dim</span>(result[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb23-26" data-line-number="26"><span class="kw">dim</span>(result[[<span class="dv">3</span>]])</a>
+<a class="sourceLine" id="cb23-27" data-line-number="27"><span class="kw">dim</span>(result[[<span class="dv">4</span>]])</a>
+<a class="sourceLine" id="cb23-28" data-line-number="28"><span class="kw">head</span>(result[[<span class="dv">1</span>]])</a></code></pre></div>
 </div>
 
 
