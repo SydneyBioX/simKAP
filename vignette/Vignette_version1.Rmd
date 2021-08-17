@@ -37,6 +37,24 @@ First, load `simKAP` via install `KidneyAllocation`.
 install.packages("KidneyAllocation")
 ```
 
+We also load other packages for this vignette.
+```{r}
+library(dplyr)
+library(gridExtra)
+library(reshape2)
+library(ggplot2)
+library(ggpubr)
+library(ggthemes)
+library(survival)
+library(pec)
+library(ggridges)
+library(plyr)
+library(foreach)
+library(doParallel)
+library(doSNOW)
+library(DT)
+```
+
 Then, we load the example data sampled from Australia kidney allocation database.
 ```{r}
 library(KidneyAllocation)
@@ -47,7 +65,7 @@ raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_d
 ```
 
 Notice here, the features required from the historical transplant data are listed below:
-```
+```{r}
 donor_feature=c("donor_source","donor_state","donor_blgroup",
                                             "donor_a1", "donor_a2","donor_b1","donor_b2"
                                             ,"donor_dr1" ,"donor_dr2"
@@ -76,29 +94,43 @@ recipient_feature=c("recip_id" , "recip_graftno", "recip_pra"
                                            ,"recip_tx_date", "recip_birthdate" ,"pra_group"
                                            ,"recip_age_group")
 
-tablee=cbind.data.frame(donor_feature,recipient_feature)
-kbl(tablee) %>%
-  kable_paper() %>%
-  scroll_box(width = "100px")
-```
+donor_explain=c("Living donor or deceased donor (character)","State of the donor (character)","Blood group of the donor (character)",
+                                            "Donor HLA-A1 value (numeric)", "Donor HLA-A2 value (numeric)","Donor HLA-B1 value (numeric)","Donor HLA-B2 value (numeric)"
+                                            ,"Donor HLA-DR1 value (numeric)" ,"Donor HLA-DR2 value (numeric)"
+                                             ,"Donor HLA-DQ1 value (numeric)" ,"Donor HLA-DQ2 value (numeric)","Height of the donor (numeric)"
+                                             ,"Weight of the donor (numeric)","Code of the donor's ethnicity (numeric)" ,"Country of the donor (character)"
+                                             ,"Ethnicity of the donor (character)"  ,"Diabetes of the donor (character)", "Hypertension of the donor (character)"
+                                             ,"If the donor is a smoker or not (character)", "ID of the donor (character)","Cause of death of the donor (character)"
+                                             ,"If the donor is the extended criteria (character)"  ,"Creatinine level of the donor (numeric)" ,"Age of the donor (numeric)"
+                                             ,"Sex of the donor (character)"  ,"KDRI of the donor (numeric)", "Donated date (date object in R)"
+                                             ,"The number of kidneys (numeric)" )
+recipient_explain=c("ID of the recipient (character)" , "Number of kidney the recipient will have (numeric)", "PRA level of the recipient (numeric)","Blood group of the recipient (character)" ,"Recipient HLA-A1 value (numeric)","Recipient HLA-A2 value (numeric)"
+                                           ,"Recipient HLA-B1 value (numeric)" , "Recipient HLA-B2 value (numeric)","Recipient HLA-DR1 value (numeric)"
+                                           ,"Recipient HLA-DR2 value (numeric)", "Recipient HLA-DQ1 value (numeric)","Recipient HLA-DQ2 value (numeric)"
+,"Initial state of the recipient (character)","Current state of the recipient (character)","Age when dialysis first started of the recipient (numeric)", "Gender of the recipient (character)","Ethinicity of the recipient (character)" ,"Ethinicity code of the recipient (numeric)"
+                                           , "Primary kidney of the recipient (character)", "recip_biopsy If biopsy for the recipient (character)" , "Creatinine level of the recipient (numeric)"
+                                           ,"Height of the recipient (numeric)","Weight of the recipient (numeric)" ,"If the recipient is a smoker or not (character)"
+                                           ,"Dialysis start date (date object in R)", " Death date of the recipient (date object in R)", "State of the recipient (character)"
+                                           , "Age of the recipient (numeric)", "Waiting time of the recipient (numeric)","Lung disease of the recipient (character)"
+                                           ,"Coronary disease of the recipient (character)", "PVD of the recipient (character)","CVD of the recipient (character)"
+                                           ,"Diabetes disease of the recipient (character)", "Recipient comobidities date (date object in R)"  ,"Cancer of the recipient (character)"
+                                           ,"Date first get on the waiting list(date object in R)", "Status on the waiting list (character)", "Listing time of the recipient (numeric)"
+                                           ,"EPTS of the recipient (numeric)", "A risk score based on survival prediciton of the recipient (numeric)", "Original allocation algorithm of the recipient (character)"
+                                           ,"Original id of the recipient (character)", "Original Date first get on the waiting list (date object in R)","Original dialysis start date (date object in R)"
+                                           ,"Transplant date (date object in R)", "Birth date (date object in R)" ,"PRA group (character)"
+                                           ,"Age group (character)")
+
+tablee1=cbind.data.frame(donor_feature,donor_explain)
+datatable(tablee1)
 
 
-Lastly, we load other packages for this vignette.
-```{r}
-library(dplyr)
-library(gridExtra)
-library(reshape2)
-library(ggplot2)
-library(ggpubr)
-library(ggthemes)
-library(survival)
-library(pec)
-library(ggridges)
-library(plyr)
-library(foreach)
-library(doParallel)
-library(doSNOW)
+tablee2=cbind.data.frame(recipient_feature,recipient_explain)
+datatable(tablee2)
+
+
+
 ```
+
 
 # Allocation process under **Australia kidney allocation algorithm**
 
