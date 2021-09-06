@@ -1,13 +1,10 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# KidneyAllocation
+# simKAP: Kidney allocation simulation process package
 
 <!-- badges: start -->
 
-<br />
 
-<img src="https://github.com/SydneyBioX/Kidneyallocation_package/blob/main/%20logo.png" align="right" width="200" />
+
+<img src="man/figures/logo.png" align="right" width="200" />
 
 
 [![Travis build
@@ -18,22 +15,15 @@ status](https://ci.appveyor.com/api/projects/status/github/SydneyBioX/KidneyAllo
 coverage](https://codecov.io/gh/SydneyBioX/KidneyAllocation/branch/master/graph/badge.svg)](https://codecov.io/gh/SydneyBioX/KidneyAllocation?branch=master)
 <!-- badges: end -->
 
-The goal of KidneyAllocation is to …
+The goal of simKAP is to …
 
 ## Installation
 
-You can install the released version of KidneyAllocation from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the development version of `simKAP` from [GitHub](https://github.com/) with:
 
-``` r
-install.packages("KidneyAllocation")
 ```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
 # install.packages("devtools")
-devtools::install_github("SydneyBioX/Kidneyallocation_package")
+devtools::install_github("SydneyBioX/simKAP")
 ```
 
 ## Please refer to our vignette and paper for examples

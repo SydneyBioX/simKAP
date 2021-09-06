@@ -1,0 +1,236 @@
+---
+title: "SimKAP--simulation of the kidney allocation process"
+author:
+- name: Yunwei Zhang 
+  affiliation: 
+  - School of Mathematics and Statistics, The University of Sydney, Australia
+  - Charles Perkins Centre, The University of Sydney, Australia
+output: rmarkdown::html_vignette
+code_folding: "hide"
+vignette: >
+  %\VignetteIndexEntry{SimKAP--simulation of the kidney allocation process}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>"
+)
+```
+
+
+# Introduction
+
+`simKAP` is an R package to simulate the kidney alocation process to get realistic recipient-donor pairs take into consideration of **human intervention** and **dynamic waiting list modeling**.   
+This vignette will walk through the implementation of this process using **Australia recipient waiting list**, **Australia transplantation data** and under **Australia kidney allocation algorithm**. With this demonstration using working exmaple, you will be able to customise your allocation process with modified functions such as a new National allocation (see section **Customisable allocation process**)
+
+# Loading Packages and Data
+
+First, load `simKAP` via install `simKAP`.
+
+```{r eval = FALSE}
+install.packages("simKAP")
+```
+
+We also load other packages for this vignette.
+
+```{r}
+library(DT)
+```
+
+Then, we load the example data sampled from Australia kidney allocation database.
+
+```{r}
+library(simKAP)
+data("rawdata")
+data("newdata")
+recip_sample_list = readRDS("recip_sample_list.rds")
+raw_donor_matrix$donor_rank = rank(raw_donor_matrix[,'donor_kdri']) / nrow(raw_donor_matrix)
+```
+
+Notice here, the features required from the historical transplant data are listed below:
+
+```{r echo = FALSE}
+donor_feature = c("donor_source","donor_state","donor_blgroup",
+                "donor_a1", "donor_a2","donor_b1","donor_b2","donor_dr1" ,"donor_dr2",
+                "donor_dq1" ,"donor_dq2","donor_height",
+                "donor_weight","donor_eth_code" ,"donor_eth_country",
+                "donor_eth", "donor_diabetes", "donor_hypertension",
+                "donor_smoker", "donor_id","donor_death",
+                "donor_dcd" ,"donor_creatinine" ,"donor_age",
+                "donor_sex"  ,"donor_kdri", "tx_date", "num_kidney")
+recipient_feature=c("recip_id" , "recip_graftno", "recip_pra"
+                    ,"recip_blgroup" ,"recip_a1","recip_a2"
+                    ,"recip_b1" , "recip_b2","recip_dr1"
+                    ,"recip_dr2", "recip_dq1","recip_dq2"
+                    ,"recip_state_initial","recip_state_current", "recip_age_rrtstart"
+                    , "recip_sex","recip_eth_detailed" ,"recip_eth"
+                    , "recip_primrenal", "recip_biopsy" , "recip_creatinine"
+                    ,"recip_height","recip_weight" ,"recip_smoker"
+                    ,"recip_rrtstartdate", "recip_deathdate", "recip_state"
+                    , "recip_age", "recip_waittime","recip_lung"
+                    ,"recip_coronary", "recip_pvd","recip_cvd"
+                    ,"recip_diabetes", "recip_comorb_date"  ,"recip_cancer"
+                    ,"recip_liststartdate", "recip_waitstatus", "recip_listtime"
+                    ,"recip_epts", "riskscore", "recip_algorithm"
+                    ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
+                    ,"recip_tx_date", "recip_birthdate" ,"pra_group"
+                    ,"recip_age_group")
+
+donor_explain = c("Living donor or deceased donor (character)","State of the donor (character)","Blood group of the donor (character)",
+                "Donor HLA-A1 value (numeric)", "Donor HLA-A2 value (numeric)","Donor HLA-B1 value (numeric)","Donor HLA-B2 value (numeric)"
+                ,"Donor HLA-DR1 value (numeric)" ,"Donor HLA-DR2 value (numeric)"
+                ,"Donor HLA-DQ1 value (numeric)" ,"Donor HLA-DQ2 value (numeric)","Height of the donor (numeric)"
+                ,"Weight of the donor (numeric)","Code of the donor's ethnicity (numeric)" ,"Country of the donor (character)"
+                ,"Ethnicity of the donor (character)"  ,"Diabetes of the donor (character)", "Hypertension of the donor (character)"
+                ,"If the donor is a smoker or not (character)", "ID of the donor (character)","Cause of death of the donor (character)"
+                ,"If the donor is the extended criteria (character)"  ,"Creatinine level of the donor (numeric)" ,"Age of the donor (numeric)"
+                ,"Sex of the donor (character)"  ,"KDRI of the donor (numeric)", "Donated date (date object in R)"
+                ,"The number of kidneys (numeric)" )
+recipient_explain=c("ID of the recipient (character)" , "Number of kidney the recipient will have (numeric)", "PRA level of the recipient (numeric)","Blood group of the recipient (character)" ,"Recipient HLA-A1 value (numeric)","Recipient HLA-A2 value (numeric)"
+                    ,"Recipient HLA-B1 value (numeric)" , "Recipient HLA-B2 value (numeric)","Recipient HLA-DR1 value (numeric)"
+                    ,"Recipient HLA-DR2 value (numeric)", "Recipient HLA-DQ1 value (numeric)","Recipient HLA-DQ2 value (numeric)"
+                    ,"Initial state of the recipient (character)","Current state of the recipient (character)","Age when dialysis first started of the recipient (numeric)", "Gender of the recipient (character)","Ethinicity of the recipient (character)" ,"Ethinicity code of the recipient (numeric)"
+                    , "Primary kidney of the recipient (character)", "recip_biopsy If biopsy for the recipient (character)" , "Creatinine level of the recipient (numeric)"
+                    ,"Height of the recipient (numeric)","Weight of the recipient (numeric)" ,"If the recipient is a smoker or not (character)"
+                    ,"Dialysis start date (date object in R)", " Death date of the recipient (date object in R)", "State of the recipient (character)"
+                    , "Age of the recipient (numeric)", "Waiting time of the recipient (numeric)","Lung disease of the recipient (character)"
+                    ,"Coronary disease of the recipient (character)", "PVD of the recipient (character)","CVD of the recipient (character)"
+                    ,"Diabetes disease of the recipient (character)", "Recipient comobidities date (date object in R)"  ,"Cancer of the recipient (character)"
+                    ,"Date first get on the waiting list(date object in R)", "Status on the waiting list (character)", "Listing time of the recipient (numeric)"
+                    ,"EPTS of the recipient (numeric)", "A risk score based on survival prediciton of the recipient (numeric)", "Original allocation algorithm of the recipient (character)"
+                    ,"Original id of the recipient (character)", "Original Date first get on the waiting list (date object in R)","Original dialysis start date (date object in R)"
+                    ,"Transplant date (date object in R)", "Birth date (date object in R)" ,"PRA group (character)"
+                    ,"Age group (character)")
+
+tablee1 = cbind.data.frame(donor_feature, donor_explain)
+datatable(tablee1)
+
+
+tablee2 = cbind.data.frame(recipient_feature, recipient_explain)
+datatable(tablee2)
+
+
+
+```
+
+
+# Allocation process under **Australia kidney allocation algorithm**
+
+The process is implemented through one huge function named `runSimulation5.4` which calls dependent functions inside itself. This below example shows how to use this function and details about each argument are illustrated.
+
+```{r eval=FALSE}
+# example allocation process
+result = simKAP::run_simulation(recip_sample_list[[1]], 
+                                raw_donor_matrix,
+                                algorithm_FUN = simKAP::allocation_national,
+                                eligible_FUN = simKAP::selection_default,
+                                matching_FUN = simKAP::dm_national_formula,
+                                waitlist_FUN = simKAP::dynamic_waitlist,
+                                state_algorithm = TRUE,
+                                national_algorithm_threshold = 54000000,
+                                state_algorithm_FUN = simKAP::australia_state_algorithm,
+                                state_eligible_FUN = simKAP::australia_state_selection,
+                                state_matching_FUN = simKAP::dm_state_formula,
+                                eligible_arg = list(AB_priority = TRUE),
+                                waitlist_arg = list(waitlist_Risk = FALSE),
+                                resampleN = 1,
+                                verbose = FALSE,
+                                num_donor = 800,num_recip = 300,
+                                state_balance = TRUE,
+                                dynamic_waitlist = TRUE, 
+                                National_II = TRUE,
+                                is_parallel=FALSE,
+                                ncores = 10)
+saveRDS(result,"simKAP_eval.rds")
+```
+
+1. `recip_sample_list` is a list of length 10 with 10 different samples contains recipient features, we take one sample from it to be used as our recipient matrix. 
+```{r}
+length(recip_sample_list)
+head(recip_sample_list[[1]])
+dim(recip_sample_list[[1]])
+```
+
+2. `raw_donor_matrix` is a donor matrix contains donor features
+```{r}
+head(raw_donor_matrix)
+dim(raw_donor_matrix)
+```
+
+3. `algorithm_FUN` and `state_algorithm_FUN` implement the Australia national and state allocation algorithms, notice here if you have your own algorithm, you can change this to your function name. 
+
+4. `eligible_FUN` gives options to customise the eligible recipient pool, which means if you want to have a different pool with further restriction on eligible recipients, you can change it here.
+
+This gives us a `list` of length 4 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference. 
+
+
+The first one is the matched recipients and donors dataset with all **recipient features**, **donor features** and **transplant matchability features**.
+The second one is all those disgarded donor kidneys with the associated donor kidney features.
+The third one contains all those different donor-recipient state kidneys, i.e. those kidneys to achieve state balance.
+The last one is the dynamic waiting list results (corresponding to each recipient in the first full dataset)
+
+```{r}
+simKAP_eval = readRDS("simKAP_eval.rds")
+length(simKAP_eval)
+dim(simKAP_eval[[1]])
+dim(simKAP_eval[[2]])
+dim(simKAP_eval[[3]])
+dim(simKAP_eval[[4]])
+```
+
+
+
+# Customisable allocation process
+
+This example simulation process shows the paried result under the `CORisk allocation algorithm` with a threshold number 0.2 introduced in our paper. 
+Detailed main changes for this new algorithm compared with the above one are: `eligible_FUN`, `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`. With no specification of `matching_FUN`, `state_matching_FUN`, `waitlist_FUN`, the dynamic waiting list and share decision making procedures are not implemented in this new algorithm. The threshold number is specified through the `eligible_arg` argument using `threshold_number=0.2`.
+
+```{r eval=FALSE}
+result_new = simKAP::run_simulation(recip_sample_list[[1]], 
+                                    raw_donor_matrix,
+                                    algorithm_FUN = allocation_national,
+                                    eligible_FUN = selection_corisk,
+                                    matching_FUN = select_max,
+                                    state_algorithm = TRUE,
+                                    national_algorithm_threshold = 54000000,
+                                    state_algorithm_FUN = australia_state_algorithm,
+                                    state_eligible_FUN = australia_state_selection,
+                                    state_matching_FUN = select_max,
+                                    eligible_arg = list(AB_priority = TRUE,threshold_number=0.2),
+                                    resampleN = 1,
+                                    verbose = FALSE,
+                                    num_donor = 800,num_recip = 300,
+                                    state_balance = TRUE,
+                                    dynamic_waitlist = FALSE, 
+                                    National_II = TRUE )
+saveRDS(result_new,"us0.2full.rds")
+```
+
+This gives us a `list` of length 3 as the output (notice that you can take our saved result to have a look) and based on this list, you can analyse and demonstrate with your own preference. 
+
+
+The first one is the matched recipients and donors dataset with all **recipient features**, **donor features** and **transplant matchability features**.
+The second one is all those discarded donor kidneys with the associated donor kidney features.
+The third one is 
+
+```{r}
+us0.2 = readRDS("us0.2full.rds")
+length(us0.2)
+dim(us0.2[[1]])
+dim(us0.2[[2]])
+dim(us0.2[[3]])
+```
+
+
+# Session Info
+
+```{r}
+sessionInfo("simKAP")
+```
+

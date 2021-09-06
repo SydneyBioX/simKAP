@@ -22,7 +22,7 @@ a matrix contains allo_score, which is the alocation score for each new pair
 this is the Australia current state allocation algorithm
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 
 state_score <- australia_state_algorithm(rawdata,rawdata,rawdata,"NSW");

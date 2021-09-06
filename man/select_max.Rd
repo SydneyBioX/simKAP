@@ -30,7 +30,7 @@ a matrix contains allo_score, which is the alocation score for each new pair
 this is the max selection function
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 selected <- select_max(allocation_score=allocation_national(rawdata,rawdata,rawdata),
 graft_number = 1);
 }

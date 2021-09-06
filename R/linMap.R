@@ -9,7 +9,7 @@
 #' @return another vector with percentage ranking score
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' new_score <- linMap(rawdata$recip_epts,1,100);

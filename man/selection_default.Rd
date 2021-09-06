@@ -31,7 +31,7 @@ this is the Australia current national recipient selection pool
 }
 \examples{
 
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 rawdata$donor_rank = rank(rawdata[,'donor_kdri']) / nrow(rawdata)
 
 

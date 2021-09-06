@@ -9,7 +9,7 @@
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- australia_state_algorithm(rawdata,rawdata,rawdata,"NSW");
@@ -71,7 +71,7 @@ australia_state_algorithm <- function(recip_matrix,
 #' @param bloodGroup_strict_match a boolean value, TRUE/FALSE, this is to define whether we want the strict match for bloodgroup or not
 #' @return a data.frame representing recipient pool under the state allocation tule
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #' state_pool <- australia_state_selection(rawdata,rawdata,"D948826",
 #' bloodGroup_strict_match = TRUE);
 #' @export
@@ -128,7 +128,7 @@ australia_state_selection <- function(recip_matrix,
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- NSWACT_allocation(rawdata,rawdata,rawdata);
@@ -220,7 +220,7 @@ NSWACT_allocation <- function(recip_matrix,
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- QLD_allocation(rawdata,rawdata,rawdata);
@@ -287,7 +287,7 @@ QLD_allocation <- function(recip_matrix,
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- SA_allocation(rawdata,rawdata,rawdata);
@@ -347,7 +347,7 @@ SA_allocation <- function(recip_matrix,
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- VICTAS_allocation(rawdata,rawdata,rawdata);
@@ -404,7 +404,7 @@ VICTAS_allocation <- function(recip_matrix,
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' state_score <- WA_allocation(rawdata,rawdata,rawdata);
@@ -461,8 +461,8 @@ WA_allocation <- function(recip_matrix,
 #' @return a vector, which contains all the kidneys allocated to another state
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
-#' data("newdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
+#' data("newdata", package = "simKAP")
 #'
 #' state_balance <- state_balance(rawdata,raw_recip_matrix_subset,raw_donor_matrix[1,]);
 #' @export

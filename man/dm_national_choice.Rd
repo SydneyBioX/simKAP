@@ -57,8 +57,8 @@ a data.frame with matched recipient
 this is the sdm3
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
-data("newdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
+data("newdata", package = "simKAP")
 HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 
 selected <- dm_national_choice(raw_recip_matrix_subset,raw_donor_matrix[1,],

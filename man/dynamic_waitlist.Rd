@@ -39,7 +39,7 @@ wl data which is a matrix for all recipients on the waiting list
 this is the dynamic wl function
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 
 wl <- dynamic_waitlist(rawdata,yearly_scale_in = NULL,yearly_scale_out = NULL,rate_in = 0.7,

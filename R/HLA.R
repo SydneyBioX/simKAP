@@ -7,7 +7,7 @@
 #' @return HLA mismatching matrix
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #' HLA_matrix <- hla_match(rawdata, rawdata);
 #'

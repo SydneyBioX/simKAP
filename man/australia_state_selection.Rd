@@ -27,7 +27,7 @@ a data.frame representing recipient pool under the state allocation tule
 Australia_state_selectionpool
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 state_pool <- australia_state_selection(rawdata,rawdata,"D948826",
 bloodGroup_strict_match = TRUE);
 }

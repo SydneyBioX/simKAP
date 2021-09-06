@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>wl function — dynamic_waitlist • KidneyAllocation</title>
+<title>wl function — dynamic_waitlist • simKAP</title>
 
 
 <!-- jquery -->
@@ -71,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">KidneyAllocation</a>
+        <a class="navbar-link" href="../index.html">simKAP</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -80,12 +80,9 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
-</li>
-<li>
-  <a href="../articles/KidneyAllocation.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -98,33 +95,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1 copy.html">Vignette Title</a>
-    </li>
-    <li>
-      <a href="../articles/example1.html">Vignette Title</a>
-    </li>
-    <li>
-      <a href="../articles/example2.html">example2</a>
-    </li>
-    <li>
-      <a href="../articles/example3.html">Case study for different selection pools</a>
-    </li>
-    <li>
-      <a href="../articles/example4.html">Case study for different selection pools</a>
-    </li>
-    <li>
-      <a href="../articles/example5.html">Case study for different selection pools</a>
-    </li>
-    <li>
-      <a href="../articles/results-Anne/Result plots.html">Plots</a>
-    </li>
-    <li>
-      <a href="../articles/results-Anne/results.html">Vignette Title</a>
+      <a href="../articles/Vignette_version1.html">SimKAP--simulation of the kidney allocation process</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -167,55 +140,48 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>donor_matrix</th>
-      <td><p>this is the input donor matrix</p></td>
+      <td><p>a data.frame, this is the input donor matrix</p></td>
     </tr>
     <tr>
       <th>yearly_scale_in</th>
-      <td><p>this is the input yearly scale rate</p></td>
+      <td><p>a numeirc vector between 0 and 1, this is the input yearly scale rate</p></td>
     </tr>
     <tr>
       <th>yearly_scale_out</th>
-      <td><p>this is the input yearly scale rate</p></td>
+      <td><p>a numeirc vector between 0 and 1, this is the input yearly scale rate</p></td>
     </tr>
     <tr>
       <th>rate_in</th>
-      <td><p>this is the rate</p></td>
+      <td><p>a numeirc value between 0 and 1, this is the rate</p></td>
     </tr>
     <tr>
       <th>rate_out</th>
-      <td><p>this is the rate</p></td>
+      <td><p>a numeirc value between 0 and 1, this is the rate</p></td>
     </tr>
     <tr>
       <th>IN</th>
-      <td><p>this is the chosen parameter</p></td>
+      <td><p>a boolean value, TRUE/FALSE, whether to use the user defined rate_in or not</p></td>
     </tr>
     <tr>
       <th>OUT</th>
-      <td><p>this is the chosen parameter</p></td>
+      <td><p>a boolean value, TRUE/FALSE, whether to use the user defined rate_out or not</p></td>
     </tr>
     <tr>
       <th>waitlist_Risk</th>
-      <td><p>whether to have this or not</p></td>
+      <td><p>a boolean value, TRUE/FALSE, whether to have this or not</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>wl data</p>
+    <p>wl data which is a matrix for all recipients on the waiting list</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"rawdata"</span>, package <span class='op'>=</span> <span class='st'>"KidneyAllocation"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"rawdata"</span>, package <span class='op'>=</span> <span class='st'>"simKAP"</span><span class='op'>)</span>
 
 
 <span class='va'>wl</span> <span class='op'>&lt;-</span> <span class='fu'>dynamic_waitlist</span><span class='op'>(</span><span class='va'>rawdata</span>,yearly_scale_in <span class='op'>=</span> <span class='cn'>NULL</span>,yearly_scale_out <span class='op'>=</span> <span class='cn'>NULL</span>,rate_in <span class='op'>=</span> <span class='fl'>0.7</span>,
 IN<span class='op'>=</span> <span class='cn'>TRUE</span>, rate_out <span class='op'>=</span> <span class='fl'>0.4</span>,waitlist_Risk <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>;
-</div><div class='output co'>#&gt;  [1] "in"               "0.7"              "1.00237342832006" "1.02015217724256"
-#&gt;  [5] "1.04657639740035" "1.05450430223718" "1.06686660745181" "1.08522161589515"
-#&gt;  [9] "1.09746901038614" "1.13024601339874" "1.16439618933106" "1.23714437427602"
-#&gt; [13] "1.51753096016094"</div><div class='input'>
-
-
-
 
 </div></pre>
   </div>
@@ -229,7 +195,7 @@ IN<span class='op'>=</span> <span class='cn'>TRUE</span>, rate_out <span class='
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Yunwei Zhang.</p>
 </div>
 
 <div class="pkgdown">

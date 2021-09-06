@@ -11,7 +11,7 @@
 #'
 #' @examples
 #'
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #' rawdata$donor_rank = rank(rawdata[,'donor_kdri']) / nrow(rawdata)
 #'
 #'
@@ -71,7 +71,7 @@ selection_default <- function(recip_matrix, donor_matrix,
 #' @return a data.frame contains eligible recipients
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #' rawdata$donor_rank = rank(rawdata[,'donor_kdri']) / nrow(rawdata)
 #'
 #' rawdata$recip_tx_date=rawdata$tx_date
@@ -155,7 +155,7 @@ selection_corisk <- function(recip_matrix, donor_matrix,
 #' @return a data.frame contains eligible recipients
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #' rawdata$donor_rank = rank(rawdata[,'donor_kdri']) / nrow(rawdata)
 #'
 #' rawdata$recip_tx_date=rawdata$tx_date

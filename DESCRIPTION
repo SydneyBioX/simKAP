@@ -1,9 +1,9 @@
-Package: KidneyAllocation
+Package: simKAP
 Type: Package
 Title: Kidney allocation simulation process (simKAP) package
 Version: 0.1.0
 Author: Yunwei Zhang
-Maintainer: The package maintainer <yunwei.zhangf@sydney.edu.au>
+Maintainer: Yunwei Zhang <yunwei.zhangf@sydney.edu.au>
 Description: This package is about a realistic process of simulation the actual kidney allocation.
 License: GPL-3
 Encoding: UTF-8
@@ -19,5 +19,5 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    covr
+    DT
 VignetteBuilder: knitr

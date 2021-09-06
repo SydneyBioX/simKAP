@@ -33,7 +33,7 @@ a data.frame contains eligible recipients
 this is the us inspired recipient selection pool
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 rawdata$donor_rank = rank(rawdata[,'donor_kdri']) / nrow(rawdata)
 
 rawdata$recip_tx_date=rawdata$tx_date

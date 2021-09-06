@@ -20,7 +20,7 @@ another vector with percentage ranking score
 this is changing the score to percentage ranking
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 
 new_score <- linMap(rawdata$recip_epts,1,100);

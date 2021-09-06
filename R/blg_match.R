@@ -8,7 +8,7 @@
 #' @return a data.frame with matched recipient and donor
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' blgmatch <- blood_group_match(rawdata$donor_blgroup,rawdata$recip_blgroup,TRUE,TRUE);

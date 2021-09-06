@@ -27,7 +27,7 @@ a data.frame with matched recipient and donor
 this is the blood group match function
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 
 blgmatch <- blood_group_match(rawdata$donor_blgroup,rawdata$recip_blgroup,TRUE,TRUE);

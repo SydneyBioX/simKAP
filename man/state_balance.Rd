@@ -20,8 +20,8 @@ a vector, which contains all the kidneys allocated to another state
 this is the function to obtain the number of kidneys allocated to another state
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
-data("newdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
+data("newdata", package = "simKAP")
 
 state_balance <- state_balance(rawdata,raw_recip_matrix_subset,raw_donor_matrix[1,]);
 }

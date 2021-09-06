@@ -9,7 +9,7 @@
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #' selected <- select_max(allocation_score=allocation_national(rawdata,rawdata,rawdata),
 #' graft_number = 1);
 #' @export
@@ -64,8 +64,8 @@ select_max <- function(recip_matrix = NULL,
 #' @return a data.frame with matched recipient
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
-#' data("newdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_national_choice(raw_recip_matrix_subset,raw_donor_matrix[1,],
@@ -240,7 +240,7 @@ dm_national_choice <- function(recip_matrix = NULL,
 #'
 #' @return a data.frame with matched recipient
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_national_formula(raw_recip_matrix_subset,raw_donor_matrix[1,],
@@ -605,7 +605,7 @@ dm_national_formula <- function(recip_matrix = NULL,
 #'
 #' @return a data.frame with matched recipient
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_national_top(raw_recip_matrix_subset,raw_donor_matrix[1,],
@@ -723,7 +723,7 @@ dm_national_top <- function(recip_matrix = NULL,
 #'
 #' @return a data.frame with matched recipient
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_state_choice(raw_recip_matrix_subset,raw_donor_matrix[1,],
@@ -865,7 +865,7 @@ dm_state_choice <- function(recip_matrix = NULL,
 #'
 #' @return a data.frame with matched recipient
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_state_formula(raw_recip_matrix_subset,raw_donor_matrix[1,],
@@ -1027,7 +1027,7 @@ dm_state_formula <- function(recip_matrix = NULL,
 #' @return a data.frame with matched recipient
 #'
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #' HLA_matrix <- hla_match(raw_recip_matrix_subset, raw_donor_matrix[1,])
 #'
 #' selected <- dm_state_top(raw_recip_matrix_subset,raw_donor_matrix[1,],

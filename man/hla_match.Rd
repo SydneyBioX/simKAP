@@ -18,7 +18,7 @@ HLA mismatching matrix
 this is the function for calculating HLA
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 HLA_matrix <- hla_match(rawdata, rawdata);
 

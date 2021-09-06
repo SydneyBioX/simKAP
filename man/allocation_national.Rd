@@ -20,7 +20,7 @@ a matrix contains allo_score, which is the alocation score for each new pair
 this is the Australia current national allocation algorithm
 }
 \examples{
-data("rawdata", package = "KidneyAllocation")
+data("rawdata", package = "simKAP")
 
 
 allocation_score <- allocation_national(rawdata,rawdata,rawdata);

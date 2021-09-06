@@ -8,7 +8,7 @@
 #' @return a matrix contains allo_score, which is the alocation score for each new pair
 #'
 #' @examples
-#' data("rawdata", package = "KidneyAllocation")
+#' data("rawdata", package = "simKAP")
 #'
 #'
 #' allocation_score <- allocation_national(rawdata,rawdata,rawdata);

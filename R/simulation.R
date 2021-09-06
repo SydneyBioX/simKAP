@@ -33,7 +33,7 @@
 #' @return a list with 2 objects, a data.frame with matched recipient and donor features, another data.frame with the discarded kidneys if any
 #'
 #' @examples
-#' data("newdata", package = "KidneyAllocation")
+#' data("newdata", package = "simKAP")
 #'
 #'
 #'simulation_result <-run_simulation(raw_recip_matrix_subset, raw_donor_matrix,
