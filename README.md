@@ -26,4 +26,8 @@ You can install the development version of `simKAP` from [GitHub](https://github
 devtools::install_github("SydneyBioX/simKAP")
 ```
 
-## Please refer to our vignette and paper for examples
+## Reference
+
+Please refer to our vignette for examples: https://sydneybiox.github.io/simKAP/.
+
+
