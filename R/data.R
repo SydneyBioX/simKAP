@@ -1,7 +1,7 @@
 #' Example data for this package
 #'
 #'
-#' @usage data(rawdata, package = 'KidneyAllocation')
+#' @usage data(rawdata, package = 'simKAP')
 #'
 #'
 #' @source ANZDATA.
@@ -11,7 +11,7 @@
 #' Example data for this package
 #'
 #'
-#' @usage data(newdata, package = 'KidneyAllocation')
+#' @usage data(newdata, package = 'simKAP')
 #'
 #'
 #' @source ANZDATA.
@@ -20,7 +20,7 @@
 #' Example data for this package
 #'
 #'
-#' @usage data(newdata, package = 'KidneyAllocation')
+#' @usage data(newdata, package = 'simKAP')
 #'
 #'
 #' @source ANZDATA.
@@ -30,7 +30,7 @@
 #' Example data for this package
 #'
 #'
-#' @usage data(newdata, package = 'KidneyAllocation')
+#' @usage data(newdata, package = 'simKAP')
 #'
 #'
 #' @source ANZDATA.

@@ -11,7 +11,7 @@ An object of class \code{data.frame} with 2835 rows and 28 columns.
 ANZDATA.
 }
 \usage{
-data(newdata, package = 'KidneyAllocation')
+data(newdata, package = 'simKAP')
 }
 \description{
 Example data for this package
