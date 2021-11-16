@@ -103,7 +103,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
         mapply('rbind', ..., SIMPLIFY=FALSE)
     }
 
-    if (any(!colnames(donor_matrix)%in% c("donor_source","donor_state","donor_blgroup",
+    if (any(!c("donor_source","donor_state","donor_blgroup",
                                             "donor_a1", "donor_a2","donor_b1","donor_b2"
                                             ,"donor_dr1" ,"donor_dr2"
                                              ,"donor_dq1" ,"donor_dq2","donor_height"
@@ -112,8 +112,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
                                              ,"donor_smoker", "donor_id","donor_death"
                                              ,"donor_dcd"  ,"donor_creatinine" ,"donor_age"
                                              ,"donor_sex"  ,"donor_kdri", "tx_date"
-                                             ,"num_kidney" ))) stop("wrong column names")
-    if (any(!colnames(recip_matrix)%in% c("recip_id" , "recip_graftno", "recip_pra"
+                                             ,"num_kidney","donor_rank") %in% colnames(donor_matrix))) stop("wrong column names")
+    if (any(! c("recip_id" , "recip_graftno", "recip_pra"
                                            ,"recip_blgroup" ,"recip_a1","recip_a2"
                                            ,"recip_b1" , "recip_b2","recip_dr1"
                                            ,"recip_dr2", "recip_dq1","recip_dq2"
@@ -129,7 +129,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
                                            ,"recip_epts", "riskscore", "recip_algorithm"
                                            ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
                                            ,"recip_tx_date", "recip_birthdate" ,"pra_group"
-                                           ,"recip_age_group"))) stop("wrong column names")
+                                           ,"recip_age_group") %in% colnames(recip_matrix))) stop("wrong column names")
 
     if (nrow(donor_matrix) < num_donor) {
         warning("Number of donor in donor_matrix is less than num_donor,
