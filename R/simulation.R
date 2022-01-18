@@ -63,31 +63,31 @@
 # Need to think of a way to generalise this
 
 run_simulation <- function(recip_matrix, donor_matrix,
-                             algorithm_FUN, eligible_FUN, matching_FUN,
-                             waitlist_FUN,
-                             national_algorithm_threshold = 54000000,
-                             state_algorithm = TRUE,
-                             state_algorithm_FUN = NULL,
-                             state_eligible_FUN = NULL,
-                             state_matching_FUN = NULL,
-                             resampleN = 20,
-                             num_donor = 800,
-                             num_recip = 300,
-                             is_parallel = FALSE,
-                             ncores = 2,
-                             verbose = TRUE,
-                             waitlist_arg = list(waitlist_Risk = TRUE,
-                                                 rate_in = 0.70,
-                                                 rate_out = 0.40,
-                                                 yearly_scale_in = c(sort(1+rexp(length(tx_date_ranges), 1/0.1))),
-                                                 yearly_scale_out = c(sort(runif(length(tx_date_ranges), 0.3, 1), decreasing = TRUE))),
-                             eligible_arg = list(AB_priority = TRUE),
-                             state_eligible_arg = list(),
-                             matching_arg = list(),
-                             state_matching_arg = list(),
-                             state_balance = TRUE,
-                             dynamic_waitlist = TRUE,
-                             National_II = TRUE) {
+                           algorithm_FUN, eligible_FUN, matching_FUN,
+                           waitlist_FUN,
+                           national_algorithm_threshold = 54000000,
+                           state_algorithm = TRUE,
+                           state_algorithm_FUN = NULL,
+                           state_eligible_FUN = NULL,
+                           state_matching_FUN = NULL,
+                           resampleN = 20,
+                           num_donor = 800,
+                           num_recip = 300,
+                           is_parallel = FALSE,
+                           ncores = 2,
+                           verbose = TRUE,
+                           waitlist_arg = list(waitlist_Risk = TRUE,
+                                               rate_in = 0.70,
+                                               rate_out = 0.40,
+                                               yearly_scale_in = c(sort(1+rexp(length(tx_date_ranges), 1/0.1))),
+                                               yearly_scale_out = c(sort(runif(length(tx_date_ranges), 0.3, 1), decreasing = TRUE))),
+                           eligible_arg = list(AB_priority = TRUE),
+                           state_eligible_arg = list(),
+                           matching_arg = list(),
+                           state_matching_arg = list(),
+                           state_balance = TRUE,
+                           dynamic_waitlist = TRUE,
+                           National_II = TRUE) {
 
     SimResults = NULL
     discard_kidney=NULL
@@ -104,32 +104,32 @@ run_simulation <- function(recip_matrix, donor_matrix,
     }
 
     if (any(!c("donor_source","donor_state","donor_blgroup",
-                                            "donor_a1", "donor_a2","donor_b1","donor_b2"
-                                            ,"donor_dr1" ,"donor_dr2"
-                                             ,"donor_dq1" ,"donor_dq2","donor_height"
-                                             ,"donor_weight","donor_eth_code" ,"donor_eth_country"
-                                             ,"donor_eth"  ,"donor_diabetes", "donor_hypertension"
-                                             ,"donor_smoker", "donor_id","donor_death"
-                                             ,"donor_dcd"  ,"donor_creatinine" ,"donor_age"
-                                             ,"donor_sex"  ,"donor_kdri", "tx_date"
-                                             ,"num_kidney","donor_rank") %in% colnames(donor_matrix))) stop("wrong column names")
+               "donor_a1", "donor_a2","donor_b1","donor_b2"
+               ,"donor_dr1" ,"donor_dr2"
+               ,"donor_dq1" ,"donor_dq2","donor_height"
+               ,"donor_weight","donor_eth_code" ,"donor_eth_country"
+               ,"donor_eth"  ,"donor_diabetes", "donor_hypertension"
+               ,"donor_smoker", "donor_id","donor_death"
+               ,"donor_dcd"  ,"donor_creatinine" ,"donor_age"
+               ,"donor_sex"  ,"donor_kdri", "tx_date"
+               ,"num_kidney","donor_rank") %in% colnames(donor_matrix))) stop("wrong column names")
     if (any(! c("recip_id" , "recip_graftno", "recip_pra"
-                                           ,"recip_blgroup" ,"recip_a1","recip_a2"
-                                           ,"recip_b1" , "recip_b2","recip_dr1"
-                                           ,"recip_dr2", "recip_dq1","recip_dq2"
-                                           ,"recip_state_initial","recip_state_current", "recip_age_rrtstart"
-                                           , "recip_sex","recip_eth_detailed" ,"recip_eth"
-                                           , "recip_primrenal", "recip_biopsy" , "recip_creatinine"
-                                           ,"recip_height","recip_weight" ,"recip_smoker"
-                                           ,"recip_rrtstartdate", "recip_deathdate", "recip_state"
-                                           , "recip_age", "recip_waittime","recip_lung"
-                                           ,"recip_coronary", "recip_pvd","recip_cvd"
-                                           ,"recip_diabetes", "recip_comorb_date"  ,"recip_cancer"
-                                           ,"recip_liststartdate", "recip_waitstatus", "recip_listtime"
-                                           ,"recip_epts", "riskscore", "recip_algorithm"
-                                           ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
-                                           ,"recip_tx_date", "recip_birthdate" ,"pra_group"
-                                           ,"recip_age_group") %in% colnames(recip_matrix))) stop("wrong column names")
+                ,"recip_blgroup" ,"recip_a1","recip_a2"
+                ,"recip_b1" , "recip_b2","recip_dr1"
+                ,"recip_dr2", "recip_dq1","recip_dq2"
+                ,"recip_state_initial","recip_state_current", "recip_age_rrtstart"
+                , "recip_sex","recip_eth_detailed" ,"recip_eth"
+                , "recip_primrenal", "recip_biopsy" , "recip_creatinine"
+                ,"recip_height","recip_weight" ,"recip_smoker"
+                ,"recip_rrtstartdate", "recip_deathdate", "recip_state"
+                , "recip_age", "recip_waittime","recip_lung"
+                ,"recip_coronary", "recip_pvd","recip_cvd"
+                ,"recip_diabetes", "recip_comorb_date"  ,"recip_cancer"
+                ,"recip_liststartdate", "recip_waitstatus", "recip_listtime"
+                ,"recip_epts", "riskscore", "recip_algorithm"
+                ,"recip_id_original", "recip_original_listdate" ,"recip_original_rrtstartdate"
+                ,"recip_tx_date", "recip_birthdate" ,"pra_group"
+                ,"recip_age_group") %in% colnames(recip_matrix))) stop("wrong column names")
 
     if (nrow(donor_matrix) < num_donor) {
         warning("Number of donor in donor_matrix is less than num_donor,
@@ -147,8 +147,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
         # set up progress bar
         opts <- list(progress = function(n) {
-             setTxtProgressBar(
-               txtProgressBar(min = 1, max = resampleN, style = 3),
+            setTxtProgressBar(
+                txtProgressBar(min = 1, max = resampleN, style = 3),
                 n
             )
         })
@@ -156,29 +156,29 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
         # this will run the simulation in parallel
         finalList <-  foreach(i=1:resampleN,
-                                      .combine='comb', .multicombine=TRUE ,
-                                      .verbose = T,
-                                      # .export = ls(globalenv()),
+                              .combine='comb', .multicombine=TRUE ,
+                              .verbose = T,
+                              # .export = ls(globalenv()),
 
-                                      .export = c(
-                                                  'allocation_national',
+                              .export = c(
+                                  'allocation_national',
 
-                                                  'australia_state_algorithm',
-                                                  'australia_state_selection',
+                                  'australia_state_algorithm',
+                                  'australia_state_selection',
 
-                                                  'blood_group_atch', 'comb', 'dm_national_choice', 'dm_national_formula', 'dm_national_top', 'dm_state_choice', 'dm_state_formula',
-                                                  'dm_state_top',    'hla_match',
-                                                  'linMap',
-                                                  'NSWACT_allocation',
-                                                  'QLD_allocation',
-                                                  'raw_donor_matrix', 'raw_recip_matrix',
-                                                  'raw_recip_matrix_subset',  'recip_sample_list', 'run_simulation',
-                                                  'SA_allocation', 'select_max', 'selection_default', 'selection_corisk',
-                                                   'selection_irisk',   'state_balance',
-                                                  'VICTAS_allocation', 'WA_allocation') ,
-                                      .options.snow = opts,
-                                      .errorhandling = 'remove'
-                                #       .packages=c("doSNOW", "doParallel")
+                                  'blood_group_atch', 'comb', 'dm_national_choice', 'dm_national_formula', 'dm_national_top', 'dm_state_choice', 'dm_state_formula',
+                                  'dm_state_top',    'hla_match',
+                                  'linMap',
+                                  'NSWACT_allocation',
+                                  'QLD_allocation',
+                                  'raw_donor_matrix', 'raw_recip_matrix',
+                                  'raw_recip_matrix_subset',  'recip_sample_list', 'run_simulation',
+                                  'SA_allocation', 'select_max', 'selection_default', 'selection_corisk',
+                                  'selection_irisk',   'state_balance',
+                                  'VICTAS_allocation', 'WA_allocation') ,
+                              .options.snow = opts,
+                              .errorhandling = 'remove'
+                              #       .packages=c("doSNOW", "doParallel")
         ) %dopar% {
 
 
@@ -255,7 +255,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                 if (dynamic_waitlist) {
 
-                     # this is the real step to get the recip on the list
+                    # this is the real step to get the recip on the list
                     if (d > 1) {
                         #start with the second donor
 
@@ -312,7 +312,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
                             } #output the new_recip_matrix
 
                             #### Here we need to insert the kicking off mechanism - survival
-                              # we kick off people from the current list: update_recip_matrix
+                            # we kick off people from the current list: update_recip_matrix
                             if (waitlist_Risk){
                                 #print("RISK RUNNING")
                                 excl_recip_matrix <- update_recip_matrix[order(update_recip_matrix$riskscore, decreasing = TRUE),]
@@ -381,8 +381,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
                             lubridate::year(sim_donor_matrix[d, ]$tx_date))) == 0 ){
 
                             excess_vector = c(excess_vector, state_balance(SimResults,
-                                                                          recip_matrix = update_recip_matrix,
-                                                                          donor_matrix = sim_donor_matrix[d, ]))
+                                                                           recip_matrix = update_recip_matrix,
+                                                                           donor_matrix = sim_donor_matrix[d, ]))
 
                             # Note: does not balance state imbalance caused by december donors
                             # May need update_excess_vector if state balance not achieved before next dec
@@ -522,7 +522,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                     # Calculate HLA
                     HLA_matrix <- hla_match(eligible_recip_matrix,
-                                                 sim_donor_matrix[d, ])
+                                            sim_donor_matrix[d, ])
 
                     rownames(HLA_matrix) <- eligible_recip_matrix$recip_id
                     # Calculate Socre
@@ -621,7 +621,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
                         # print(nrow(eligible_recip_matrix))
                         if (nrow(eligible_recip_matrix_state) > 0) {
                             HLA_matrix_state <- hla_match(eligible_recip_matrix_state,
-                                                               sim_donor_matrix[d, ])
+                                                          sim_donor_matrix[d, ])
                             rownames(HLA_matrix_state) <- eligible_recip_matrix_state$recip_id
 
                             state_recip_score <- state_algorithm_FUN(recip_matrix = eligible_recip_matrix_state,
@@ -694,7 +694,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             # Calculate HLA
                             HLA_matrix <- hla_match(eligible_recip_matrix,
-                                                         sim_donor_matrix[d, ])
+                                                    sim_donor_matrix[d, ])
 
                             rownames(HLA_matrix) <- eligible_recip_matrix$recip_id
                             # Calculate Socre
@@ -989,8 +989,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
                             lubridate::year(sim_donor_matrix[d, ]$tx_date))) == 0 ){
 
                             excess_vector = c(excess_vector, state_balance(SimResults,
-                                                                          recip_matrix = update_recip_matrix,
-                                                                          donor_matrix = sim_donor_matrix[d, ]))
+                                                                           recip_matrix = update_recip_matrix,
+                                                                           donor_matrix = sim_donor_matrix[d, ]))
 
                             # Note: does not balance state imbalance caused by december donors
                             # May need update_excess_vector if state balance not achieved before next dec
@@ -1090,7 +1090,11 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             sb_recip = select_statebalance_idx[,1]
 
-                            simVector <- cbind(update_recip_matrix[update_recip_matrix$recip_id %in% sb_recip, ],
+                            match(sb_recip,
+                                  update_recip_matrix$recip_id)
+
+                            simVector <- cbind(update_recip_matrix[match(sb_recip,
+                                                                         update_recip_matrix$recip_id), ],
                                                sim_donor_matrix[d, ],
                                                score = select_statebalance_idx[select_sb_idx %in% sb_recip,2],
                                                tx_misa = select_statebalance_idx[select_sb_idx %in% sb_recip,3],
@@ -1098,8 +1102,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
                                                tx_misdr = select_statebalance_idx[select_sb_idx %in% sb_recip,5],
                                                algorithm = allo_alg,
                                                recip_waittime_new=as.Date(sim_donor_matrix[d,"tx_date"])-
-                                                   as.Date(update_recip_matrix[update_recip_matrix$recip_id %in%sb_recip,"recip_rrtstartdate"]))
-
+                                                   as.Date(update_recip_matrix[match(sb_recip,
+                                                                                     update_recip_matrix$recip_id),"recip_rrtstartdate"]))
                             SimResults  <- rbind(SimResults, simVector)
                             update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
                                                                            simVector$recip_id,]
@@ -1130,7 +1134,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                     # Calculate HLA
                     HLA_matrix <- hla_match(eligible_recip_matrix,
-                                                 sim_donor_matrix[d, ])
+                                            sim_donor_matrix[d, ])
 
                     rownames(HLA_matrix) <- eligible_recip_matrix$recip_id
                     # Calculate Socre
@@ -1183,15 +1187,16 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                         if (!is.null(select_national_idx) & length(select_national_idx) >= 1) {
 
-                            simVector <- cbind(eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                         select_national_idx, ],
+
+
+                            simVector <- cbind(eligible_recip_matrix[match(select_national_idx,
+                                                                           eligible_recip_matrix$recip_id), ],
                                                sim_donor_matrix[d, ],
                                                score = recip_score[select_national_idx],
                                                HLA_matrix[select_national_idx, ],
                                                algorithm = allo_alg,
-                                               recip_waittime_new=sim_donor_matrix[d,"tx_date"]-eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                                                                          select_national_idx,"recip_rrtstartdate"])
-
+                                               recip_waittime_new=sim_donor_matrix[d,"tx_date"]-eligible_recip_matrix[match(select_national_idx,
+                                                                                                                            eligible_recip_matrix$recip_id),"recip_rrtstartdate"])
                             SimResults  <- rbind(SimResults, simVector)
                             update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
                                                                            simVector$recip_id,]
@@ -1229,7 +1234,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
                         # print(nrow(eligible_recip_matrix))
                         if (nrow(eligible_recip_matrix_state) > 0) {
                             HLA_matrix_state <- hla_match(eligible_recip_matrix_state,
-                                                               sim_donor_matrix[d, ])
+                                                          sim_donor_matrix[d, ])
                             rownames(HLA_matrix_state) <- eligible_recip_matrix_state$recip_id
 
                             state_recip_score <- state_algorithm_FUN(recip_matrix = eligible_recip_matrix_state,
@@ -1251,15 +1256,22 @@ run_simulation <- function(recip_matrix, donor_matrix,
                             allo_alg <- "State"
                             if (!is.null(select_state_idx) & length(select_state_idx) >= 1) {
 
-                                simVector <- cbind(eligible_recip_matrix_state[eligible_recip_matrix_state$recip_id %in%
-                                                                                   select_state_idx, ],
+
+
+
+                                simVector <- cbind(eligible_recip_matrix_state[match(select_state_idx,
+                                                                                     eligible_recip_matrix_state$recip_id), ],
                                                    sim_donor_matrix[d, ],
                                                    score = state_recip_score[select_state_idx],
                                                    HLA_matrix_state[select_state_idx, ],
                                                    algorithm = allo_alg,
                                                    recip_waittime_new=sim_donor_matrix[d,"tx_date"]-
-                                                       eligible_recip_matrix_state[eligible_recip_matrix_state$recip_id %in%select_state_idx,"recip_rrtstartdate"])
+                                                       eligible_recip_matrix_state[match(select_state_idx,
+                                                                                         eligible_recip_matrix_state$recip_id),
+                                                                                   "recip_rrtstartdate"])
+
                                 SimResults  <- rbind(SimResults, simVector)
+
                                 update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
                                                                                simVector$recip_id,]
                             }
@@ -1302,7 +1314,7 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             # Calculate HLA
                             HLA_matrix <- hla_match(eligible_recip_matrix,
-                                                         sim_donor_matrix[d, ])
+                                                    sim_donor_matrix[d, ])
 
                             rownames(HLA_matrix) <- eligible_recip_matrix$recip_id
                             # Calculate Socre
@@ -1334,14 +1346,16 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             if (!is.null(select_national_idx2) & length(select_national_idx2) >= 1) {
 
-                                simVector <- cbind(eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                             select_national_idx2, ],
+                                simVector <- cbind(eligible_recip_matrix[match(select_national_idx2,
+                                                                               eligible_recip_matrix$recip_id), ],
                                                    sim_donor_matrix[d, ],
                                                    score = recip_score[select_national_idx2],
                                                    HLA_matrix[select_national_idx2, ],
                                                    algorithm = allo_alg,
                                                    recip_waittime_new=sim_donor_matrix[d,"tx_date"]-
-                                                       eligible_recip_matrix[eligible_recip_matrix$recip_id %in%select_national_idx2,"recip_rrtstartdate"])
+                                                       eligible_recip_matrix[match(select_national_idx2,
+                                                                                   eligible_recip_matrix$recip_id),"recip_rrtstartdate"])
+
 
                                 SimResults  <- rbind(SimResults, simVector)
                                 update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
