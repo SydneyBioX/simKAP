@@ -482,7 +482,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             sb_recip = select_statebalance_idx[,1]
 
-                            simVector <- cbind(update_recip_matrix[update_recip_matrix$recip_id %in% sb_recip, ],
+                            simVector <- cbind(update_recip_matrix[match(sb_recip,
+                                                                         update_recip_matrix$recip_id), ],
                                                sim_donor_matrix[d, ],
                                                score = select_statebalance_idx[select_sb_idx %in% sb_recip,2],
                                                tx_misa = select_statebalance_idx[select_sb_idx %in% sb_recip,3],
@@ -490,8 +491,8 @@ run_simulation <- function(recip_matrix, donor_matrix,
                                                tx_misdr = select_statebalance_idx[select_sb_idx %in% sb_recip,5],
                                                algorithm = allo_alg,
                                                recip_waittime_new=as.Date(sim_donor_matrix[d,"tx_date"])-
-                                                   as.Date(update_recip_matrix[update_recip_matrix$recip_id %in%sb_recip,"recip_rrtstartdate"]))
-
+                                                   as.Date(update_recip_matrix[match(sb_recip,
+                                                                                     update_recip_matrix$recip_id),"recip_rrtstartdate"]))
                             SimResults  <- rbind(SimResults, simVector)
                             update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
                                                                            simVector$recip_id,]
@@ -575,14 +576,14 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                         if (!is.null(select_national_idx) & length(select_national_idx) >= 1) {
 
-                            simVector <- cbind(eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                         select_national_idx, ],
-                                               sim_donor_matrix[d, ],
-                                               score = recip_score[select_national_idx],
-                                               HLA_matrix[select_national_idx, ],
-                                               algorithm = allo_alg,
-                                               recip_waittime_new=sim_donor_matrix[d,"tx_date"]-eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                                                                          select_national_idx,"recip_rrtstartdate"])
+
+                          simVector <- cbind(eligible_recip_matrix[match(select_national_idx,
+                                                                         eligible_recip_matrix$recip_id), ],
+                   sim_donor_matrix[d, ],
+                   score = recip_score[select_national_idx],
+                   HLA_matrix[select_national_idx, ],
+                   algorithm = allo_alg,
+                   recip_waittime_new=sim_donor_matrix[d,"tx_date"]-eligible_recip_matrix[match(select_national_idx,eligible_recip_matrix$recip_id),"recip_rrtstartdate"])
 
                             SimResults  <- rbind(SimResults, simVector)
                             update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
@@ -643,14 +644,17 @@ run_simulation <- function(recip_matrix, donor_matrix,
                             allo_alg <- "State"
                             if (!is.null(select_state_idx) & length(select_state_idx) >= 1) {
 
-                                simVector <- cbind(eligible_recip_matrix_state[eligible_recip_matrix_state$recip_id %in%
-                                                                                   select_state_idx, ],
+                                simVector <- cbind(eligible_recip_matrix_state[match(select_state_idx,
+                                                                                     eligible_recip_matrix_state$recip_id), ],
                                                    sim_donor_matrix[d, ],
                                                    score = state_recip_score[select_state_idx],
                                                    HLA_matrix_state[select_state_idx, ],
                                                    algorithm = allo_alg,
                                                    recip_waittime_new=sim_donor_matrix[d,"tx_date"]-
-                                                       eligible_recip_matrix_state[eligible_recip_matrix_state$recip_id %in%select_state_idx,"recip_rrtstartdate"])
+                                                       eligible_recip_matrix_state[match(select_state_idx,
+                                                                                         eligible_recip_matrix_state$recip_id),
+                                                                                   "recip_rrtstartdate"])
+
                                 SimResults  <- rbind(SimResults, simVector)
                                 update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
                                                                                simVector$recip_id,]
@@ -726,14 +730,15 @@ run_simulation <- function(recip_matrix, donor_matrix,
 
                             if (!is.null(select_national_idx2) & length(select_national_idx2) >= 1) {
 
-                                simVector <- cbind(eligible_recip_matrix[eligible_recip_matrix$recip_id %in%
-                                                                             select_national_idx2, ],
+                                simVector <- cbind(eligible_recip_matrix[match(select_national_idx2,
+                                                                               eligible_recip_matrix$recip_id), ],
                                                    sim_donor_matrix[d, ],
                                                    score = recip_score[select_national_idx2],
                                                    HLA_matrix[select_national_idx2, ],
                                                    algorithm = allo_alg,
                                                    recip_waittime_new=sim_donor_matrix[d,"tx_date"]-
-                                                       eligible_recip_matrix[eligible_recip_matrix$recip_id %in%select_national_idx2,"recip_rrtstartdate"])
+                                                       eligible_recip_matrix[match(select_national_idx2,
+                                                                                   eligible_recip_matrix$recip_id),"recip_rrtstartdate"])
 
                                 SimResults  <- rbind(SimResults, simVector)
                                 update_recip_matrix <- update_recip_matrix[!update_recip_matrix$recip_id %in%
